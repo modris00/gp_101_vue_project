@@ -1,6 +1,8 @@
 .DS_Store
 node_modules
 /dist
+/public/dist
+/public/plugins
 
 
 # local env files

@@ -1,30 +1,44 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav>
-  <router-view/>
+  <div class="wrapper">
+
+    <!-- Navbar -->
+    <NavbarComponent />
+    <!-- /.navbar -->
+
+    <!-- Main Sidebar Container -->
+    <SidebarComponent />
+    <!-- /.main Sidebar Container -->
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+      <!-- Content Header (Page header) -->
+      <ContentHeaderComponent mainTitle="Dashboard" subTitle="Home" />
+      <!-- /.content-header -->
+
+      <!-- Main content -->
+      <div class="content">
+        <div class="container-fluid">
+          <router-view />
+        </div><!-- /.container-fluid -->
+      </div>
+      <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+
+    <FooterComponent />
+
+  </div>
+  <!-- ./wrapper -->
 </template>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+<script>
+import NavbarComponent from "./components/Navbar.vue";
+import FooterComponent from "./components/Footer.vue";
+import SidebarComponent from "./components/Sidebar.vue";
+import ContentHeaderComponent from "./components/ContentHeader.vue";
+export default {
+  components: { NavbarComponent, FooterComponent, SidebarComponent, ContentHeaderComponent, },
 
-nav {
-  padding: 30px;
 }
+</script>
 
-nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-nav a.router-link-exact-active {
-  color: #42b983;
-}
-</style>
