@@ -24,11 +24,11 @@
                 </td>
                 <td>
                   <!-- prettier-ignore -->
-                  <button type="button" style="margin-right: 2px" class="btn btn-warning">
+                  <!-- <button type="button" style="margin-right: 2px" class="btn btn-warning">
                     Edit
                     <i class="fas fa-edit"></i>
-                  </button>
-
+                  </button> -->
+                  <router-link style="margin-right: 2px" class="btn btn-warning" :to="{path :`/${title}/${row.id}/edit`}" >Edit</router-link>
                   <!-- prettier-ignore -->
                   <button type="button" @click="deleteItem($event, row.id)" class="btn btn-danger">
                     Delete
