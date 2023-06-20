@@ -100,7 +100,7 @@ export default {
   methods: {
     createSupplier(event) {
       axios
-        .post("http://127.0.0.1:8000/api/suppliers", {
+        .post(`${this.$store.state.url}/suppliers`, {
           name: this.name,
           phone: this.phone,
           address: this.address,
@@ -111,7 +111,7 @@ export default {
           // console.log(response.data.message);
           // this.$toast.error(response.data.message);
           // } else {
-          this.$toast.success("Successfully Created!");
+          this.$toast.success(response.data.message);
           this.name = "";
           this.phone = "";
           this.address = "";
@@ -119,7 +119,11 @@ export default {
         })
         .catch((error) => {
           console.log(error);
-          this.$toast.error(error.response.data.message);
+          if (error.response.data) {
+            this.$toast.error(error.response.data.message); //from laravel
+          } else {
+            this.$toast.error(error.message); // from axios
+          }
         });
     },
   },

@@ -2,36 +2,39 @@
   <section class="content">
     <div class="container-fluid">
       <div class="row">
-        <!-- left column -->
         <div class="col-md-12">
-          <!-- general form elements -->
           <div class="card card-primary">
             <div class="card-header">
-              <h3 class="card-title">Create Country</h3>
+              <h3 class="card-title">Create Area</h3>
             </div>
 
-            <!-- /.card-header -->
             <!-- form start -->
             <form>
               <div class="card-body">
                 <div class="form-group">
-                  <label for="post_title">Name:</label>
+                  <label for="post_title">Area name:</label>
                   <input
                     type="text"
                     name="name"
                     class="form-control"
                     id="name"
-                    placeholder="Country name"
                     v-model="name"
                   />
                 </div>
+                <div class="form-group">
+                  <label>Select City</label>
+                  <select class="form-control" v-model="city_id">
+                    <option v-for="city in cities" :value="city.id">
+                      {{ city.name }}
+                    </option>
+                  </select>
+                </div>
               </div>
-              <!-- /.card-body -->
               <div class="card-footer">
                 <button
                   type="button"
                   class="btn btn-primary"
-                  @click="createCountry($event)"
+                  @click="createArea($event)"
                 >
                   Create
                 </button>
@@ -48,27 +51,42 @@
 <script>
 import axios from "axios";
 export default {
-  name: "CreateCountryView",
+  name: "CreateAreaView",
+  mounted() {
+    this.getCities();
+  },
   data() {
     return {
+      cities: [],
       name: "",
+      city_id: null,
     };
   },
   methods: {
-    createCountry(event) {
+    getCities() {
+      // "http://127.0.0.1:8000/api/cities"
       axios
-        .post(`${this.$store.state.url}/countries`, {
+        .get(`${this.$store.state.url}/cities`)
+        .then((response) => {
+          console.log(response);
+          this.cities = response.data.data;
+        })
+        .catch((error) => {
+          console.log(error);
+          this.$toast.warning(error.message); // this key is from axios not laravel
+        });
+    },
+    createArea(event) {
+      axios
+        .post(`${this.$store.state.url}/areas`, {
           name: this.name,
+          city_id: this.city_id,
         })
         .then((response) => {
           console.log(response);
-          // if (response.data.message) {
-          //   // console.log(response.data.message);
-          //   this.$toast.error(response.data.message);
-          // } else {
           this.$toast.success(response.data.message);
           this.name = "";
-          // }
+          this.city_id = null;
         })
         .catch((error) => {
           console.log(error);
