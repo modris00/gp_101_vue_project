@@ -1,0 +1,127 @@
+<template>
+  <section class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <!-- left column -->
+        <div class="col-md-12">
+          <!-- general form elements -->
+          <div class="card card-primary">
+            <div class="card-header">
+              <h3 class="card-title">Create Supplier</h3>
+            </div>
+
+            <!-- /.card-header -->
+            <!-- form start -->
+            <form>
+              <div class="card-body">
+                <div class="form-group">
+                  <label for="post_title">Name:</label>
+                  <input
+                    type="text"
+                    name="name"
+                    class="form-control"
+                    id="name"
+                    placeholder="Supplier name"
+                    v-model="name"
+                  />
+                </div>
+
+                <div class="form-group">
+                  <label for="post_content">Phone Number:</label>
+                  <input
+                    type="number"
+                    name="phone"
+                    class="form-control"
+                    id="phone"
+                    placeholder="Supplier phone number"
+                    v-model="phone"
+                  />
+                </div>
+
+                <div class="form-group">
+                  <label for="post_title">Address:</label>
+                  <input
+                    type="text"
+                    name="address"
+                    class="form-control"
+                    id="address"
+                    placeholder="Supplier address"
+                    v-model="address"
+                  />
+                </div>
+
+                <!-- <div class="form-group">
+                  <label for="post_image">Image</label>
+                  <div class="input-group">
+                    <div class="custom-file">
+                      <input
+                        type="file"
+                        class="custom-file-input"
+                        name="post_image"
+                        id="post_image"
+                      />
+                      <label class="custom-file-label" for="post_image"
+                        >Choose file</label
+                      >
+                    </div>
+                  </div>
+                </div> -->
+              </div>
+              <!-- /.card-body -->
+              <div class="card-footer">
+                <button
+                  type="button"
+                  class="btn btn-primary"
+                  @click="createSupplier($event)"
+                >
+                  Create
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+  </section>
+</template>
+<script>
+import axios from "axios";
+export default {
+  name: "CreateSupplierView",
+  data() {
+    return {
+      name: "",
+      phone: "",
+      address: "",
+    };
+  },
+  methods: {
+    createSupplier(event) {
+      axios
+        .post("http://127.0.0.1:8000/api/suppliers", {
+          name: this.name,
+          phone: this.phone,
+          address: this.address,
+        })
+        .then((response) => {
+          console.log(response);
+          // if (response.data.message) {
+          // console.log(response.data.message);
+          // this.$toast.error(response.data.message);
+          // } else {
+          this.$toast.success("Successfully Created!");
+          this.name = "";
+          this.phone = "";
+          this.address = "";
+          // }
+        })
+        .catch((error) => {
+          console.log(error);
+          this.$toast.error(error.response.data.message);
+        });
+    },
+  },
+};
+</script>

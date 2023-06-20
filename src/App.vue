@@ -1,44 +1,50 @@
 <template>
   <div class="wrapper">
-
-    <!-- Navbar -->
     <NavbarComponent />
-    <!-- /.navbar -->
+    <!---->
 
-    <!-- Main Sidebar Container -->
     <SidebarComponent />
-    <!-- /.main Sidebar Container -->
+    <!---->
 
-    <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
-      <!-- Content Header (Page header) -->
       <ContentHeaderComponent mainTitle="Dashboard" subTitle="Home" />
-      <!-- /.content-header -->
+      <!---->
 
-      <!-- Main content -->
       <div class="content">
         <div class="container-fluid">
           <router-view />
-        </div><!-- /.container-fluid -->
+          <!-- Main content -->
+        </div>
       </div>
-      <!-- /.content -->
     </div>
-    <!-- /.content-wrapper -->
 
     <FooterComponent />
-
+    <!---->
   </div>
-  <!-- ./wrapper -->
 </template>
 
 <script>
-import NavbarComponent from "./components/Navbar.vue";
-import FooterComponent from "./components/Footer.vue";
-import SidebarComponent from "./components/Sidebar.vue";
-import ContentHeaderComponent from "./components/ContentHeader.vue";
+import NavbarComponent from "./components/app/Navbar.vue";
+import FooterComponent from "./components/app/Footer.vue";
+import SidebarComponent from "./components/app/Sidebar.vue";
+import ContentHeaderComponent from "./components/app/ContentHeader.vue";
+import axios from "axios";
+
 export default {
-  components: { NavbarComponent, FooterComponent, SidebarComponent, ContentHeaderComponent, },
-
-}
+  components: {
+    NavbarComponent,
+    FooterComponent,
+    SidebarComponent,
+    ContentHeaderComponent,
+  },
+  mounted() {
+    // this.getSuppliers();
+  },
+  data() {
+    return {
+      // suppliers: [],
+    };
+  },
+  methods: {},
+};
 </script>
-

@@ -1,30 +1,40 @@
-import { createRouter, createWebHistory } from 'vue-router'
-import CampaignsView from '../views/CampaignsView.vue'
-import TestView from '../views/TestView.vue'
+import { createRouter, createWebHistory } from "vue-router";
+
+import TestView from "../views/TestView.vue"; //For Testing
+import HomeView from "../views/HomeView.vue"; //For Testing
+
+import SuppliersView from "../views/suppliers/IndexSuppliers.vue";
+import CreateSupplierView from "../views/suppliers/CreateSupplier.vue";
+import EditSupplierView from "../views/suppliers/EditSupplier.vue";
+
+import CountriesView from "../views/countries/IndexCountries.vue";
+import CreateCountryView from "../views/countries/CreateCountry.vue";
 
 const routes = [
+  { path: "/", component: HomeView },
+
+  { path: "/test", component: TestView },
+
   {
-    path: '/',
-    name: 'test',
-    component: TestView
-  },{
-    path: '/campaigns',
-    name: 'campaigns',
-    component: CampaignsView
+    path: "/suppliers",
+    name: "suppliers",
+    component: SuppliersView,
+    // children: [],
   },
-  // {
-  //   path: '/about',
-  //   name: 'about',
-  //   // route level code-splitting
-  //   // this generates a separate chunk (about.[hash].js) for this route
-  //   // which is lazy-loaded when the route is visited.
-  //   component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
-  // }
-]
+  { path: "/suppliers/create", name: "suppliers.create", component: CreateSupplierView, },
+
+  {
+    path: "/countries",
+    name: "countries",
+    component: CountriesView,
+    // children: [],
+  },
+  { path: "/countries/create", name: "countries.create", component: CreateCountryView, },
+];
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
-  routes
-})
+  routes,
+});
 
-export default router
+export default router;
