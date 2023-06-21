@@ -30,14 +30,15 @@ export default {
       })
     },
     deleteRow(id, event) {
+      
       axios.delete(`${this.$store.state.url}/donors/${id}`)
         .then((response) => {
+          console.log(id)
           console.log(response.data.message);
           this.Donors = this.Donors.filter((item) => item.id != id);
 
         })
         .catch((error) => {
-
           if (error.response.data) {
             this.$toast.error(error.response.data.message);
 

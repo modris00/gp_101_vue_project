@@ -22,6 +22,12 @@ import CreateAdminView from '../views/Admin/CreateAdmin.vue'
 import CategoriesView from '../views/Category/IndexCategory.vue'
 import CreateCategoryView from '../views/Category/CreateCategory.vue'
 import EditCategoryView from '../views/Category/EditCategory.vue'
+
+// Model subCategories
+import SubCategoriesView from '../views/SubCategory/IndexSubCategory.vue'
+import CreateSubCategoryView from '../views/SubCategory/CreateSubCategory.vue'
+import EditSubCategoryView from '../views/SubCategory/EditSubCategory.vue'
+
 // Model Donor
 import DonorView from '../views/Donor/IndexDonor.vue'
 import CreateDonorView from '../views/Donor/CreateDonor.vue'
@@ -50,63 +56,79 @@ const routes = [
   },
   { path: "/countries/create", name: "countries.create", component: CreateCountryView, },
   {
-    path:'/faqs',
-    name:'faqs',
-    component:FaqsView
+    path: '/faqs',
+    name: 'faqs',
+    component: FaqsView
   },
   {
-    path:'/faq/create',
-    name:'faqs.create',
-    component:CreateFaqView
+    path: '/faq/create',
+    name: 'faqs.create',
+    component: CreateFaqView
   },
   {
-    path:'/faqs/:id/edit',
-    name:'faqs.edit',
-    component:EditFaqView
+    path: '/faqs/:id/edit',
+    name: 'faqs.edit',
+    component: EditFaqView
   },
   {
-    path:'/categories',
-    name:'categories',
-    component:CategoriesView
+    path: '/sub-categories',
+    name: 'sub-categories',
+    component: SubCategoriesView
   },
   {
-    path:'/category/create',
-    name:'categories.create',
-    component: CreateCategoryView
+    path: '/sub-categories/create',
+    name: 'sub-categories.create',
+    component: CreateSubCategoryView
   },
   {
-    path:'/category/:id/edit',
-    name:'categories.edit',
-    component:EditCategoryView
-  },{
-    path:'/admins',
-    name:'admins',
-    component:AdminsView
-  },{
-    path:'/admin/create',
-    name:'admins.create',
-    component:CreateAdminView
-  },
-  {
-    path:'/admin/:id/edit',
-    name:'admins.edit',
-    component:EditAdmin
+    path: '/sub-categories/:id/edit',
+    name: 'sub-categories.edit',
+    component: EditSubCategoryView
   }
   ,
   {
-    path:'/donors',
-    name:'donors',
-    component:DonorView
+    path: '/categories',
+    name: 'categories',
+    component: CategoriesView
   },
   {
-    path:'/donor/create',
-    name:'donors.create',
-    component:CreateDonorView
+    path: '/category/create',
+    name: 'categories.create',
+    component: CreateCategoryView
   },
   {
-    path:'/donor/:id/edit',
-    name:'donors.edit',
-    component:EditDonorView
+    path: '/category/:id/edit',
+    name: 'categories.edit',
+    component: EditCategoryView
+  }, {
+    path: '/admins',
+    name: 'admins',
+    component: AdminsView
+  }, {
+    path: '/admin/create',
+    name: 'admins.create',
+    component: CreateAdminView
+  },
+  {
+    path: '/admin/:id/edit',
+    name: 'admins.edit',
+    component: EditAdmin
+  }
+  ,
+  {
+    path: '/donors',
+    name: 'donors',
+    component: DonorView
+  },
+  {
+    path: '/donor/create',
+    name: 'donors.create',
+    component: CreateDonorView
+  },
+  {
+    path: '/donor/:id/edit',
+    name: 'donors.edit',
+    component: EditDonorView
   }
 ];
 
