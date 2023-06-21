@@ -13,7 +13,7 @@
               <th v-for="header in headers" v-show="header != 'id'">
                 {{ header }}
               </th>
-              <th v-if="rows.length > 0">Actions</th>
+              <th v-if="headers.length > 0">Actions</th>
             </thead>
 
             <tbody>
@@ -28,7 +28,9 @@
                     Edit
                     <i class="fas fa-edit"></i>
                   </button> -->
+
                   <!-- <router-link style="margin-right: 2px" class="btn btn-warning" :to="{path :`/${title}/${row.id}/edit`}" >Edit</router-link> -->
+
                   <router-link
                     style="margin-right: 2px"
                     class="btn btn-warning"
@@ -36,6 +38,7 @@
                     >Edit
                     <i class="fas fa-edit"></i>
                   </router-link>
+
                   <!-- prettier-ignore -->
                   <button type="button" @click="deleteItem($event, row.id)" class="btn btn-danger">
                     Delete
@@ -44,7 +47,12 @@
                 </td>
               </tr>
               <tr v-if="rows.length < 1">
-                <td class="bg-secondary">No Data.</td>
+                <td
+                  class="bg-secondary text-light text-center"
+                  :colspan="headers.length + 1"
+                >
+                  No Data.
+                </td>
               </tr>
             </tbody>
           </table>

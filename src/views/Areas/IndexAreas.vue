@@ -1,9 +1,9 @@
 <template>
   <TableComp
     :headers="headers"
-    :rows="suppliers"
+    :rows="areas"
     :deleteItem="deleteRow"
-    title="Suppliers"
+    title="Areas"
   ></TableComp>
 </template>
 <script>
@@ -11,25 +11,26 @@ import axios from "axios";
 import TableComp from "../../components/Table.vue";
 
 export default {
-  name: "SuppliersView",
+  name: "AreasView",
   components: { TableComp },
   props: [],
   mounted() {
-    this.getSuppliers();
+    this.getAreas();
   },
   data() {
     return {
-      suppliers: [],
-      headers: ["id", "name", "phone", "address", "created_at"],
+      areas: [],
+      headers: ["id", "name", "city_name", "created_at"],
     };
   },
   methods: {
-    getSuppliers() {
+    getAreas() {
+      // .get("http://127.0.0.1:8000/api/areas")
       axios
-        .get(`${this.$store.state.url}/suppliers`)
+        .get(`${this.$store.state.url}/areas`)
         .then((response) => {
           console.log(response);
-          this.suppliers = response.data.data;
+          this.areas = response.data.data;
         })
         .catch((error) => {
           console.log(error);
@@ -40,10 +41,10 @@ export default {
       //   console.log(event);
       console.log(id);
       axios
-        .delete(`${this.$store.state.url}/suppliers/${id}`)
+        .delete(`${this.$store.state.url}/areas/${id}`)
         .then((response) => {
-          this.suppliers = this.suppliers.filter((s) => s.id != id);
           console.log(response);
+          this.areas = this.areas.filter((area) => area.id != id);
           this.$toast.success(response.data.message);
         })
         .catch((error) => {

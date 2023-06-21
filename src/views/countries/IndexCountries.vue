@@ -26,27 +26,32 @@ export default {
   methods: {
     getCountries() {
       axios
-        .get("http://127.0.0.1:8000/api/countries")
+        .get(`${this.$store.state.url}/countries`)
         .then((response) => {
           console.log(response);
           this.countries = response.data.data;
         })
         .catch((error) => {
           console.log(error);
+          this.$toast.warning(error.message); // this key is from axios not laravel
         });
     },
     deleteRow(event, id) {
       //   console.log(event);
       console.log(id);
       axios
-        .delete(`http://127.0.0.1:8000/api/countries/${id}`)
+        .delete(`${this.$store.state.url}/countries/${id}`)
         .then((response) => {
           this.countries = this.countries.filter((c) => c.id != id);
-          this.$toast.success("Successfully Deleted!");
+          this.$toast.success(response.data.message);
         })
         .catch((error) => {
           console.log(error);
-          this.$toast.error(error.message);
+          if (error.response.data) {
+            this.$toast.error(error.response.data.message); // from laravel
+          } else {
+            this.$toast.error(error.message); // from axios
+          }
         });
     },
   },
