@@ -139,6 +139,133 @@
               </li>
             </ul>
           </li>
+          
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-users"></i>
+
+              <p>
+                Admins
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <router-link :to="{ name: 'admins.create' }" class="nav-link">
+                  <i class="nav-icon fas fa-plus"></i>
+                  <p>Create</p>
+                </router-link>
+              </li>
+              <li class="nav-item">
+                <router-link :to="{ name: 'admins' }" class="nav-link">
+                  <i class="nav-icon fas fa-list"></i>
+                  <p>Read</p>
+                </router-link>
+              </li>
+            </ul>
+          </li>          
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-hands-helping"></i>
+              <p>
+                Donors
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <router-link :to="{ name: 'donors.create' }" class="nav-link">
+                  <i class="nav-icon fas fa-plus"></i>
+                  <p>Create</p>
+                </router-link>
+              </li>
+              <li class="nav-item">
+                <router-link :to="{ name: 'donors' }" class="nav-link">
+                  <i class="nav-icon fas fa-list"></i>
+                  <p>Read</p>
+                </router-link>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <!-- <i class="nav-icon fas fa-list"></i> -->
+              <!-- <i class=" nav-icon fa-solid fa-list-tree"></i> -->
+              <i class="nav-icon fas fa-stream"></i>
+              <p>
+                Category
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <router-link
+                  :to="{ name: 'categories.create' }"
+                  class="nav-link"
+                >
+                  <i class="nav-icon fas fa-plus"></i>
+                  <p>Create</p>
+                </router-link>
+              </li>
+              <li class="nav-item">
+                <router-link :to="{ name: 'categories' }" class="nav-link">
+                  <i class="nav-icon fas fa-list"></i>
+                  <p>Read</p>
+                </router-link>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <!-- <i class=" fas fa-list"></i> -->
+              <i class="nav-icon fas fa-stream"></i>
+
+              <p>
+                SubCategory
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <router-link
+                  :to="{ name: 'sub-categories.create' }"
+                  class="nav-link"
+                >
+                  <i class="nav-icon fas fa-plus"></i>
+                  <p>Create</p>
+                </router-link>
+              </li>
+              <li class="nav-item">
+                <router-link :to="{ name: 'sub-categories' }" class="nav-link">
+                  <i class="nav-icon fas fa-list"></i>
+                  <p>Read</p>
+                </router-link>
+              </li>
+            </ul>
+          </li>          
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-question fa-lg"> </i>
+              <p>
+                FAQ
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <router-link :to="{ name: 'faqs.create' }" class="nav-link">
+                  <i class="nav-icon fas fa-plus"></i>
+                  <p>Create</p>
+                </router-link>
+              </li>
+              <li class="nav-item">
+                <router-link :to="{ name: 'faqs' }" class="nav-link">
+                  <i class="nav-icon fas fa-list"></i>
+                  <p>Read</p>
+                </router-link>
+              </li>
+            </ul>
+          </li>
 
           <li class="nav-item">
             <a href="#" class="nav-link">

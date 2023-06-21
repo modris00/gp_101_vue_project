@@ -29,7 +29,8 @@
                     <i class="fas fa-edit"></i>
                   </button> -->
 
-                  <!-- :to="{ path: `/${title.toLowerCase()}/${row.id}/edit` }" -->
+                  <!-- <router-link style="margin-right: 2px" class="btn btn-warning" :to="{path :`/${title}/${row.id}/edit`}" >Edit</router-link> -->
+
                   <router-link
                     style="margin-right: 2px"
                     class="btn btn-warning"
