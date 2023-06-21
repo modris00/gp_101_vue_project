@@ -1,5 +1,5 @@
 <template>
-  <TableComp :headers="headers" :rows="categories" :deleteItem="deleteRow" title="Categories"></TableComp>
+  <TableComp :headers="headers" :rows="categories" :deleteItem="deleteRow" title="categories"></TableComp>
 </template>
 
 <script>

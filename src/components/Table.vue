@@ -28,7 +28,14 @@
                     Edit
                     <i class="fas fa-edit"></i>
                   </button> -->
-                  <router-link style="margin-right: 2px" class="btn btn-warning" :to="{path :`/${title}/${row.id}/edit`}" >Edit</router-link>
+                  <!-- <router-link style="margin-right: 2px" class="btn btn-warning" :to="{path :`/${title}/${row.id}/edit`}" >Edit</router-link> -->
+                  <router-link
+                    style="margin-right: 2px"
+                    class="btn btn-warning"
+                    :to="{ name: routeName, params: { id: row.id } }"
+                    >Edit
+                    <i class="fas fa-edit"></i>
+                  </router-link>
                   <!-- prettier-ignore -->
                   <button type="button" @click="deleteItem($event, row.id)" class="btn btn-danger">
                     Delete
@@ -53,5 +60,10 @@
 <script>
 export default {
   props: ["title", "headers", "rows", "deleteItem"],
+  computed: {
+    routeName() {
+      return this.title.toLowerCase() + ".edit";
+    },
+  },
 };
 </script>

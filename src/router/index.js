@@ -15,13 +15,17 @@ import CreateFaqView from '../views/Faq/CreateFaq.vue'
 import EditFaqView from '../views/Faq/EditFaq.vue'
 // Model Admin
 import AdminsView from '../views/Admin/IndexAdmin.vue'
+import EditAdmin from '../views/Admin/EditAdmin.vue'
 import CreateAdminView from '../views/Admin/CreateAdmin.vue'
 
 // Model Categories
 import CategoriesView from '../views/Category/IndexCategory.vue'
 import CreateCategoryView from '../views/Category/CreateCategory.vue'
+import EditCategoryView from '../views/Category/EditCategory.vue'
 // Model Donor
 import DonorView from '../views/Donor/IndexDonor.vue'
+import CreateDonorView from '../views/Donor/CreateDonor.vue'
+import EditDonorView from '../views/Donor/EditDonor.vue'
 
 
 
@@ -52,7 +56,7 @@ const routes = [
   },
   {
     path:'/faq/create',
-    name:'faq.create',
+    name:'faqs.create',
     component:CreateFaqView
   },
   {
@@ -67,22 +71,42 @@ const routes = [
   },
   {
     path:'/category/create',
-    name:'category.create',
-    component:CreateCategoryView
+    name:'categories.create',
+    component: CreateCategoryView
+  },
+  {
+    path:'/category/:id/edit',
+    name:'categories.edit',
+    component:EditCategoryView
   },{
     path:'/admins',
     name:'admins',
     component:AdminsView
   },{
     path:'/admin/create',
-    name:'admin.create',
+    name:'admins.create',
     component:CreateAdminView
+  },
+  {
+    path:'/admin/:id/edit',
+    name:'admins.edit',
+    component:EditAdmin
   }
   ,
   {
     path:'/donors',
     name:'donors',
     component:DonorView
+  },
+  {
+    path:'/donor/create',
+    name:'donors.create',
+    component:CreateDonorView
+  },
+  {
+    path:'/donor/:id/edit',
+    name:'donors.edit',
+    component:EditDonorView
   }
 ];
 

@@ -36,7 +36,7 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <router-link :to="{name : 'admin.create'}" class="nav-link">
+                <router-link :to="{ name: 'admins.create' }" class="nav-link">
                   <i class="nav-icon fas fa-plus"></i>
                   <p>Create</p>
                 </router-link>
@@ -82,7 +82,7 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <router-link to="/" class="nav-link">
+                <router-link :to="{name:'donors.create'}" class="nav-link">
                   <i class="nav-icon fas fa-plus"></i>
                   <p>Create</p>
                 </router-link>
@@ -105,7 +105,7 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <router-link :to="{ name: 'category.create' }" class="nav-link">
+                <router-link :to="{ name: 'categories.create' }" class="nav-link">
                   <i class="nav-icon fas fa-plus"></i>
                   <p>Create</p>
                 </router-link>
@@ -151,7 +151,7 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <router-link :to="{ name: 'faq.create' }" class="nav-link">
+                <router-link :to="{ name: 'faqs.create' }" class="nav-link">
                   <i class="nav-icon fas fa-plus"></i>
                   <p>Create</p>
                 </router-link>
