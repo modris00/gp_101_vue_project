@@ -3,6 +3,6 @@
 </template>
 <script>
 export default {
-  name: "EditAreaView",
+  name: "EditBeneficiaryView",
 };
 </script>
