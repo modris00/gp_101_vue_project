@@ -34,7 +34,12 @@ import EditServiceView from "../views/Service/EditService.vue";
 import DonorView from "../views/Donor/IndexDonor.vue";
 import CreateDonorView from "../views/Donor/CreateDonor.vue";
 import EditDonorView from "../views/Donor/EditDonor.vue";
+// Campaigns
+import CampaignsView from "../views/Campaign/IndexCampaign.vue";
+import CreateCampaignView from "../views/Campaign/CreateCampaign.vue";
+import EditCampaignView from "../views/Campaign/EditCampaign.vue";
 
+//
 import CountriesView from "../views/Countries/IndexCountries.vue";
 import CreateCountryView from "../views/Countries/CreateCountry.vue";
 import EditCountryView from "../views/Countries/EditCountry.vue";
@@ -126,6 +131,18 @@ const routes = [
   { path: "/admins", name: "admins", component: AdminsView },
   { path: "/admin/create", name: "admins.create", component: CreateAdminView },
   { path: "/admin/:id/edit", name: "admins.edit", component: EditAdmin },
+  //
+  { path: "/campaigns", name: "campaigns", component: CampaignsView },
+  {
+    path: "/campaign/create",
+    name: "campaigns.create",
+    component: CreateCampaignView,
+  },
+  {
+    path: "/campaign/:id/edit",
+    name: "campaigns.edit",
+    component: EditCampaignView,
+  },
 
   { path: "/donors", name: "donors", component: DonorView },
   { path: "/donor/create", name: "donors.create", component: CreateDonorView },
