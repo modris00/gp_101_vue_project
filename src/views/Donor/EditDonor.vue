@@ -113,6 +113,7 @@ export default {
         .then((response) => {
           console.log(response.data.data);
           this.Donor = response.data.data;
+          // console.log(this.Donor.area_id);
         })
         .catch((error) => {
           console.log(error);
