@@ -139,7 +139,7 @@
               </li>
             </ul>
           </li>
-          
+
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-users"></i>
@@ -163,7 +163,7 @@
                 </router-link>
               </li>
             </ul>
-          </li>          
+          </li>
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-hands-helping"></i>
@@ -242,7 +242,30 @@
                 </router-link>
               </li>
             </ul>
-          </li>          
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-handshake"></i>
+              <p>
+                Services
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <router-link :to="{ name: 'services.create' }" class="nav-link">
+                  <i class="nav-icon fas fa-plus"></i>
+                  <p>Create</p>
+                </router-link>
+              </li>
+              <li class="nav-item">
+                <router-link :to="{ name: 'services' }" class="nav-link">
+                  <i class="nav-icon fas fa-list"></i>
+                  <p>Read</p>
+                </router-link>
+              </li>
+            </ul>
+          </li>
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-question fa-lg"> </i>

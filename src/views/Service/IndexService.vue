@@ -1,9 +1,9 @@
 <template>
   <TableComp
     :headers="headers"
-    :rows="subCategories"
+    :rows="services"
     :deleteItem="deleteRow"
-    title="Sub-Categories"
+    title="Services"
   ></TableComp>
 </template>
 
@@ -16,46 +16,48 @@ export default {
     TableComp,
   },
   mounted() {
-    this.indexSubCategories();
+    this.indexAdmins();
   },
-  name: "IndexSubCategory",
+  name: "IndexServices",
   data() {
     return {
-      subCategories: [],
-      headers: ["id", "name", "description", "category_name"],
+      services: [],
+      headers: [
+        "id",
+        "name",
+        "description",
+        "active",
+        "sub_category_name",
+        "image",
+      ],
     };
   },
   methods: {
-    indexSubCategories() {
+    indexAdmins() {
       axios
-        .get(`${this.$store.state.url}/sub-categories`)
+        .get(`${this.$store.state.url}/services`)
         .then((response) => {
-          this.subCategories = response.data.data;
+          this.services = response.data.data;
           console.log(response.data.data);
         })
         .catch((error) => {
+          this.$toast.error(error.response.data.message);
           console.log(error);
         });
     },
     deleteRow(event, id) {
       axios
-        .delete(`${this.$store.state.url}/sub-categories/${id}`)
+        .delete(`${this.$store.state.url}/services/${id}`)
         .then((response) => {
           console.log(response.data.message);
-          this.subCategories = this.subCategories.filter(
-            (item) => item.id != id
-          );
+          this.services = this.services.filter((item) => item.id != id);
           this.$toast.success(response.data.message);
         })
         .catch((error) => {
           if (error.response.data) {
             this.$toast.error(error.response.data.message);
           } else {
-            if (error.response.data) {
-              this.$toast.error(error.response.data.message);
-            } else {
-              this.$toast.error(error.message);
-            }
+            this.$toast.error(error.message);
           }
         });
     },
