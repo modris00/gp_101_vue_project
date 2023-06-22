@@ -69,7 +69,7 @@
 
                 <div class="form-group">
                   <label>Select area: </label>
-                  <select class="form-control" v-model="area_id">
+                  <select class="form-control" v-model="areaId">
                     <option v-for="area in areas" :value="area.id">
                       {{ area.name }}
                     </option>
@@ -103,7 +103,7 @@ export default {
       gender: "",
       email: "",
       username: "",
-      area_id: null,
+      areaId: null,
     };
   },
   methods: {
@@ -127,7 +127,7 @@ export default {
           gender: this.gender,
           email: this.email,
           username: this.username,
-          area_id: this.area_id,
+          area_id: this.areaId,
         })
         .then((response) => {
           console.log(response);
@@ -137,7 +137,7 @@ export default {
           this.gender = "";
           this.email = "";
           this.username = "";
-          this.area_id = null;
+          this.areaId = null;
         })
         .catch((error) => {
           console.log(error);

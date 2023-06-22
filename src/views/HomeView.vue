@@ -1,5 +1,6 @@
 <template>
-  <TableComp title="tests" :rows="data" :deleteItem="deleteItem"></TableComp>
+  <!-- <TableComp title="tests" :rows="data" :deleteItem="deleteItem"></TableComp> -->
+  <p>welcome..</p>
 </template>
 <script>
 import TableComp from "../components/Table.vue";

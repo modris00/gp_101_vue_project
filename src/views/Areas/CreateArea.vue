@@ -9,7 +9,7 @@
             </div>
 
             <!-- form start -->
-            <form>
+            <form @submit.prevent="createArea($event)">
               <div class="card-body">
                 <div class="form-group">
                   <label for="post_title">Area name:</label>
@@ -31,13 +31,7 @@
                 </div>
               </div>
               <div class="card-footer">
-                <button
-                  type="button"
-                  class="btn btn-primary"
-                  @click="createArea($event)"
-                >
-                  Create
-                </button>
+                <button type="submit" class="btn btn-primary">Create</button>
               </div>
             </form>
           </div>

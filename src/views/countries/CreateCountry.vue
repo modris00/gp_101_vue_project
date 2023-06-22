@@ -12,7 +12,7 @@
 
             <!-- /.card-header -->
             <!-- form start -->
-            <form>
+            <form @submit.prevent="createCountry($event)">
               <div class="card-body">
                 <div class="form-group">
                   <label for="post_title">Name:</label>
@@ -28,13 +28,7 @@
               </div>
               <!-- /.card-body -->
               <div class="card-footer">
-                <button
-                  type="button"
-                  class="btn btn-primary"
-                  @click="createCountry($event)"
-                >
-                  Create
-                </button>
+                <button type="submit" class="btn btn-primary">Create</button>
               </div>
             </form>
           </div>

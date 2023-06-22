@@ -20,7 +20,7 @@ export default {
   data() {
     return {
       areas: [],
-      headers: ["id", "name", "city_name", "created_at"],
+      headers: ["name", "city_name", "created_at"],
     };
   },
   methods: {
