@@ -20,7 +20,7 @@ export default {
   data() {
     return {
       suppliers: [],
-      headers: ["id", "name", "phone", "address", "created_at"],
+      headers: ["name", "phone", "address", "created_at"],
     };
   },
   methods: {

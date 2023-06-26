@@ -20,7 +20,7 @@ export default {
   data() {
     return {
       cities: [],
-      headers: ["id", "name", "country_name", "created_at"],
+      headers: ["name", "country_name", "created_at"],
     };
   },
   methods: {

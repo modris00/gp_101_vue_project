@@ -49,7 +49,7 @@
               <tr v-if="rows.length < 1">
                 <td
                   class="bg-secondary text-light text-center"
-                  :colspan="headers.length + 1"
+                  :colspan="headers.length + 2"
                 >
                   No Data.
                 </td>

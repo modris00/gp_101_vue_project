@@ -58,7 +58,7 @@ import axios from "axios";
 export default {
   name: "EditFaq",
   mounted() {
-    console.log(this.$route.params.id);
+    // console.log(this.$route.params.id);
     this.indexFaq(this.$route.params.id);
   },
   data() {

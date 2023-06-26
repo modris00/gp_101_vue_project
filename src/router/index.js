@@ -13,7 +13,7 @@ import CreateFaqView from "../views/Faq/CreateFaq.vue";
 import EditFaqView from "../views/Faq/EditFaq.vue";
 // Model Admin
 import AdminsView from "../views/Admin/IndexAdmin.vue";
-import EditAdmin from "../views/Admin/EditAdmin.vue";
+import EditAdminView from "../views/Admin/EditAdmin.vue";
 import CreateAdminView from "../views/Admin/CreateAdmin.vue";
 
 // Model Categories
@@ -39,7 +39,7 @@ import CampaignsView from "../views/Campaign/IndexCampaign.vue";
 import CreateCampaignView from "../views/Campaign/CreateCampaign.vue";
 import EditCampaignView from "../views/Campaign/EditCampaign.vue";
 
-//
+
 import CountriesView from "../views/Countries/IndexCountries.vue";
 import CreateCountryView from "../views/Countries/CreateCountry.vue";
 import EditCountryView from "../views/Countries/EditCountry.vue";
@@ -61,116 +61,54 @@ const routes = [
 
   { path: "/test", component: TestView },
 
-  { path: "/suppliers", name: "suppliers", component: SuppliersView }, //children[]
-  {
-    path: "/suppliers/create",
-    name: "suppliers.create",
-    component: CreateSupplierView,
-  },
-  {
-    path: "/suppliers/:id/edit",
-    name: "suppliers.edit",
-    component: EditSupplierView,
-  },
-
-  { path: "/countries", name: "countries", component: CountriesView },
-  {
-    path: "/countries/create",
-    name: "countries.create",
-    component: CreateCountryView,
-  },
-  {
-    path: "/countries/:id/edit",
-    name: "countries.edit",
-    component: EditCountryView,
-  },
-
-  { path: "/faqs", name: "faqs", component: FaqsView },
-  { path: "/faq/create", name: "faqs.create", component: CreateFaqView },
-  { path: "/faqs/:id/edit", name: "faqs.edit", component: EditFaqView },
-
-  {
-    path: "/sub-categories",
-    name: "sub-categories",
-    component: SubCategoriesView,
-  },
-  {
-    path: "/sub-categories/create",
-    name: "sub-categories.create",
-    component: CreateSubCategoryView,
-  },
-  {
-    path: "/sub-categories/:id/edit",
-    name: "sub-categories.edit",
-    component: EditSubCategoryView,
-  },
-  { path: "/categories", name: "categories", component: CategoriesView },
-  {
-    path: "/category/create",
-    name: "categories.create",
-    component: CreateCategoryView,
-  },
-  {
-    path: "/category/:id/edit",
-    name: "categories.edit",
-    component: EditCategoryView,
-  },
-  ///IndexServiceView
-  {
-    path: "/services/create",
-    name: "services.create",
-    component: CreateServiceView,
-  },
-  {
-    path: "/services/:id/edit",
-    name: "services.edit",
-    component: EditServiceView,
-  },
+  { path: "/services/create", name: "services.create", component: CreateServiceView },
+  { path: "/services/:id/edit", name: "services.edit", component: EditServiceView },
   { path: "/services", name: "services", component: IndexServiceView },
 
-  { path: "/admins", name: "admins", component: AdminsView },
-  { path: "/admin/create", name: "admins.create", component: CreateAdminView },
-  { path: "/admin/:id/edit", name: "admins.edit", component: EditAdmin },
-  //
   { path: "/campaigns", name: "campaigns", component: CampaignsView },
-  {
-    path: "/campaign/create",
-    name: "campaigns.create",
-    component: CreateCampaignView,
-  },
-  {
-    path: "/campaign/:id/edit",
-    name: "campaigns.edit",
-    component: EditCampaignView,
-  },
+  { path: "/campaign/create", name: "campaigns.create", component: CreateCampaignView },
+  { path: "/campaign/:id/edit", name: "campaigns.edit", component: EditCampaignView },
 
-  { path: "/donors", name: "donors", component: DonorView },
-  { path: "/donor/create", name: "donors.create", component: CreateDonorView },
-  { path: "/donor/:id/edit", name: "donors.edit", component: EditDonorView },
+  { path: "/suppliers", name: "suppliers", component: SuppliersView }, //children[]
+  { path: "/suppliers/create", name: "suppliers.create", component: CreateSupplierView, },
+  { path: "/suppliers/:id/edit", name: "suppliers.edit", component: EditSupplierView, },
 
-  { path: "/cities", name: "cities", component: CitiesView }, //children[]
-  { path: "/cities/create", name: "cities.create", component: CreateCityView },
-  { path: "/cities/:id/edit", name: "cities.edit", component: EditCityView },
+  { path: "/countries", name: "countries", component: CountriesView, },
+  { path: "/countries/create", name: "countries.create", component: CreateCountryView, },
+  { path: "/countries/:id/edit", name: "countries.edit", component: EditCountryView, },
 
-  { path: "/areas", name: "areas", component: AreasView }, //children[]
-  { path: "/areas/create", name: "areas.create", component: CreateAreaView },
-  { path: "/areas/:id/edit", name: "areas.edit", component: EditAreaView },
+  { path: '/faqs', name: 'faqs', component: FaqsView },
+  { path: '/faq/create', name: 'faqs.create', component: CreateFaqView },
+  { path: '/faqs/:id/edit', name: 'faqs.edit', component: EditFaqView },
 
-  {
-    path: "/beneficiaries",
-    name: "beneficiaries",
-    component: BeneficiariesView,
-  }, //children[]
-  {
-    path: "/beneficiaries/create",
-    name: "beneficiaries.create",
-    component: CreateBeneficiaryView,
-  },
-  {
-    path: "/beneficiaries/:id/edit",
-    name: "beneficiaries.edit",
-    component: EditBeneficiaryView,
-  },
+  { path: '/sub-categories', name: 'sub-categories', component: SubCategoriesView },
+  { path: '/sub-categories/create', name: 'sub-categories.create', component: CreateSubCategoryView },
+  { path: '/sub-categories/:id/edit', name: 'sub-categories.edit', component: EditSubCategoryView }
+  ,
+  { path: '/categories', name: 'categories', component: CategoriesView },
+  { path: '/category/create', name: 'categories.create', component: CreateCategoryView },
+  { path: '/category/:id/edit', name: 'categories.edit', component: EditCategoryView },
+
+  { path: '/admins', name: 'admins', component: AdminsView },
+  { path: '/admin/create', name: 'admins.create', component: CreateAdminView },
+  { path: '/admin/:id/edit', name: 'admins.edit', component: EditAdminView },
+
+  { path: '/donors', name: 'donors', component: DonorView },
+  { path: '/donor/create', name: 'donors.create', component: CreateDonorView },
+  { path: '/donor/:id/edit', name: 'donors.edit', component: EditDonorView },
+
+  { path: "/cities", name: "cities", component: CitiesView },  //children[]
+  { path: "/cities/create", name: "cities.create", component: CreateCityView, },
+  { path: "/cities/:id/edit", name: "cities.edit", component: EditCityView, },
+
+  { path: "/areas", name: "areas", component: AreasView },  //children[]
+  { path: "/areas/create", name: "areas.create", component: CreateAreaView, },
+  { path: "/areas/:id/edit", name: "areas.edit", component: EditAreaView, },
+
+  { path: "/beneficiaries", name: "beneficiaries", component: BeneficiariesView },  //children[]
+  { path: "/beneficiaries/create", name: "beneficiaries.create", component: CreateBeneficiaryView, },
+  { path: "/beneficiaries/:id/edit", name: "beneficiaries.edit", component: EditBeneficiaryView, },
+
 ];
 
 const router = createRouter({
