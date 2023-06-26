@@ -1,9 +1,9 @@
 <template>
   <TableComp
     :headers="headers"
-    :rows="Campaigns"
+    :rows="CampaignsDonor"
     :deleteItem="deleteRow"
-    title="Campaigns"
+    title="Campaigns-Donors"
   ></TableComp>
 </template>
 
@@ -16,31 +16,22 @@ export default {
     TableComp,
   },
   mounted() {
-    this.indexCampaign();
+    this.indexCategories();
   },
-  name: "IndexCampaign",
+  name: "IndexCampaignDonor",
   data() {
     return {
-      Campaigns: [],
-      headers: [
-        "id",
-        "title",
-        "status",
-        "amount",
-        "start_date",
-        "end_date",
-        "admin_id",
-        "currency_name",
-      ],
+      CampaignsDonor: [],
+      headers: ["id", "amount", "campaign_id", "donor_id"],
     };
   },
   methods: {
-    indexCampaign() {
+    indexCategories() {
       axios
-        .get(`${this.$store.state.url}/campaigns`)
+        .get(`${this.$store.state.url}/campaigns-donors`)
         .then((response) => {
-          this.Campaigns = response.data.data;
-          console.log(response.data.data);
+          this.CampaignsDonor = response.data.data;
+          console.log(response.data.object.data);
         })
         .catch((error) => {
           console.log(error);
@@ -48,10 +39,12 @@ export default {
     },
     deleteRow(event, id) {
       axios
-        .delete(`${this.$store.state.url}/campaigns/${id}`)
+        .delete(`${this.$store.state.url}/campaigns-donors/${id}`)
         .then((response) => {
           console.log(response.data.message);
-          this.Campaigns = this.Campaigns.filter((item) => item.id != id);
+          this.CampaignsDonor = this.CampaignsDonor.filter(
+            (item) => item.id != id
+          );
           this.$toast.success(response.data.message);
         })
         .catch((error) => {
