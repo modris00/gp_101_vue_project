@@ -10,7 +10,13 @@
           <table :id="title" class="table table-bordered table-striped">
             <thead>
               <th>#</th>
-              <th v-for="header in headers" v-show="header != 'id'">
+              <th v-for="header in headers" v-show="header == 'image'">
+                {{ header }}
+              </th>
+              <th
+                v-for="header in headers"
+                v-show="header != 'id' && header != 'image'"
+              >
                 {{ header }}
               </th>
               <th v-if="headers.length > 0">Actions</th>
@@ -19,7 +25,13 @@
             <tbody>
               <tr v-for="(row, index) in rows">
                 <td>{{ index + 1 }}</td>
-                <td v-for="header in headers" v-show="header != 'id'">
+                <td v-for="header in headers" v-show="header == 'image'">
+                  <img :src="imageURL + row[header]" width="40" height="40" />
+                </td>
+                <td
+                  v-for="header in headers"
+                  v-show="header != 'id' && header != 'image'"
+                >
                   {{ row[header] }}
                 </td>
                 <td>
@@ -68,9 +80,15 @@
 <script>
 export default {
   props: ["title", "headers", "rows", "deleteItem"],
+
   computed: {
     routeName() {
       return this.title.toLowerCase() + ".edit";
+    },
+    imageURL() {
+      var url = `http://127.0.0.1:8000/storage/${this.title.toLowerCase()}/`;
+      // var url = `http://127.0.0.1:8000/api/${this.routeName}/app/public/${image}`;
+      return url;
     },
   },
 };
