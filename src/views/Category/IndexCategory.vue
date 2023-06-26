@@ -22,7 +22,7 @@ export default {
   data() {
     return {
       categories: [],
-      headers: ["name", "description"],
+      headers: ["id", "name", "description"],
     };
   },
   methods: {

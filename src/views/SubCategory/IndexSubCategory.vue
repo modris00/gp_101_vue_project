@@ -16,17 +16,17 @@ export default {
     TableComp,
   },
   mounted() {
-    this.indexCategories();
+    this.indexSubCategories();
   },
   name: "IndexSubCategory",
   data() {
     return {
       subCategories: [],
-      headers: ["name", "description", "category_id"],
+      headers: ["id", "name", "description", "category_name"],
     };
   },
   methods: {
-    indexCategories() {
+    indexSubCategories() {
       axios
         .get(`${this.$store.state.url}/sub-categories`)
         .then((response) => {

@@ -22,7 +22,7 @@ export default {
   data() {
     return {
       Donors: [],
-      headers: ["name", "username", "email", "phone", "area_name"],
+      headers: ["id", "name", "username", "email", "phone", "area_name"],
     };
   },
   methods: {

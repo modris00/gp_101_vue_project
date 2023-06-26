@@ -7,25 +7,38 @@ import SuppliersView from "../views/Suppliers/IndexSuppliers.vue";
 import CreateSupplierView from "../views/Suppliers/CreateSupplier.vue";
 import EditSupplierView from "../views/Suppliers/EditSupplier.vue";
 
-import FaqsView from '../views/Faq/IndexFaq.vue'
-import CreateFaqView from '../views/Faq/CreateFaq.vue'
-import EditFaqView from '../views/Faq/EditFaq.vue'
+// Model Faq
+import FaqsView from "../views/Faq/IndexFaq.vue";
+import CreateFaqView from "../views/Faq/CreateFaq.vue";
+import EditFaqView from "../views/Faq/EditFaq.vue";
+// Model Admin
+import AdminsView from "../views/Admin/IndexAdmin.vue";
+import EditAdminView from "../views/Admin/EditAdmin.vue";
+import CreateAdminView from "../views/Admin/CreateAdmin.vue";
 
-import AdminsView from '../views/Admin/IndexAdmin.vue'
-import EditAdmin from '../views/Admin/EditAdmin.vue'
-import CreateAdminView from '../views/Admin/CreateAdmin.vue'
+// Model Categories
+import CategoriesView from "../views/Category/IndexCategory.vue";
+import CreateCategoryView from "../views/Category/CreateCategory.vue";
+import EditCategoryView from "../views/Category/EditCategory.vue";
 
-import CategoriesView from '../views/Category/IndexCategory.vue'
-import CreateCategoryView from '../views/Category/CreateCategory.vue'
-import EditCategoryView from '../views/Category/EditCategory.vue'
+// Model subCategories
+import SubCategoriesView from "../views/SubCategory/IndexSubCategory.vue";
+import CreateSubCategoryView from "../views/SubCategory/CreateSubCategory.vue";
+import EditSubCategoryView from "../views/SubCategory/EditSubCategory.vue";
+// Service
+import CreateServiceView from "../views/Service/CreateService.vue";
+import IndexServiceView from "../views/Service/IndexService.vue";
+import EditServiceView from "../views/Service/EditService.vue";
 
-import SubCategoriesView from '../views/SubCategory/IndexSubCategory.vue'
-import CreateSubCategoryView from '../views/SubCategory/CreateSubCategory.vue'
-import EditSubCategoryView from '../views/SubCategory/EditSubCategory.vue'
+// Model Donor
+import DonorView from "../views/Donor/IndexDonor.vue";
+import CreateDonorView from "../views/Donor/CreateDonor.vue";
+import EditDonorView from "../views/Donor/EditDonor.vue";
+// Campaigns
+import CampaignsView from "../views/Campaign/IndexCampaign.vue";
+import CreateCampaignView from "../views/Campaign/CreateCampaign.vue";
+import EditCampaignView from "../views/Campaign/EditCampaign.vue";
 
-import DonorView from '../views/Donor/IndexDonor.vue'
-import CreateDonorView from '../views/Donor/CreateDonor.vue'
-import EditDonorView from '../views/Donor/EditDonor.vue'
 
 import CountriesView from "../views/Countries/IndexCountries.vue";
 import CreateCountryView from "../views/Countries/CreateCountry.vue";
@@ -43,12 +56,18 @@ import BeneficiariesView from "../views/Beneficiaries/IndexBeneficiaries.vue";
 import CreateBeneficiaryView from "../views/Beneficiaries/CreateBeneficiary.vue";
 import EditBeneficiaryView from "../views/Beneficiaries/EditBeneficiary.vue";
 
-
 const routes = [
-
   { path: "/", component: HomeView },
 
   { path: "/test", component: TestView },
+
+  { path: "/services/create", name: "services.create", component: CreateServiceView },
+  { path: "/services/:id/edit", name: "services.edit", component: EditServiceView },
+  { path: "/services", name: "services", component: IndexServiceView },
+
+  { path: "/campaigns", name: "campaigns", component: CampaignsView },
+  { path: "/campaign/create", name: "campaigns.create", component: CreateCampaignView },
+  { path: "/campaign/:id/edit", name: "campaigns.edit", component: EditCampaignView },
 
   { path: "/suppliers", name: "suppliers", component: SuppliersView }, //children[]
   { path: "/suppliers/create", name: "suppliers.create", component: CreateSupplierView, },
@@ -72,7 +91,7 @@ const routes = [
 
   { path: '/admins', name: 'admins', component: AdminsView },
   { path: '/admin/create', name: 'admins.create', component: CreateAdminView },
-  { path: '/admin/:id/edit', name: 'admins.edit', component: EditAdmin },
+  { path: '/admin/:id/edit', name: 'admins.edit', component: EditAdminView },
 
   { path: '/donors', name: 'donors', component: DonorView },
   { path: '/donor/create', name: 'donors.create', component: CreateDonorView },
