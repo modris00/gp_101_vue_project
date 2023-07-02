@@ -22,6 +22,7 @@
                 placeholder="Enter  Name"
               />
             </div>
+
             <div class="form-group">
               <label for="username">Service description</label>
               <input
@@ -33,6 +34,7 @@
                 placeholder="Enter  description"
               />
             </div>
+
             <div class="form-group">
               <div class="custom-control custom-switch">
                 <input
@@ -44,6 +46,7 @@
                 <label class="custom-control-label" for="active">Active</label>
               </div>
             </div>
+
             <div class="form-group">
               <label>SubCategories</label>
               <select class="form-control" v-model="Service.sub_category_id">
@@ -57,6 +60,7 @@
                 </option>
               </select>
             </div>
+
             <div class="form-group">
               <label for="exampleInputFile">Image</label>
               <div class="input-group">
@@ -64,7 +68,7 @@
                   <input
                     type="file"
                     class="custom-file-input"
-                    id="exampleInputFile"
+                    @change="onFileSelected"
                   />
                   <label class="custom-file-label" for="exampleInputFile"
                     >Choose file</label
@@ -75,6 +79,7 @@
                 </div>
               </div>
             </div>
+
             <!-- /.card-body -->
 
             <div class="card-footer">
@@ -102,7 +107,8 @@ export default {
         description: "",
         active: "",
         sub_category_id: "",
-        image: "/sdklcmsdlkmvc.png",
+        image: null,
+        // selectedFile: null,
       },
       subcategories: [],
     };
@@ -120,8 +126,15 @@ export default {
         });
     },
     createService() {
+      const formData = new FormData();
+      formData.append("image", this.Service.image);
+      formData.append("id", this.Service.id);
+      formData.append("name", this.Service.name);
+      formData.append("description", this.Service.description);
+      formData.append("active", 1);
+      formData.append("sub_category_id", this.Service.sub_category_id);
       axios
-        .post(`${this.$store.state.url}/services`, this.Service)
+        .post(`${this.$store.state.url}/services`, formData)
         .then((response) => {
           console.log(response);
           this.Service = {
@@ -130,7 +143,7 @@ export default {
             description: "",
             active: "",
             sub_category_id: "",
-            image: "/sdc4sdc56sdc.png",
+            image: null,
           };
           this.$toast.success(response.data.message);
 
@@ -145,6 +158,11 @@ export default {
             this.$toast.error(error.message);
           }
         });
+    },
+    onFileSelected(event) {
+      console.log(event);
+      console.log(event.target.files.length);
+      this.Service.image = event.target.files[0]; // maybe should be event.target.files[event.target.files.length - 1]
     },
   },
 };
