@@ -34,6 +34,10 @@ import EditServiceView from "../views/Service/EditService.vue";
 import DonorView from "../views/Donor/IndexDonor.vue";
 import CreateDonorView from "../views/Donor/CreateDonor.vue";
 import EditDonorView from "../views/Donor/EditDonor.vue";
+// Bills
+import BillView from "../views/Bills/IndexBill.vue";
+import CreateBillView from "../views/Bills/CreateBill.vue";
+import EditBillView from "../views/Bills/EditBill.vue";
 // Campaigns
 import CampaignsView from "../views/Campaign/IndexCampaign.vue";
 import CreateCampaignView from "../views/Campaign/CreateCampaign.vue";
@@ -174,6 +178,10 @@ const routes = [
   { path: "/areas", name: "areas", component: AreasView }, //children[]
   { path: "/areas/create", name: "areas.create", component: CreateAreaView },
   { path: "/areas/:id/edit", name: "areas.edit", component: EditAreaView },
+
+  { path: "/bills", name: "bills", component: BillView }, //children[]
+  { path: "/bill/create", name: "bills.create", component: CreateBillView },
+  { path: "/bill/:id/edit", name: "bills.edit", component: EditBillView },
 
   {
     path: "/beneficiaries",
