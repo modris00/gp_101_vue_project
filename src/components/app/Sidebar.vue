@@ -245,6 +245,37 @@
           </li>
           <li class="nav-item">
             <a href="#" class="nav-link">
+              <!-- <i class="nav-icon fas fa-list"></i> -->
+              <!-- <i class=" nav-icon fa-solid fa-list-tree"></i> -->
+              <i class="nav-icon fas fa-stream"></i>
+              <p>
+                CampaignDonor
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <router-link
+                  :to="{ name: 'campaigns-donors.create' }"
+                  class="nav-link"
+                >
+                  <i class="nav-icon fas fa-plus"></i>
+                  <p>Create</p>
+                </router-link>
+              </li>
+              <li class="nav-item">
+                <router-link
+                  :to="{ name: 'campaigns-donors' }"
+                  class="nav-link"
+                >
+                  <i class="nav-icon fas fa-list"></i>
+                  <p>Read</p>
+                </router-link>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
               <!-- <i class=" fas fa-list"></i> -->
               <i class="nav-icon fas fa-stream"></i>
 
@@ -265,6 +296,60 @@
               </li>
               <li class="nav-item">
                 <router-link :to="{ name: 'sub-categories' }" class="nav-link">
+                  <i class="nav-icon fas fa-list"></i>
+                  <p>Read</p>
+                </router-link>
+              </li>
+            </ul>
+          </li>
+
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-money-bill-wave"></i>
+
+              <p>
+                Bills
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <router-link :to="{ name: 'bills.create' }" class="nav-link">
+                  <i class="nav-icon fas fa-plus"></i>
+                  <p>Create</p>
+                </router-link>
+              </li>
+              <li class="nav-item">
+                <router-link :to="{ name: 'bills' }" class="nav-link">
+                  <i class="nav-icon fas fa-list"></i>
+                  <p>Read</p>
+                </router-link>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-th-list"></i>
+              <p>
+                Campaign Operations
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <router-link
+                  :to="{ name: 'campaign-operations.create' }"
+                  class="nav-link"
+                >
+                  <i class="nav-icon fas fa-plus"></i>
+                  <p>Create</p>
+                </router-link>
+              </li>
+              <li class="nav-item">
+                <router-link
+                  :to="{ name: 'campaign-operations' }"
+                  class="nav-link"
+                >
                   <i class="nav-icon fas fa-list"></i>
                   <p>Read</p>
                 </router-link>

@@ -1,9 +1,9 @@
 <template>
   <TableComp
     :headers="headers"
-    :rows="services"
+    :rows="CampaignsDonor"
     :deleteItem="deleteRow"
-    title="Services"
+    title="Campaigns-Donors"
   ></TableComp>
 </template>
 
@@ -16,48 +16,46 @@ export default {
     TableComp,
   },
   mounted() {
-    this.indexServices();
+    this.indexCategories();
   },
-  name: "IndexServices",
+  name: "IndexCampaignDonor",
   data() {
     return {
-      services: [],
-      headers: [
-        "id",
-        "name",
-        "description",
-        "active",
-        "sub_category_name",
-        "image",
-      ],
+      CampaignsDonor: [],
+      headers: ["id", "amount", "campaign_id", "donor_id"],
     };
   },
   methods: {
-    indexServices() {
+    indexCategories() {
       axios
-        .get(`${this.$store.state.url}/services`)
+        .get(`${this.$store.state.url}/campaigns-donors`)
         .then((response) => {
-          this.services = response.data.data;
-          console.log(response.data.data);
+          this.CampaignsDonor = response.data.data;
+          console.log(response.data.object.data);
         })
         .catch((error) => {
-          this.$toast.error(error.response.data.message);
           console.log(error);
         });
     },
     deleteRow(event, id) {
       axios
-        .delete(`${this.$store.state.url}/services/${id}`)
+        .delete(`${this.$store.state.url}/campaigns-donors/${id}`)
         .then((response) => {
           console.log(response.data.message);
-          this.services = this.services.filter((item) => item.id != id);
+          this.CampaignsDonor = this.CampaignsDonor.filter(
+            (item) => item.id != id
+          );
           this.$toast.success(response.data.message);
         })
         .catch((error) => {
           if (error.response.data) {
             this.$toast.error(error.response.data.message);
           } else {
-            this.$toast.error(error.message);
+            if (error.response.data) {
+              this.$toast.error(error.response.data.message);
+            } else {
+              this.$toast.error(error.message);
+            }
           }
         });
     },

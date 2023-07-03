@@ -16,7 +16,7 @@ export default {
     TableComp,
   },
   mounted() {
-    this.indexCategories();
+    this.indexCampaign();
   },
   name: "IndexCampaign",
   data() {
@@ -35,7 +35,7 @@ export default {
     };
   },
   methods: {
-    indexCategories() {
+    indexCampaign() {
       axios
         .get(`${this.$store.state.url}/campaigns`)
         .then((response) => {

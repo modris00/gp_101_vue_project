@@ -1,9 +1,9 @@
 <template>
   <TableComp
     :headers="headers"
-    :rows="services"
+    :rows="Bills"
     :deleteItem="deleteRow"
-    title="Services"
+    title="bills"
   ></TableComp>
 </template>
 
@@ -16,48 +16,53 @@ export default {
     TableComp,
   },
   mounted() {
-    this.indexServices();
+    this.indexBills();
   },
-  name: "IndexServices",
+  name: "IndexBill",
   data() {
     return {
-      services: [],
+      Bills: [],
       headers: [
         "id",
-        "name",
-        "description",
-        "active",
-        "sub_category_name",
+        "cost",
         "image",
+        "description",
+        "currency_id",
+        "campaign_id",
+        "supplier_id",
+        "campaign_service_id",
       ],
     };
   },
   methods: {
-    indexServices() {
+    indexBills() {
       axios
-        .get(`${this.$store.state.url}/services`)
+        .get(`${this.$store.state.url}/bills`)
         .then((response) => {
-          this.services = response.data.data;
+          this.Bills = response.data.data;
           console.log(response.data.data);
         })
         .catch((error) => {
-          this.$toast.error(error.response.data.message);
           console.log(error);
         });
     },
     deleteRow(event, id) {
       axios
-        .delete(`${this.$store.state.url}/services/${id}`)
+        .delete(`${this.$store.state.url}/bills/${id}`)
         .then((response) => {
           console.log(response.data.message);
-          this.services = this.services.filter((item) => item.id != id);
+          this.Bills = this.Bills.filter((item) => item.id != id);
           this.$toast.success(response.data.message);
         })
         .catch((error) => {
           if (error.response.data) {
             this.$toast.error(error.response.data.message);
           } else {
-            this.$toast.error(error.message);
+            if (error.response.data) {
+              this.$toast.error(error.response.data.message);
+            } else {
+              this.$toast.error(error.message);
+            }
           }
         });
     },
