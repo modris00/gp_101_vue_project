@@ -43,9 +43,14 @@ import CampaignsView from "../views/Campaign/IndexCampaign.vue";
 import CreateCampaignView from "../views/Campaign/CreateCampaign.vue";
 import EditCampaignView from "../views/Campaign/EditCampaign.vue";
 // CampaignsDonor
+
 import CampaignsDonorView from "../views/CampaignDonor/IndexCampaignDonor.vue";
 import CreateCampaignDonorView from "../views/CampaignDonor/CreateCampaignDonor.vue";
 import EditCampaignDonorView from "../views/CampaignDonor/EditCampaignDonor.vue";
+//CampaignOperation
+import CampaignOperationView from "../views/CampaignOperation/IndexCampaignOperation.vue";
+import CreateCampaignOperationView from "../views/CampaignOperation/CreateCampaignOperation.vue";
+import EditCampaignOperationView from "../views/CampaignOperation/EditCampaignOperation.vue";
 
 import CountriesView from "../views/Countries/IndexCountries.vue";
 import CreateCountryView from "../views/Countries/CreateCountry.vue";
@@ -106,6 +111,22 @@ const routes = [
     path: "/campaign/:id/edit",
     name: "campaigns.edit",
     component: EditCampaignView,
+  },
+  //campaign-operations
+  {
+    path: "/campaign-operations",
+    name: "campaign-operations",
+    component: CampaignOperationView,
+  },
+  {
+    path: "/campaign-operation/create",
+    name: "campaign-operations.create",
+    component: CreateCampaignOperationView,
+  },
+  {
+    path: "/campaign-operations/:id/edit",
+    name: "campaign-operations.edit",
+    component: EditCampaignOperationView,
   },
 
   { path: "/suppliers", name: "suppliers", component: SuppliersView }, //children[]
