@@ -139,7 +139,7 @@ export default {
         start_date: "",
         end_date: "",
         currency_id: "",
-        admin_id: 8,
+        admin_id: 1,
       },
       currency: [],
     };
