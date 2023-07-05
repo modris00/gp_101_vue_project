@@ -11,6 +11,7 @@ import ArchiveSupplierView from "../views/Suppliers/ArchiveSupplier.vue";
 import FaqsView from "../views/Faq/IndexFaq.vue";
 import CreateFaqView from "../views/Faq/CreateFaq.vue";
 import EditFaqView from "../views/Faq/EditFaq.vue";
+import ArchiveFaqView from "../views/Faq/ArchiveFaq.vue";
 // Model Admin
 import AdminsView from "../views/Admin/IndexAdmin.vue";
 import EditAdminView from "../views/Admin/EditAdmin.vue";
@@ -30,6 +31,7 @@ import EditSubCategoryView from "../views/SubCategory/EditSubCategory.vue";
 import CreateServiceView from "../views/Service/CreateService.vue";
 import IndexServiceView from "../views/Service/IndexService.vue";
 import EditServiceView from "../views/Service/EditService.vue";
+import ArchiveServiceView from "../views/Service/ArchiveService.vue";
 
 // Model Donor
 import DonorView from "../views/Donor/IndexDonor.vue";
@@ -74,6 +76,7 @@ import ArchiveAreaView from "../views/Areas/ArchiveArea.vue";
 import BeneficiariesView from "../views/Beneficiaries/IndexBeneficiaries.vue";
 import CreateBeneficiaryView from "../views/Beneficiaries/CreateBeneficiary.vue";
 import EditBeneficiaryView from "../views/Beneficiaries/EditBeneficiary.vue";
+import ArchiveBeneficiaryView from "../views/Beneficiaries/ArchiveBeneficiary.vue";
 
 import ContactRequestsView from "../views/ContactRequests/IndexContactRequests.vue";
 import CreateContactRequestView from "../views/ContactRequests/CreateContactRequest.vue";
@@ -97,6 +100,11 @@ const routes = [
     component: EditServiceView,
   },
   { path: "/services", name: "services", component: IndexServiceView },
+  {
+    path: "/services/archive",
+    name: "services.archive",
+    component: ArchiveServiceView,
+  },
 
   {
     path: "/campaigns-donor",
@@ -184,6 +192,7 @@ const routes = [
   { path: "/faqs", name: "faqs", component: FaqsView },
   { path: "/faq/create", name: "faqs.create", component: CreateFaqView },
   { path: "/faqs/:id/edit", name: "faqs.edit", component: EditFaqView },
+  { path: "/faqs/archive", name: "faqs.archive", component: ArchiveFaqView },
 
   {
     path: "/sub-categories",
@@ -220,17 +229,29 @@ const routes = [
   { path: "/admins", name: "admins", component: AdminsView },
   { path: "/admin/create", name: "admins.create", component: CreateAdminView },
   { path: "/admin/:id/edit", name: "admins.edit", component: EditAdminView },
-  { path: "/admins/archive", name: "admins.archive", component: ArchiveAdminView },
+  {
+    path: "/admins/archive",
+    name: "admins.archive",
+    component: ArchiveAdminView,
+  },
 
   { path: "/donors", name: "donors", component: DonorView },
   { path: "/donor/create", name: "donors.create", component: CreateDonorView },
   { path: "/donor/:id/edit", name: "donors.edit", component: EditDonorView },
-  { path: "/donors/archive", name: "donors.archive", component: ArchiveDonorView },
+  {
+    path: "/donors/archive",
+    name: "donors.archive",
+    component: ArchiveDonorView,
+  },
 
   { path: "/cities", name: "cities", component: CitiesView }, //children[]
   { path: "/cities/create", name: "cities.create", component: CreateCityView },
   { path: "/cities/:id/edit", name: "cities.edit", component: EditCityView },
-  { path: "/cities/archive", name: "cities.archive", component: ArchiveCityView },
+  {
+    path: "/cities/archive",
+    name: "cities.archive",
+    component: ArchiveCityView,
+  },
 
   { path: "/areas", name: "areas", component: AreasView }, //children[]
   { path: "/areas/create", name: "areas.create", component: CreateAreaView },
@@ -261,6 +282,11 @@ const routes = [
     name: "beneficiaries.edit",
     component: EditBeneficiaryView,
   },
+  {
+    path: "/beneficiaries/archive",
+    name: "beneficiaries.archive",
+    component:  ArchiveBeneficiaryView,
+  }, //children[]
 ];
 
 const router = createRouter({

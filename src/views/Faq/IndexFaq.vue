@@ -22,7 +22,7 @@ export default {
   data() {
     return {
       faqs: [],
-      headers: ["id", "question", "answer", "question_type"],
+      headers: ["id", "questions", "answers", "question_type"],
     };
   },
   methods: {
