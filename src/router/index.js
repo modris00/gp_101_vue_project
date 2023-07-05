@@ -75,7 +75,13 @@ import BeneficiariesView from "../views/Beneficiaries/IndexBeneficiaries.vue";
 import CreateBeneficiaryView from "../views/Beneficiaries/CreateBeneficiary.vue";
 import EditBeneficiaryView from "../views/Beneficiaries/EditBeneficiary.vue";
 
+import ContactRequestsView from "../views/ContactRequests/IndexContactRequests.vue";
+import CreateContactRequestView from "../views/ContactRequests/CreateContactRequest.vue";
+import EditContactRequestView from "../views/ContactRequests/EditContactRequest.vue";
+import ArchiveContactRequestsView from "../views/ContactRequests/ArchiveContactRequests.vue";
+
 const routes = [
+
   { path: "/", component: HomeView },
 
   { path: "/test", component: TestView },
@@ -234,6 +240,11 @@ const routes = [
   { path: "/bills", name: "bills", component: BillView }, //children[]
   { path: "/bill/create", name: "bills.create", component: CreateBillView },
   { path: "/bill/:id/edit", name: "bills.edit", component: EditBillView },
+
+  { path: "/contact-requests", name: "contactRequests", component: ContactRequestsView }, //children[]
+  { path: "/contact-requests/create", name: "contactRequests.create", component: CreateContactRequestView },
+  { path: "/contact-requests/:id/edit", name: "contactRequests.edit", component: EditContactRequestView },
+  { path: "/contact-requests/archive", name: "contactRequests.archive", component: ArchiveContactRequestsView },
 
   {
     path: "/beneficiaries",

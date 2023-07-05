@@ -10,9 +10,9 @@
           <table :id="title" class="table table-bordered table-striped">
             <thead>
               <th>#</th>
-              <th v-for="header in headers" v-show="header == 'image'">
+              <!-- <th v-for="header in headers" v-show="header == 'image'">
                 {{ header }}
-              </th>
+              </th> -->
               <th
                 v-for="header in headers"
                 v-show="header != 'id' && header != 'image'"
@@ -25,9 +25,9 @@
             <tbody>
               <tr v-for="(row, index) in rows">
                 <td>{{ index + 1 }}</td>
-                <td v-for="header in headers" v-show="header == 'image'">
+                <!-- <td v-for="header in headers" v-show="header == 'image'">
                   <img :src="imageURL + row[header]" width="40" height="40" />
-                </td>
+                </td> -->
                 <td
                   v-for="header in headers"
                   v-show="header != 'id' && header != 'image'"
