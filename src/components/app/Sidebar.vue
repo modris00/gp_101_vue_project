@@ -40,7 +40,7 @@
 
           <li class="nav-item">
             <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-th"></i>
+              <i class="fas fa-caravan"></i>
               <p>
                 Suppliers
                 <i class="fas fa-angle-left right"></i>
@@ -62,12 +62,21 @@
                   <p>Read</p>
                 </router-link>
               </li>
+              <li class="nav-item">
+                <router-link
+                  :to="{ name: 'suppliers.archive' }"
+                  class="nav-link"
+                >
+                  <i class="fas fa-archive"></i>
+                  <p>Archive</p>
+                </router-link>
+              </li>
             </ul>
           </li>
 
           <li class="nav-item">
             <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-th"></i>
+              <i class="fas fa-flag"></i>
               <p>
                 Countries
                 <i class="fas fa-angle-left right"></i>
@@ -89,12 +98,21 @@
                   <p>Read</p>
                 </router-link>
               </li>
+              <li class="nav-item">
+                <router-link
+                  :to="{ name: 'countries.archive' }"
+                  class="nav-link"
+                >
+                  <i class="fas fa-archive"></i>
+                  <p>Archive</p>
+                </router-link>
+              </li>
             </ul>
           </li>
 
           <li class="nav-item">
             <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-th"></i>
+              <i class="fas fa-city"></i>
               <p>
                 Cities
                 <i class="fas fa-angle-left right"></i>
@@ -113,12 +131,18 @@
                   <p>Read</p>
                 </router-link>
               </li>
+              <li class="nav-item">
+                <router-link :to="{ name: 'cities.archive' }" class="nav-link">
+                  <i class="fas fa-archive"></i>
+                  <p>Archive</p>
+                </router-link>
+              </li>
             </ul>
           </li>
 
           <li class="nav-item">
             <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-th"></i>
+              <i class="fas fa-city"></i>
               <p>
                 Areas
                 <i class="fas fa-angle-left right"></i>
@@ -135,6 +159,12 @@
                 <router-link :to="{ name: 'areas' }" class="nav-link">
                   <i class="nav-icon fas fa-list"></i>
                   <p>Read</p>
+                </router-link>
+              </li>
+              <li class="nav-item">
+                <router-link :to="{ name: 'areas.archive' }" class="nav-link">
+                  <i class="fas fa-archive"></i>
+                  <p>Archive</p>
                 </router-link>
               </li>
             </ul>
@@ -162,6 +192,12 @@
                   <p>Read</p>
                 </router-link>
               </li>
+              <li class="nav-item">
+                <router-link :to="{ name: 'admins.archive' }" class="nav-link">
+                  <i class="fas fa-archive"></i>
+                  <p>Archive</p>
+                </router-link>
+              </li>
             </ul>
           </li>
           <li class="nav-item">
@@ -183,6 +219,12 @@
                 <router-link :to="{ name: 'donors' }" class="nav-link">
                   <i class="nav-icon fas fa-list"></i>
                   <p>Read</p>
+                </router-link>
+              </li>
+              <li class="nav-item">
+                <router-link :to="{ name: 'donors.archive' }" class="nav-link">
+                  <i class="fas fa-archive"></i>
+                  <p>Archive</p>
                 </router-link>
               </li>
             </ul>
@@ -213,6 +255,15 @@
                   <p>Read</p>
                 </router-link>
               </li>
+              <li class="nav-item">
+                <router-link
+                  :to="{ name: 'categories.archive' }"
+                  class="nav-link"
+                >
+                  <i class="fas fa-archive"></i>
+                  <p>Archive</p>
+                </router-link>
+              </li>
             </ul>
           </li>
           <li class="nav-item">
@@ -239,6 +290,15 @@
                 <router-link :to="{ name: 'campaigns' }" class="nav-link">
                   <i class="nav-icon fas fa-list"></i>
                   <p>Read</p>
+                </router-link>
+              </li>
+              <li class="nav-item">
+                <router-link
+                  :to="{ name: 'campaigns.archive' }"
+                  class="nav-link"
+                >
+                  <i class="fas fa-archive"></i>
+                  <p>Archive</p>
                 </router-link>
               </li>
             </ul>

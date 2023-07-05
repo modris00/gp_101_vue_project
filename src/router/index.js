@@ -6,7 +6,7 @@ import HomeView from "../views/HomeView.vue"; //For Testing
 import SuppliersView from "../views/Suppliers/IndexSuppliers.vue";
 import CreateSupplierView from "../views/Suppliers/CreateSupplier.vue";
 import EditSupplierView from "../views/Suppliers/EditSupplier.vue";
-
+import ArchiveSupplierView from "../views/Suppliers/ArchiveSupplier.vue";
 // Model Faq
 import FaqsView from "../views/Faq/IndexFaq.vue";
 import CreateFaqView from "../views/Faq/CreateFaq.vue";
@@ -15,11 +15,12 @@ import EditFaqView from "../views/Faq/EditFaq.vue";
 import AdminsView from "../views/Admin/IndexAdmin.vue";
 import EditAdminView from "../views/Admin/EditAdmin.vue";
 import CreateAdminView from "../views/Admin/CreateAdmin.vue";
-
+import ArchiveAdminView from "../views/Admin/ArchiveAdmin.vue";
 // Model Categories
 import CategoriesView from "../views/Category/IndexCategory.vue";
 import CreateCategoryView from "../views/Category/CreateCategory.vue";
 import EditCategoryView from "../views/Category/EditCategory.vue";
+import ArchiveCategoryView from "../views/Category/ArchiveCategory.vue";
 
 // Model subCategories
 import SubCategoriesView from "../views/SubCategory/IndexSubCategory.vue";
@@ -34,6 +35,8 @@ import EditServiceView from "../views/Service/EditService.vue";
 import DonorView from "../views/Donor/IndexDonor.vue";
 import CreateDonorView from "../views/Donor/CreateDonor.vue";
 import EditDonorView from "../views/Donor/EditDonor.vue";
+import ArchiveDonorView from "../views/Donor/ArchiveDonor.vue";
+
 // Bills
 import BillView from "../views/Bills/IndexBill.vue";
 import CreateBillView from "../views/Bills/CreateBill.vue";
@@ -42,6 +45,7 @@ import EditBillView from "../views/Bills/EditBill.vue";
 import CampaignsView from "../views/Campaign/IndexCampaign.vue";
 import CreateCampaignView from "../views/Campaign/CreateCampaign.vue";
 import EditCampaignView from "../views/Campaign/EditCampaign.vue";
+import ArchiveCampaignView from "../views/Campaign/ArchiveCampaign.vue";
 // CampaignsDonor
 
 import CampaignsDonorView from "../views/CampaignDonor/IndexCampaignDonor.vue";
@@ -55,14 +59,17 @@ import EditCampaignOperationView from "../views/CampaignOperation/EditCampaignOp
 import CountriesView from "../views/Countries/IndexCountries.vue";
 import CreateCountryView from "../views/Countries/CreateCountry.vue";
 import EditCountryView from "../views/Countries/EditCountry.vue";
+import ArchiveCountryView from "../views/Countries/ArchiveCountry.vue";
 
 import CitiesView from "../views/Cities/IndexCities.vue";
 import CreateCityView from "../views/Cities/CreateCity.vue";
 import EditCityView from "../views/Cities/EditCity.vue";
+import ArchiveCityView from "../views/Cities/ArchiveCity.vue";
 
 import AreasView from "../views/Areas/IndexAreas.vue";
 import CreateAreaView from "../views/Areas/CreateArea.vue";
 import EditAreaView from "../views/Areas/EditArea.vue";
+import ArchiveAreaView from "../views/Areas/ArchiveArea.vue";
 
 import BeneficiariesView from "../views/Beneficiaries/IndexBeneficiaries.vue";
 import CreateBeneficiaryView from "../views/Beneficiaries/CreateBeneficiary.vue";
@@ -112,6 +119,11 @@ const routes = [
     name: "campaigns.edit",
     component: EditCampaignView,
   },
+  {
+    path: "/campaign/archive",
+    name: "campaigns.archive",
+    component: ArchiveCampaignView,
+  },
   //campaign-operations
   {
     path: "/campaign-operations",
@@ -140,6 +152,11 @@ const routes = [
     name: "suppliers.edit",
     component: EditSupplierView,
   },
+  {
+    path: "/suppliers/archive",
+    name: "suppliers.archive",
+    component: ArchiveSupplierView,
+  },
 
   { path: "/countries", name: "countries", component: CountriesView },
   {
@@ -151,6 +168,11 @@ const routes = [
     path: "/countries/:id/edit",
     name: "countries.edit",
     component: EditCountryView,
+  },
+  {
+    path: "/countries/archive",
+    name: "countries.archive",
+    component: ArchiveCountryView,
   },
 
   { path: "/faqs", name: "faqs", component: FaqsView },
@@ -183,22 +205,31 @@ const routes = [
     name: "categories.edit",
     component: EditCategoryView,
   },
+  {
+    path: "/categories/archive",
+    name: "categories.archive",
+    component: ArchiveCategoryView,
+  },
 
   { path: "/admins", name: "admins", component: AdminsView },
   { path: "/admin/create", name: "admins.create", component: CreateAdminView },
   { path: "/admin/:id/edit", name: "admins.edit", component: EditAdminView },
+  { path: "/admins/archive", name: "admins.archive", component: ArchiveAdminView },
 
   { path: "/donors", name: "donors", component: DonorView },
   { path: "/donor/create", name: "donors.create", component: CreateDonorView },
   { path: "/donor/:id/edit", name: "donors.edit", component: EditDonorView },
+  { path: "/donors/archive", name: "donors.archive", component: ArchiveDonorView },
 
   { path: "/cities", name: "cities", component: CitiesView }, //children[]
   { path: "/cities/create", name: "cities.create", component: CreateCityView },
   { path: "/cities/:id/edit", name: "cities.edit", component: EditCityView },
+  { path: "/cities/archive", name: "cities.archive", component: ArchiveCityView },
 
   { path: "/areas", name: "areas", component: AreasView }, //children[]
   { path: "/areas/create", name: "areas.create", component: CreateAreaView },
   { path: "/areas/:id/edit", name: "areas.edit", component: EditAreaView },
+  { path: "/areas/archive", name: "areas.archive", component: ArchiveAreaView },
 
   { path: "/bills", name: "bills", component: BillView }, //children[]
   { path: "/bill/create", name: "bills.create", component: CreateBillView },
