@@ -2,34 +2,41 @@
   <section class="content">
     <div class="container-fluid">
       <div class="row">
+        <!-- left column -->
         <div class="col-md-12">
+          <!-- general form elements -->
           <div class="card card-primary">
             <div class="card-header">
-              <h3 class="card-title">Create City</h3>
+              <h3 class="card-title">Create Currency</h3>
             </div>
-
+            <!-- /.card-header -->
             <!-- form start -->
-            <form @submit.prevent="createCity($event)">
+            <form @submit.prevent="updateCurrency(this.$route.params.id)">
               <div class="card-body">
                 <div class="form-group">
-                  <label for="post_title">City name:</label>
+                  <label for="post_title">Name:</label>
                   <input
                     type="text"
                     name="name"
                     class="form-control"
                     id="name"
-                    v-model="name"
+                    placeholder="Country name"
+                    v-model="Currency.name"
                   />
                 </div>
                 <div class="form-group">
-                  <label>Select Country</label>
-                  <select class="form-control" v-model="country_id">
-                    <option v-for="country in countries" :value="country.id">
-                      {{ country.name }}
-                    </option>
-                  </select>
+                  <label for="post_title">Abbreviation:</label>
+                  <input
+                    type="text"
+                    name="abbreviation"
+                    class="form-control"
+                    id="abbreviation"
+                    placeholder="abbreviation"
+                    v-model="Currency.abbreviation"
+                  />
                 </div>
               </div>
+              <!-- /.card-body -->
               <div class="card-footer">
                 <button type="submit" class="btn btn-primary">Create</button>
               </div>
@@ -45,42 +52,44 @@
 <script>
 import axios from "axios";
 export default {
-  name: "CreateCityView",
+  name: "CreateCurrencyView",
   mounted() {
-    this.getCountries();
+    this.getCurrency(this.$route.params.id);
   },
   data() {
     return {
-      countries: [],
-      name: "",
-      country_id: null,
+      Currency: {
+        name: "",
+        abbreviation: "",
+      },
     };
+    currencies;
   },
   methods: {
-    getCountries() {
+    getCurrency(id) {
       axios
-        .get(`${this.$store.state.url}/countries`)
+        .get(`${this.$store.state.url}/currencies/${id}`)
         .then((response) => {
-          console.log(response);
-          this.countries = response.data.data;
+          console.log(response.data.data);
+          this.Currency = response.data.data;
         })
         .catch((error) => {
           console.log(error);
-          this.$toast.warning(error.message); // this key is from axios not laravel
         });
     },
-    createCity(event) {
+    updateCurrency(id) {
       axios
-        .post(`${this.$store.state.url}/cities`, {
-          name: this.name,
-          country_id: this.country_id,
-        })
+        .put(`${this.$store.state.url}/currencies/${id}`, this.Currency)
         .then((response) => {
           console.log(response);
+          // if (response.data.message) {
+          //   // console.log(response.data.message);
+          //   this.$toast.error(response.data.message);
+          // } else {
           this.$toast.success(response.data.message);
-          this.$router.push("/cities");
-          this.name = "";
-          this.country_id = null;
+          this.Currency = "";
+          this.$router.push("/currencies");
+          // }
         })
         .catch((error) => {
           console.log(error);

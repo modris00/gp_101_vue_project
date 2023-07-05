@@ -92,6 +92,7 @@ export default {
           this.name = "";
           this.phone = "";
           this.address = "";
+          this.$router.push("/suppliers");
           // }
         })
         .catch((error) => {

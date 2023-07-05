@@ -41,6 +41,12 @@ import ArchiveDonorView from "../views/Donor/ArchiveDonor.vue";
 import BillView from "../views/Bills/IndexBill.vue";
 import CreateBillView from "../views/Bills/CreateBill.vue";
 import EditBillView from "../views/Bills/EditBill.vue";
+
+// Currencies
+import CurrencyView from "../views/Currency/IndexCurrency.vue";
+import CreateCurrencyView from "../views/Currency/CreateCurrency.vue";
+import EditCurrencyView from "../views/Currency/EditCurrency.vue";
+
 // Campaigns
 import CampaignsView from "../views/Campaign/IndexCampaign.vue";
 import CreateCampaignView from "../views/Campaign/CreateCampaign.vue";
@@ -214,17 +220,30 @@ const routes = [
   { path: "/admins", name: "admins", component: AdminsView },
   { path: "/admin/create", name: "admins.create", component: CreateAdminView },
   { path: "/admin/:id/edit", name: "admins.edit", component: EditAdminView },
-  { path: "/admins/archive", name: "admins.archive", component: ArchiveAdminView },
+  {
+    path: "/admins/archive",
+    name: "admins.archive",
+    component: ArchiveAdminView,
+  },
 
   { path: "/donors", name: "donors", component: DonorView },
   { path: "/donor/create", name: "donors.create", component: CreateDonorView },
   { path: "/donor/:id/edit", name: "donors.edit", component: EditDonorView },
-  { path: "/donors/archive", name: "donors.archive", component: ArchiveDonorView },
+  {
+    path: "/donors/archive",
+    name: "donors.archive",
+    component: ArchiveDonorView,
+  },
 
   { path: "/cities", name: "cities", component: CitiesView }, //children[]
   { path: "/cities/create", name: "cities.create", component: CreateCityView },
   { path: "/cities/:id/edit", name: "cities.edit", component: EditCityView },
-  { path: "/cities/archive", name: "cities.archive", component: ArchiveCityView },
+
+  {
+    path: "/cities/archive",
+    name: "cities.archive",
+    component: ArchiveCityView,
+  },
 
   { path: "/areas", name: "areas", component: AreasView }, //children[]
   { path: "/areas/create", name: "areas.create", component: CreateAreaView },
@@ -249,6 +268,18 @@ const routes = [
     path: "/beneficiaries/:id/edit",
     name: "beneficiaries.edit",
     component: EditBeneficiaryView,
+  },
+
+  { path: "/currencies", name: "currencies", component: CurrencyView }, //children[]
+  {
+    path: "/currency/create",
+    name: "currencies.create",
+    component: CreateCurrencyView,
+  },
+  {
+    path: "/currency/:id/edit",
+    name: "currencies.edit",
+    component: EditCurrencyView,
   },
 ];
 
