@@ -7,12 +7,11 @@
           <!-- general form elements -->
           <div class="card card-primary">
             <div class="card-header">
-              <h3 class="card-title">Create Country</h3>
+              <h3 class="card-title">Create Currency</h3>
             </div>
-
             <!-- /.card-header -->
             <!-- form start -->
-            <form @submit.prevent="updateCountry(this.$route.params.id)">
+            <form @submit.prevent="updateCurrency(this.$route.params.id)">
               <div class="card-body">
                 <div class="form-group">
                   <label for="post_title">Name:</label>
@@ -22,7 +21,18 @@
                     class="form-control"
                     id="name"
                     placeholder="Country name"
-                    v-model="name"
+                    v-model="Currency.name"
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="post_title">Abbreviation:</label>
+                  <input
+                    type="text"
+                    name="abbreviation"
+                    class="form-control"
+                    id="abbreviation"
+                    placeholder="abbreviation"
+                    v-model="Currency.abbreviation"
                   />
                 </div>
               </div>
@@ -42,33 +52,34 @@
 <script>
 import axios from "axios";
 export default {
+  name: "CreateCurrencyView",
   mounted() {
-    this.getCountry(this.$route.params.id);
+    this.getCurrency(this.$route.params.id);
   },
-  name: "EditCountryView",
   data() {
     return {
-      name: "",
+      Currency: {
+        name: "",
+        abbreviation: "",
+      },
     };
+    currencies;
   },
   methods: {
-    getCountry(id) {
+    getCurrency(id) {
       axios
-        .get(`${this.$store.state.url}/countries/${id}`)
+        .get(`${this.$store.state.url}/currencies/${id}`)
         .then((response) => {
           console.log(response.data.data);
-          this.name = response.data.data["name"];
+          this.Currency = response.data.data;
         })
         .catch((error) => {
-          console.log(error.response.data.message);
+          console.log(error);
         });
     },
-
-    updateCountry(id) {
+    updateCurrency(id) {
       axios
-        .put(`${this.$store.state.url}/countries/${id}`, {
-          name: this.name,
-        })
+        .put(`${this.$store.state.url}/currencies/${id}`, this.Currency)
         .then((response) => {
           console.log(response);
           // if (response.data.message) {
@@ -76,8 +87,8 @@ export default {
           //   this.$toast.error(response.data.message);
           // } else {
           this.$toast.success(response.data.message);
-          this.name = "";
-          this.$router.push("/countries");
+          this.Currency = "";
+          this.$router.push("/currencies");
           // }
         })
         .catch((error) => {

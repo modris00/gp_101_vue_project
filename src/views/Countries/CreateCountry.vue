@@ -62,6 +62,7 @@ export default {
           // } else {
           this.$toast.success(response.data.message);
           this.name = "";
+          this.$router.push("/countries");
           // }
         })
         .catch((error) => {

@@ -81,6 +81,7 @@ export default {
           this.$toast.success(response.data.message);
           this.name = "";
           this.city_id = null;
+          this.$router.push("/areas");
         })
         .catch((error) => {
           console.log(error);
