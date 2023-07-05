@@ -3,7 +3,7 @@
     <div class="col-12">
       <div class="card">
         <div class="card-header">
-          <h3 class="card-title">Archives Donors</h3>
+          <h3 class="card-title">Archives | Contact Requests</h3>
 
           <div class="card-tools">
             <div class="input-group input-group-sm" style="width: 150px">
@@ -28,26 +28,52 @@
             <thead>
               <tr>
                 <th>#</th>
-                <th>UserName</th>
+                <th>Actor Name</th>
+                <th>Type</th>
+                <th>Title</th>
+                <th>Message</th>
                 <th>Email</th>
                 <th>Phone</th>
-                <th>deleted_at</th>
+                <th>isClosed</th>
+                <th>Response</th>
+                <th>Actions</th>
               </tr>
             </thead>
             <tbody>
-              <tr v-for="(item, index) in donor" :key="index">
+              <tr
+                v-for="(contactRequest, index) in contactRequests"
+                :key="contactRequest.id"
+              >
+                <!-- <td v-for="column in contactRequest" v-show="column != id"></td> -->
                 <td>{{ index + 1 }}</td>
-                <td>{{ item.username }}</td>
-                <td>{{ item.email }}</td>
-                <td>{{ item.deleted_at }}</td>
+                <td>{{ contactRequest.actor_name ?? "--" }}</td>
                 <td>
-                  <button @click="restoreItem(item.id)" class="btn btn-success">
+                  {{
+                    contactRequest.actor_type == "App\\Models\\Beneficiary"
+                      ? "Beneficiary"
+                      : "Donor"
+                  }}
+                </td>
+                <td>{{ contactRequest.title }}</td>
+                <td>{{ contactRequest.message }}</td>
+                <td>{{ contactRequest.email }}</td>
+                <td>{{ contactRequest.phone }}</td>
+                <td>{{ contactRequest.isClosed ? "Yes" : "No" }}</td>
+                <td>{{ contactRequest.response ?? "--" }}</td>
+                <td>
+                  <button
+                    @click="restoreItem(contactRequest.id)"
+                    class="btn btn-success"
+                  >
                     Restore
                     <i class="fas fa-trash-restore"></i>
                   </button>
 
-                  <button @click="deleteItem(item.id)" class="btn btn-danger">
-                    Permanent deletion
+                  <button
+                    @click="deleteItem(contactRequest.id)"
+                    class="btn btn-danger"
+                  >
+                    Delete Permanently
                     <i class="fas fa-trash-alt"></i>
                   </button>
                 </td>
@@ -68,16 +94,19 @@ import axios from "axios";
 export default {
   data() {
     return {
-      donor: [],
+      contactRequests: [],
     };
   },
+  mounted() {
+    this.getArchivedCRs();
+  },
   methods: {
-    getSuppliers() {
+    getArchivedCRs() {
       axios
-        .get(`${this.$store.state.url}/donors/archive`)
+        .get(`${this.$store.state.url}/contact-requests/archive`)
         .then((response) => {
           console.log(response);
-          this.donor = response.data.data;
+          this.contactRequests = response.data.data;
         })
         .catch((error) => {
           console.log(error);
@@ -86,13 +115,14 @@ export default {
     },
     restoreItem(id) {
       axios
-        .put(`${this.$store.state.url}/donors/${id}/restore`)
+        .put(`${this.$store.state.url}/contact-requests/${id}/restore`)
         .then((response) => {
-          this.$toast.success("donor restored successfully");
-          this.getSuppliers();
+          console.log(response);
+          this.$toast.success("restored successfully");
+          this.getArchivedCRs();
         })
         .catch((error) => {
-          this.$toast.warning("Failed to restore donor");
+          this.$toast.warning("Failed to restore");
           console.log(error);
         });
     },
@@ -117,9 +147,6 @@ export default {
     //       console.log(error);
     //     });
     // },
-  },
-  mounted() {
-    this.getSuppliers();
   },
 };
 </script>

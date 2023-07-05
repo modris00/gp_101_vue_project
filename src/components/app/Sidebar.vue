@@ -40,6 +40,42 @@
 
           <li class="nav-item">
             <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-comments"></i>
+              <p>
+                Contact Requests
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <router-link
+                  :to="{ name: 'contactRequests.create' }"
+                  class="nav-link"
+                >
+                  <i class="nav-icon fas fa-plus text-sm"></i>
+                  <p>Create</p>
+                </router-link>
+              </li>
+              <li class="nav-item">
+                <router-link :to="{ name: 'contactRequests' }" class="nav-link">
+                  <i class="nav-icon fas fa-list text-sm"></i>
+                  <p>Read</p>
+                </router-link>
+              </li>
+              <li class="nav-item">
+                <router-link
+                  :to="{ name: 'contactRequests.archive' }"
+                  class="nav-link"
+                >
+                  <i class="nav-icon fas fa-archive text-sm"></i>
+                  <p>Archive</p>
+                </router-link>
+              </li>
+            </ul>
+          </li>
+
+          <li class="nav-item">
+            <a href="#" class="nav-link">
               <i class="nav-icon fas fa-caravan"></i>
               <p>
                 Suppliers
@@ -464,6 +500,15 @@
                   <p>Read</p>
                 </router-link>
               </li>
+               <li class="nav-item">
+                <router-link
+                  :to="{ name: 'services.archive' }"
+                  class="nav-link"
+                >
+                  <i class="nav-icon fas fa-archive text-sm"></i>
+                  <p>Archive</p>
+                </router-link>
+              </li>
             </ul>
           </li>
           <li class="nav-item">
@@ -485,6 +530,15 @@
                 <router-link :to="{ name: 'faqs' }" class="nav-link">
                   <i class="nav-icon fas fa-list text-sm"></i>
                   <p>Read</p>
+                </router-link>
+              </li>
+               <li class="nav-item">
+                <router-link
+                  :to="{ name: 'faqs.archive' }"
+                  class="nav-link"
+                >
+                  <i class="nav-icon fas fa-archive text-sm"></i>
+                  <p>Archive</p>
                 </router-link>
               </li>
             </ul>
@@ -512,6 +566,15 @@
                 <router-link :to="{ name: 'beneficiaries' }" class="nav-link">
                   <i class="nav-icon fas fa-list text-sm"></i>
                   <p>Read</p>
+                </router-link>
+              </li>
+               <li class="nav-item">
+                <router-link
+                  :to="{ name: 'beneficiaries.archive' }"
+                  class="nav-link"
+                >
+                  <i class="nav-icon fas fa-archive text-sm"></i>
+                  <p>Archive</p>
                 </router-link>
               </li>
             </ul>

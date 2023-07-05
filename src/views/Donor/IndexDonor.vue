@@ -37,7 +37,7 @@ export default {
           console.log(error);
         });
     },
-    deleteRow(id, event) {
+    deleteRow(event,id ) {
       axios
         .delete(`${this.$store.state.url}/donors/${id}`)
         .then((response) => {
