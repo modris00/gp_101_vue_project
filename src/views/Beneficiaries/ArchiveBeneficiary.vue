@@ -3,7 +3,7 @@
     <div class="col-12">
       <div class="card">
         <div class="card-header">
-          <h3 class="card-title">Archives Donors</h3>
+          <h3 class="card-title">Archives Beneficiaries</h3>
 
           <div class="card-tools">
             <div class="input-group input-group-sm" style="width: 150px">
@@ -28,17 +28,23 @@
             <thead>
               <tr>
                 <th>#</th>
-                <th>UserName</th>
-                <th>Email</th>
-                <th>Phone</th>
+                <th>name</th>
+                <th>age</th>
+                <th>gender</th>
+                <th>area_id</th>
+                <th>email</th>
+                <th>username</th>
                 <th>deleted_at</th>
               </tr>
             </thead>
             <tbody>
-              <tr v-for="(item, index) in donor" :key="index">
+              <tr v-for="(item, index) in beneficiarie" :key="index">
                 <td>{{ index + 1 }}</td>
-                <td>{{ item.username }}</td>
+                <td>{{ item.name }}</td>
+                <td>{{ item.age }}</td>
+                <td>{{ item.area_id }}</td>
                 <td>{{ item.email }}</td>
+                <td>{{ item.username }}</td>
                 <td>{{ item.deleted_at }}</td>
                 <td>
                   <button @click="restoreItem(item.id)" class="btn btn-success">
@@ -68,16 +74,16 @@ import axios from "axios";
 export default {
   data() {
     return {
-      donor: [],
+      beneficiarie: [],
     };
   },
   methods: {
     getSuppliers() {
       axios
-        .get(`${this.$store.state.url}/donors/archive`)
+        .get(`${this.$store.state.url}/beneficiaries/archive`)
         .then((response) => {
           console.log(response);
-          this.donor = response.data.data;
+          this.beneficiarie = response.data.data;
         })
         .catch((error) => {
           console.log(error);
@@ -86,13 +92,13 @@ export default {
     },
     restoreItem(id) {
       axios
-        .put(`${this.$store.state.url}/donors/${id}/restore`)
+        .put(`${this.$store.state.url}/beneficiaries/${id}/restore`)
         .then((response) => {
-          this.$toast.success("donor restored successfully");
+          this.$toast.success("beneficiarie restored successfully");
           this.getSuppliers();
         })
         .catch((error) => {
-          this.$toast.warning("Failed to restore donor");
+          this.$toast.warning("Failed to restore beneficiarie");
           console.log(error);
         });
     },

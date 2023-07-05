@@ -3,7 +3,7 @@
     <div class="col-12">
       <div class="card">
         <div class="card-header">
-          <h3 class="card-title">Archives Donors</h3>
+          <h3 class="card-title">Archives Faq</h3>
 
           <div class="card-tools">
             <div class="input-group input-group-sm" style="width: 150px">
@@ -35,10 +35,11 @@
               </tr>
             </thead>
             <tbody>
-              <tr v-for="(item, index) in donor" :key="index">
+              <tr v-for="(item, index) in Faq" :key="index">
                 <td>{{ index + 1 }}</td>
-                <td>{{ item.username }}</td>
-                <td>{{ item.email }}</td>
+                <td>{{ item.questions }}</td>
+                <td>{{ item.answers }}</td>
+                <td>{{ item.question_type }}</td>
                 <td>{{ item.deleted_at }}</td>
                 <td>
                   <button @click="restoreItem(item.id)" class="btn btn-success">
@@ -68,16 +69,16 @@ import axios from "axios";
 export default {
   data() {
     return {
-      donor: [],
+      Faq: [],
     };
   },
   methods: {
     getSuppliers() {
       axios
-        .get(`${this.$store.state.url}/donors/archive`)
+        .get(`${this.$store.state.url}/faqs/archive`)
         .then((response) => {
           console.log(response);
-          this.donor = response.data.data;
+          this.Faq = response.data.data;
         })
         .catch((error) => {
           console.log(error);
@@ -86,13 +87,13 @@ export default {
     },
     restoreItem(id) {
       axios
-        .put(`${this.$store.state.url}/donors/${id}/restore`)
+        .put(`${this.$store.state.url}/faqs/${id}/restore`)
         .then((response) => {
-          this.$toast.success("donor restored successfully");
+          this.$toast.success("faqs restored successfully");
           this.getSuppliers();
         })
         .catch((error) => {
-          this.$toast.warning("Failed to restore donor");
+          this.$toast.warning("Failed to restore faqs");
           console.log(error);
         });
     },
