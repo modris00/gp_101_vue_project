@@ -27,6 +27,7 @@ import ArchiveCategoryView from "../views/Category/ArchiveCategory.vue";
 import SubCategoriesView from "../views/SubCategory/IndexSubCategory.vue";
 import CreateSubCategoryView from "../views/SubCategory/CreateSubCategory.vue";
 import EditSubCategoryView from "../views/SubCategory/EditSubCategory.vue";
+import ArchiveSubCategoriesView from "../views/SubCategory/ArchiveSubCategory.vue";
 // Service
 import CreateServiceView from "../views/Service/CreateService.vue";
 import IndexServiceView from "../views/Service/IndexService.vue";
@@ -48,6 +49,7 @@ import EditBillView from "../views/Bills/EditBill.vue";
 import CurrencyView from "../views/Currency/IndexCurrency.vue";
 import CreateCurrencyView from "../views/Currency/CreateCurrency.vue";
 import EditCurrencyView from "../views/Currency/EditCurrency.vue";
+import ArchiveCurrencyView from "../views/Currency/ArchiveCurrency.vue";
 
 // Campaigns
 import CampaignsView from "../views/Campaign/IndexCampaign.vue";
@@ -59,10 +61,13 @@ import ArchiveCampaignView from "../views/Campaign/ArchiveCampaign.vue";
 import CampaignsDonorView from "../views/CampaignDonor/IndexCampaignDonor.vue";
 import CreateCampaignDonorView from "../views/CampaignDonor/CreateCampaignDonor.vue";
 import EditCampaignDonorView from "../views/CampaignDonor/EditCampaignDonor.vue";
+import ArchiveCampaignsDonorView from "../views/CampaignDonor/ArchiveCampaignDonor.vue";
+
 //CampaignOperation
 import CampaignOperationView from "../views/CampaignOperation/IndexCampaignOperation.vue";
 import CreateCampaignOperationView from "../views/CampaignOperation/CreateCampaignOperation.vue";
 import EditCampaignOperationView from "../views/CampaignOperation/EditCampaignOperation.vue";
+import ArchiveCampaignOperationView from "../views/CampaignOperation/ArchiveCampaignOperation.vue";
 
 import CountriesView from "../views/Countries/IndexCountries.vue";
 import CreateCountryView from "../views/Countries/CreateCountry.vue";
@@ -90,7 +95,6 @@ import EditContactRequestView from "../views/ContactRequests/EditContactRequest.
 import ArchiveContactRequestsView from "../views/ContactRequests/ArchiveContactRequests.vue";
 
 const routes = [
-
   { path: "/", component: HomeView },
 
   { path: "/test", component: TestView },
@@ -105,7 +109,11 @@ const routes = [
     name: "services.edit",
     component: EditServiceView,
   },
-  { path: "/services", name: "services", component: IndexServiceView },
+  {
+    path: "/services",
+    name: "services",
+    component: IndexServiceView,
+  },
   {
     path: "/services/archive",
     name: "services.archive",
@@ -127,8 +135,17 @@ const routes = [
     name: "campaigns-donors.edit",
     component: EditCampaignDonorView,
   },
+  {
+    path: "/campaigns-donors/archive",
+    name: "campaigns-donors.archive",
+    component: ArchiveCampaignsDonorView,
+  },
 
-  { path: "/campaigns", name: "campaigns", component: CampaignsView },
+  {
+    path: "/campaigns",
+    name: "campaigns",
+    component: CampaignsView,
+  },
   {
     path: "/campaign/create",
     name: "campaigns.create",
@@ -160,8 +177,17 @@ const routes = [
     name: "campaign-operations.edit",
     component: EditCampaignOperationView,
   },
+  {
+    path: "/campaign-operations/archive",
+    name: "campaign-operations.archive",
+    component: ArchiveCampaignOperationView,//
+  },
 
-  { path: "/suppliers", name: "suppliers", component: SuppliersView }, //children[]
+  {
+    path: "/suppliers",
+    name: "suppliers",
+    component: SuppliersView,
+  }, //children[]
   {
     path: "/suppliers/create",
     name: "suppliers.create",
@@ -178,7 +204,11 @@ const routes = [
     component: ArchiveSupplierView,
   },
 
-  { path: "/countries", name: "countries", component: CountriesView },
+  {
+    path: "/countries",
+    name: "countries",
+    component: CountriesView,
+  },
   {
     path: "/countries/create",
     name: "countries.create",
@@ -195,10 +225,26 @@ const routes = [
     component: ArchiveCountryView,
   },
 
-  { path: "/faqs", name: "faqs", component: FaqsView },
-  { path: "/faq/create", name: "faqs.create", component: CreateFaqView },
-  { path: "/faqs/:id/edit", name: "faqs.edit", component: EditFaqView },
-  { path: "/faqs/archive", name: "faqs.archive", component: ArchiveFaqView },
+  {
+    path: "/faqs",
+    name: "faqs",
+    component: FaqsView,
+  },
+  {
+    path: "/faq/create",
+    name: "faqs.create",
+    component: CreateFaqView,
+  },
+  {
+    path: "/faqs/:id/edit",
+    name: "faqs.edit",
+    component: EditFaqView,
+  },
+  {
+    path: "/faqs/archive",
+    name: "faqs.archive",
+    component: ArchiveFaqView,
+  },
 
   {
     path: "/sub-categories",
@@ -215,7 +261,17 @@ const routes = [
     name: "sub-categories.edit",
     component: EditSubCategoryView,
   },
-  { path: "/categories", name: "categories", component: CategoriesView },
+  {
+    path: "/sub-categories/archive",
+    name: "sub-categories.archive",
+    component: ArchiveSubCategoriesView,
+  },
+
+  {
+    path: "/categories",
+    name: "categories",
+    component: CategoriesView,
+  },
   {
     path: "/category/create",
     name: "categories.create",
@@ -232,47 +288,127 @@ const routes = [
     component: ArchiveCategoryView,
   },
 
-  { path: "/admins", name: "admins", component: AdminsView },
-  { path: "/admin/create", name: "admins.create", component: CreateAdminView },
-  { path: "/admin/:id/edit", name: "admins.edit", component: EditAdminView },
+  {
+    path: "/admins",
+    name: "admins",
+    component: AdminsView,
+  },
+  {
+    path: "/admin/create",
+    name: "admins.create",
+    component: CreateAdminView,
+  },
+  {
+    path: "/admin/:id/edit",
+    name: "admins.edit",
+    component: EditAdminView,
+  },
   {
     path: "/admins/archive",
     name: "admins.archive",
     component: ArchiveAdminView,
   },
 
-  { path: "/donors", name: "donors", component: DonorView },
-  { path: "/donor/create", name: "donors.create", component: CreateDonorView },
-  { path: "/donor/:id/edit", name: "donors.edit", component: EditDonorView },
+  {
+    path: "/donors",
+    name: "donors",
+    component: DonorView,
+  },
+  {
+    path: "/donor/create",
+    name: "donors.create",
+    component: CreateDonorView,
+  },
+  {
+    path: "/donor/:id/edit",
+    name: "donors.edit",
+    component: EditDonorView,
+  },
   {
     path: "/donors/archive",
     name: "donors.archive",
     component: ArchiveDonorView,
   },
 
-  { path: "/cities", name: "cities", component: CitiesView }, //children[]
-  { path: "/cities/create", name: "cities.create", component: CreateCityView },
-  { path: "/cities/:id/edit", name: "cities.edit", component: EditCityView },
-  
+  {
+    path: "/cities",
+    name: "cities",
+    component: CitiesView,
+  }, //children[]
+  {
+    path: "/cities/create",
+    name: "cities.create",
+    component: CreateCityView,
+  },
+  {
+    path: "/cities/:id/edit",
+    name: "cities.edit",
+    component: EditCityView,
+  },
+
   {
     path: "/cities/archive",
     name: "cities.archive",
     component: ArchiveCityView,
   },
 
-  { path: "/areas", name: "areas", component: AreasView }, //children[]
-  { path: "/areas/create", name: "areas.create", component: CreateAreaView },
-  { path: "/areas/:id/edit", name: "areas.edit", component: EditAreaView },
-  { path: "/areas/archive", name: "areas.archive", component: ArchiveAreaView },
+  {
+    path: "/areas",
+    name: "areas",
+    component: AreasView,
+  }, //children[]
+  {
+    path: "/areas/create",
+    name: "areas.create",
+    component: CreateAreaView,
+  },
+  {
+    path: "/areas/:id/edit",
+    name: "areas.edit",
+    component: EditAreaView,
+  },
+  {
+    path: "/areas/archive",
+    name: "areas.archive",
+    component: ArchiveAreaView,
+  },
 
-  { path: "/bills", name: "bills", component: BillView }, //children[]
-  { path: "/bill/create", name: "bills.create", component: CreateBillView },
-  { path: "/bill/:id/edit", name: "bills.edit", component: EditBillView },
+  {
+    path: "/bills",
+    name: "bills",
+    component: BillView,
+  }, //children[]
+  {
+    path: "/bill/create",
+    name: "bills.create",
+    component: CreateBillView,
+  },
+  {
+    path: "/bill/:id/edit",
+    name: "bills.edit",
+    component: EditBillView,
+  },
 
-  { path: "/contact-requests", name: "contactRequests", component: ContactRequestsView }, //children[]
-  { path: "/contact-requests/create", name: "contactRequests.create", component: CreateContactRequestView },
-  { path: "/contact-requests/:id/edit", name: "contactRequests.edit", component: EditContactRequestView },
-  { path: "/contact-requests/archive", name: "contactRequests.archive", component: ArchiveContactRequestsView },
+  {
+    path: "/contact-requests",
+    name: "contactRequests",
+    component: ContactRequestsView,
+  }, //children[]
+  {
+    path: "/contact-requests/create",
+    name: "contactRequests.create",
+    component: CreateContactRequestView,
+  },
+  {
+    path: "/contact-requests/:id/edit",
+    name: "contactRequests.edit",
+    component: EditContactRequestView,
+  },
+  {
+    path: "/contact-requests/archive",
+    name: "contactRequests.archive",
+    component: ArchiveContactRequestsView,
+  },
 
   {
     path: "/beneficiaries",
@@ -292,11 +428,14 @@ const routes = [
   {
     path: "/beneficiaries/archive",
     name: "beneficiaries.archive",
-    component:  ArchiveBeneficiaryView,
+    component: ArchiveBeneficiaryView,
   },
 
-
-  { path: "/currencies", name: "currencies", component: CurrencyView }, //children[]
+  {
+    path: "/currencies",
+    name: "currencies",
+    component: CurrencyView
+  }, //children[]
   {
     path: "/currency/create",
     name: "currencies.create",
@@ -307,7 +446,11 @@ const routes = [
     name: "currencies.edit",
     component: EditCurrencyView,
   },
-
+  {
+    path: "/currencies/archive",
+    name: "currencies.archive",
+    component: ArchiveCurrencyView
+  },
 ];
 
 const router = createRouter({

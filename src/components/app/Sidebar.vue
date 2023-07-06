@@ -38,18 +38,81 @@
           <!-- Add icons to the links using the .nav-icon class
              with font-awesome or any other icon font library -->
 
-          <li class="nav-item">
+          <li class="nav-header" >Human Resource Management</li>
+
+           <li class="nav-item">
             <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-comments"></i>
+              <i class="nav-icon fas fa-users"></i>
+
               <p>
-                Contact Requests
+                Admins
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <router-link :to="{ name: 'admins.create' }" class="nav-link">
+                  <i class="nav-icon fas fa-plus text-sm"></i>
+                  <p>Create</p>
+                </router-link>
+              </li>
+              <li class="nav-item">
+                <router-link :to="{ name: 'admins' }" class="nav-link">
+                  <i class="nav-icon fas fa-list text-sm"></i>
+                  <p>Read</p>
+                </router-link>
+              </li>
+              <li class="nav-item">
+                <router-link :to="{ name: 'admins.archive' }" class="nav-link">
+                  <i class="nav-icon fas fa-archive text-sm"></i>
+                  <p>Archive</p>
+                </router-link>
+              </li>
+            </ul>
+           </li>
+
+            <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-hands-helping"></i>
+              <p>
+                Donors
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <router-link :to="{ name: 'donors.create' }" class="nav-link">
+                  <i class="nav-icon fas fa-plus text-sm"></i>
+                  <p>Create</p>
+                </router-link>
+              </li>
+              <li class="nav-item">
+                <router-link :to="{ name: 'donors' }" class="nav-link">
+                  <i class="nav-icon fas fa-list text-sm"></i>
+                  <p>Read</p>
+                </router-link>
+              </li>
+              <li class="nav-item">
+                <router-link :to="{ name: 'donors.archive' }" class="nav-link">
+                  <i class="nav-icon fas fa-archive text-sm"></i>
+                  <p>Archive</p>
+                </router-link>
+              </li>
+            </ul>
+          </li>
+
+            <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+                Beneficiaries
                 <i class="fas fa-angle-left right"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
                 <router-link
-                  :to="{ name: 'contactRequests.create' }"
+                  :to="{ name: 'beneficiaries.create' }"
                   class="nav-link"
                 >
                   <i class="nav-icon fas fa-plus text-sm"></i>
@@ -57,14 +120,14 @@
                 </router-link>
               </li>
               <li class="nav-item">
-                <router-link :to="{ name: 'contactRequests' }" class="nav-link">
+                <router-link :to="{ name: 'beneficiaries' }" class="nav-link">
                   <i class="nav-icon fas fa-list text-sm"></i>
                   <p>Read</p>
                 </router-link>
               </li>
-              <li class="nav-item">
+               <li class="nav-item">
                 <router-link
-                  :to="{ name: 'contactRequests.archive' }"
+                  :to="{ name: 'beneficiaries.archive' }"
                   class="nav-link"
                 >
                   <i class="nav-icon fas fa-archive text-sm"></i>
@@ -74,6 +137,7 @@
             </ul>
           </li>
 
+          <li class="nav-header">Content management</li>
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-caravan"></i>
@@ -206,65 +270,10 @@
             </ul>
           </li>
 
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-users"></i>
+         
 
-              <p>
-                Admins
-                <i class="fas fa-angle-left right"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <router-link :to="{ name: 'admins.create' }" class="nav-link">
-                  <i class="nav-icon fas fa-plus text-sm"></i>
-                  <p>Create</p>
-                </router-link>
-              </li>
-              <li class="nav-item">
-                <router-link :to="{ name: 'admins' }" class="nav-link">
-                  <i class="nav-icon fas fa-list text-sm"></i>
-                  <p>Read</p>
-                </router-link>
-              </li>
-              <li class="nav-item">
-                <router-link :to="{ name: 'admins.archive' }" class="nav-link">
-                  <i class="nav-icon fas fa-archive text-sm"></i>
-                  <p>Archive</p>
-                </router-link>
-              </li>
-            </ul>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-hands-helping"></i>
-              <p>
-                Donors
-                <i class="fas fa-angle-left right"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <router-link :to="{ name: 'donors.create' }" class="nav-link">
-                  <i class="nav-icon fas fa-plus text-sm"></i>
-                  <p>Create</p>
-                </router-link>
-              </li>
-              <li class="nav-item">
-                <router-link :to="{ name: 'donors' }" class="nav-link">
-                  <i class="nav-icon fas fa-list text-sm"></i>
-                  <p>Read</p>
-                </router-link>
-              </li>
-              <li class="nav-item">
-                <router-link :to="{ name: 'donors.archive' }" class="nav-link">
-                  <i class="nav-icon fas fa-archive text-sm"></i>
-                  <p>Archive</p>
-                </router-link>
-              </li>
-            </ul>
-          </li>
+        
+
           <li class="nav-item">
             <a href="#" class="nav-link">
               <!-- <i class="nav-icon fas fa-list text-sm"></i> -->
@@ -302,6 +311,7 @@
               </li>
             </ul>
           </li>
+
           <li class="nav-item">
             <a href="#" class="nav-link">
               <!-- <i class="nav-icon fas fa-list text-sm"></i> -->
@@ -339,6 +349,7 @@
               </li>
             </ul>
           </li>
+
           <li class="nav-item">
             <a href="#" class="nav-link">
               <!-- <i class="nav-icon fas fa-list text-sm"></i> -->
@@ -368,8 +379,18 @@
                   <p>Read</p>
                 </router-link>
               </li>
+               <li class="nav-item">
+                <router-link
+                  :to="{ name: 'campaigns-donors.archive' }"
+                  class="nav-link"
+                >
+                  <i class="nav-icon fas fa-archive text-sm"></i>
+                  <p>Archive</p>
+                </router-link>
+              </li>
             </ul>
           </li>
+
           <li class="nav-item">
             <a href="#" class="nav-link">
               <!-- <i class=" fas fa-list"></i> -->
@@ -394,6 +415,15 @@
                 <router-link :to="{ name: 'sub-categories' }" class="nav-link">
                   <i class="nav-icon fas fa-list text-sm"></i>
                   <p>Read</p>
+                </router-link>
+              </li>
+              <li class="nav-item">
+                <router-link
+                  :to="{ name: 'sub-categories.archive' }"
+                  class="nav-link"
+                >
+                  <i class="nav-icon fas fa-archive text-sm"></i>
+                  <p>Archive</p>
                 </router-link>
               </li>
             </ul>
@@ -423,6 +453,7 @@
               </li>
             </ul>
           </li>
+
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-money-bill-wave"></i>
@@ -448,8 +479,18 @@
                   <p>Read</p>
                 </router-link>
               </li>
+               <li class="nav-item">
+                <router-link
+                  :to="{ name: 'currencies.archive' }"
+                  class="nav-link"
+                >
+                  <i class="nav-icon fas fa-archive text-sm"></i>
+                  <p>Archive</p>
+                </router-link>
+              </li>
             </ul>
           </li>
+
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-th-list"></i>
@@ -477,8 +518,18 @@
                   <p>Read</p>
                 </router-link>
               </li>
+              <li class="nav-item">
+                <router-link
+                  :to="{ name: 'campaign-operations.archive' }"
+                  class="nav-link"
+                >
+                  <i class="nav-icon fas fa-archive text-sm"></i>
+                  <p>Archive</p>
+                </router-link>
+              </li>
             </ul>
           </li>
+
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-handshake"></i>
@@ -511,6 +562,7 @@
               </li>
             </ul>
           </li>
+
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-question fa-lg"> </i>
@@ -544,18 +596,19 @@
             </ul>
           </li>
 
+
           <li class="nav-item">
             <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-th"></i>
+              <i class="nav-icon fas fa-comments"></i>
               <p>
-                Beneficiaries
+                Contact Requests
                 <i class="fas fa-angle-left right"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
                 <router-link
-                  :to="{ name: 'beneficiaries.create' }"
+                  :to="{ name: 'contactRequests.create' }"
                   class="nav-link"
                 >
                   <i class="nav-icon fas fa-plus text-sm"></i>
@@ -563,14 +616,14 @@
                 </router-link>
               </li>
               <li class="nav-item">
-                <router-link :to="{ name: 'beneficiaries' }" class="nav-link">
+                <router-link :to="{ name: 'contactRequests' }" class="nav-link">
                   <i class="nav-icon fas fa-list text-sm"></i>
                   <p>Read</p>
                 </router-link>
               </li>
-               <li class="nav-item">
+              <li class="nav-item">
                 <router-link
-                  :to="{ name: 'beneficiaries.archive' }"
+                  :to="{ name: 'contactRequests.archive' }"
                   class="nav-link"
                 >
                   <i class="nav-icon fas fa-archive text-sm"></i>
@@ -579,6 +632,8 @@
               </li>
             </ul>
           </li>
+        
+
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
