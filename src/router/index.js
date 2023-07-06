@@ -94,6 +94,11 @@ import CreateContactRequestView from "../views/ContactRequests/CreateContactRequ
 import EditContactRequestView from "../views/ContactRequests/EditContactRequest.vue";
 import ArchiveContactRequestsView from "../views/ContactRequests/ArchiveContactRequests.vue";
 
+import CampaignBeneficiaryView from "../views/CampaignBeneficiary/IndexCampaignBeneficiaries.vue";
+import CreateCampaignBeneficiaryView from "../views/CampaignBeneficiary/CreateCampaignBeneficiary.vue";
+import EditCampaignBeneficiaryView from "../views/CampaignBeneficiary/EditCampaignBeneficiary.vue";
+import ArchiveCampaignBeneficiaryView from "../views/CampaignBeneficiary/ArchiveCampaignBeneficiary.vue";
+
 const routes = [
   { path: "/", component: HomeView },
 
@@ -451,6 +456,12 @@ const routes = [
     name: "currencies.archive",
     component: ArchiveCurrencyView
   },
+
+  { path: "/campaign-beneficiary", name: "campaignBeneficiary", component: CampaignBeneficiaryView }, //children[]
+  { path: "/campaign-beneficiary/create", name: "campaignBeneficiary.create", component: CreateCampaignBeneficiaryView },
+  { path: "/campaign-beneficiary/:id/edit", name: "campaignBeneficiary.edit", component: EditCampaignBeneficiaryView },
+  { path: "/campaign-beneficiary/archive", name: "campaignBeneficiary.archive", component: ArchiveCampaignBeneficiaryView },
+
 ];
 
 const router = createRouter({
