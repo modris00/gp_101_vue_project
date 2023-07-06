@@ -61,6 +61,7 @@
 
 <script>
 import axios from "axios";
+import Swal from "sweetalert2/dist/sweetalert2";
 
 export default {
   data() {
@@ -69,7 +70,7 @@ export default {
     };
   },
   methods: {
-    getSuppliers() {
+    getAreas() {
       axios
         .get(`${this.$store.state.url}/areas/archive`)
         .then((response) => {
@@ -86,37 +87,54 @@ export default {
         .put(`${this.$store.state.url}/areas/${id}/restore`)
         .then((response) => {
           this.$toast.success("area restored successfully");
-          this.getSuppliers();
+          this.getAreas();
         })
         .catch((error) => {
           this.$toast.warning("Failed to restore area");
           console.log(error);
         });
     },
-    // deleteItem(id) {
-    //   axios
-    //     .delete(`${this.$store.state.url}/suppliers/${id}/force-delete`)
-    //     .then((response) => {
-    //       this.$swal({
-    //         title: "Success",
-    //         text: "Supplier permanently deleted",
-    //         icon: "success",
-    //       });
-
-    //       this.getSuppliers();
-    //     })
-    //     .catch((error) => {
-    //       this.$swal({
-    //         title: "Error",
-    //         text: "Failed to permanently delete supplier",
-    //         icon: "error",
-    //       });
-    //       console.log(error);
-    //     });
-    // },
+    deleteItem(id) {
+      Swal.fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          axios
+            .delete(
+              `${this.$store.state.url}/areas/${id}/force-delete`,
+            )
+            .then((response) => {
+              console.log(response);
+              Swal.fire(
+                "Deleted!",
+                "areas has been deleted.",
+                "success"
+              );
+              // this.getAreas();
+              this.area = this.area.filter(
+                (c) => c.id != id
+              );
+            })
+            .catch((error) => {
+              console.log(error);
+              if (error.response.data) {
+                this.$toast.error(error.response.data.message);
+              } else {
+                this.$toast.error(error.message);
+              }
+            });
+        }
+      });
+    },
   },
   mounted() {
-    this.getSuppliers();
+    this.getAreas();
   },
 };
 </script>

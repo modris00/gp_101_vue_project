@@ -9,6 +9,7 @@ import './assets/plugins/jquery/jquery.min.js'
 import './assets/plugins/bootstrap/js/bootstrap.bundle.min.js'
 import './assets/dist/js/adminlte.min.js'
 import Toaster from "@meforma/vue-toaster";
+
 import VueSweetalert2 from 'vue-sweetalert2';
 import 'sweetalert2/dist/sweetalert2.min.css';
 

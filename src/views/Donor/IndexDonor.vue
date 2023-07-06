@@ -37,19 +37,21 @@ export default {
           console.log(error);
         });
     },
-    deleteRow(event,id ) {
+
+    deleteRow(event, id) {
+      console.log(id);
       axios
         .delete(`${this.$store.state.url}/donors/${id}`)
         .then((response) => {
-          console.log(id);
-          console.log(response.data.message);
-          this.Donors = this.Donors.filter((item) => item.id != id);
+          this.Donors = this.Donors.filter((c) => c.id != id);
+          this.$toast.success(response.data.message);
         })
         .catch((error) => {
+          console.log(error);
           if (error.response.data) {
-            this.$toast.error(error.response.data.message);
+            this.$toast.error(error.response.data.message); // from laravel
           } else {
-            this.$toast.error(error.message);
+            this.$toast.error(error.message); // from axios
           }
         });
     },
