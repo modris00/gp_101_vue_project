@@ -5,13 +5,11 @@
       <!-- general form elements -->
       <div class="card card-primary">
         <div class="card-header">
-          <h3 class="card-title">Create CampaignBeneficiary</h3>
+          <h3 class="card-title">Edit CampaignService</h3>
         </div>
         <!-- /.card-header -->
         <!-- form start -->
-        <form
-          @submit.prevent="updateCampaignBeneficiary(this.$route.params.id)"
-        >
+        <form @submit.prevent="updateCampaignService(this.$route.params.id)">
           <div class="card-body">
             <div class="form-group">
               <label for="amount">Amount</label>
@@ -19,8 +17,8 @@
                 type="number"
                 v-model="amount"
                 class="form-control"
-                id="amount"
                 placeholder="Enter Amount"
+                id="amount"
               />
             </div>
 
@@ -30,24 +28,21 @@
                 type="text"
                 v-model="description"
                 class="form-control"
-                id="description"
                 placeholder="Enter description"
+                id="description"
               />
             </div>
 
             <div class="form-group">
-              <label>Status: </label>
-              <select class="form-control" v-model="status">
-                <option value="finished" :selected="status == 'finished'">
-                  Finished
-                </option>
-                <option
-                  value="not_finished"
-                  :selected="status == 'not_finished'"
-                >
-                  Not Finished
-                </option>
-              </select>
+              <div class="custom-control custom-switch">
+                <input
+                  type="checkbox"
+                  class="custom-control-input"
+                  v-model="status"
+                  id="status"
+                />
+                <label class="custom-control-label" for="status">Status</label>
+              </div>
             </div>
 
             <div class="form-group">
@@ -56,49 +51,70 @@
                 type="number"
                 v-model="campaign_id"
                 class="form-control"
-                id="campaign_id"
                 placeholder="Enter campaign id"
               />
             </div>
 
             <div class="form-group">
-              <label for="beneficiary_id">Beneficiary ID</label>
+              <label for="service_id">Service ID</label>
               <input
                 type="number"
-                v-model="beneficiary_id"
+                v-model="service_id"
                 class="form-control"
-                id="beneficiary_id"
-                placeholder="Enter beneficiary id"
+                placeholder="Enter service id"
               />
             </div>
 
-            <!-- <div class="form-group">
-              <label>Donors</label>
-              <select class="form-control" v-model="CampaignDonor.donor_id">
-                <option value="" selected disabled>Enter Donor</option>
-                <option
-                  v-for="(item, index) in Donors"
-                  :key="index"
-                  :value="item.id"
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label>Start Date:</label>
+                <div
+                  class="input-group date"
+                  id="reservationdate"
+                  data-target-input="nearest"
                 >
-                  {{ item.name }}
-                </option>
-              </select>
-            </div> -->
-
-            <!-- <div class="form-group">
-              <label>Campaigns</label>
-              <select class="form-control" v-model="CampaignDonor.campaign_id">
-                <option value="" selected>Enter Campaign</option>
-                <option
-                  v-for="(item, index) in Campaigns"
-                  :key="index"
-                  :value="item.id"
+                  <input
+                    type="date"
+                    class="form-control datetimepicker-input"
+                    v-model="start_date"
+                    data-target="#reservationdate"
+                  />
+                  <div
+                    class="input-group-append"
+                    data-target="#reservationdate"
+                    data-toggle="datetimepicker"
+                  >
+                    <div class="input-group-text">
+                      <i class="fa fa-calendar"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label>End Date:</label>
+                <div
+                  class="input-group date"
+                  id="reservationdate"
+                  data-target-input="nearest"
                 >
-                  {{ item.title }}
-                </option>
-              </select>
-            </div> -->
+                  <input
+                    type="date"
+                    v-model="end_date"
+                    class="form-control datetimepicker-input"
+                    data-target="#reservationdate"
+                  />
+                  <div
+                    class="input-group-append"
+                    data-target="#reservationdate"
+                    data-toggle="datetimepicker"
+                  >
+                    <div class="input-group-text">
+                      <i class="fa fa-calendar"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
 
             <div class="card-footer">
               <button type="submit" class="btn btn-primary">Submit</button>
@@ -113,36 +129,45 @@
 <script>
 import axios from "axios";
 export default {
-  name: "CreateCampaignDonor",
+  // name: "CreateCampaignDonor",
   mounted() {
-    this.indexCampaignBeneficiary(this.$route.params.id);
+    this.getCampaignService(this.$route.params.id);
   },
   data() {
     return {
-      campaignBeneficiary: "",
+      campaignService: "",
+
       amount: "",
       status: "",
       description: "",
+
+      start_date: "",
+      end_date: "",
+
       campaign_id: "",
-      beneficiary_id: "",
+      service_id: "",
     };
   },
   methods: {
-    updateCampaignBeneficiary(id) {
+    updateCampaignService(id) {
       axios
-        .put(`${this.$store.state.url}/campaigns-beneficiaries/${id}`, {
+        .put(`${this.$store.state.url}/campaigns-services/${id}`, {
           amount: this.amount,
           status: this.status,
           description: this.description,
+
           campaign_id: this.campaign_id,
-          beneficiary_id: this.beneficiary_id,
+          service_id: this.service_id,
+
+          start_date: this.start_date,
+          end_date: this.end_date,
         })
         .then((response) => {
           console.log(response);
           this.$toast.success(response.data.message);
 
           // redirect view index All Campaigns-beneficiaries
-          this.$router.push("/campaign-beneficiary");
+          this.$router.push("/campaign-services");
         })
         .catch((error) => {
           console.log(error);
@@ -153,17 +178,19 @@ export default {
           }
         });
     },
-    indexCampaignBeneficiary(id) {
+    getCampaignService(id) {
       axios
-        .get(`${this.$store.state.url}/campaigns-beneficiaries/${id}`)
+        .get(`${this.$store.state.url}/campaigns-services/${id}`)
         .then((response) => {
           console.log(response.data.data);
-          this.campaignBeneficiary = response.data.data;
-          this.amount = this.campaignBeneficiary.amount;
-          this.status = this.campaignBeneficiary.status;
-          this.description = this.campaignBeneficiary.description;
-          this.campaign_id = this.campaignBeneficiary.campaign_id;
-          this.beneficiary_id = this.campaignBeneficiary.beneficiary_id;
+          this.campaignService = response.data.data;
+          this.amount = this.campaignService.amount;
+          this.status = this.campaignService.status == 1 ? true : false;
+          this.description = this.campaignService.description;
+          this.start_date = this.campaignService.start_date;
+          this.end_date = this.campaignService.end_date;
+          this.campaign_id = this.campaignService.campaign_id;
+          this.service_id = this.campaignService.service_id;
         })
         .catch((error) => {
           console.log(error);
