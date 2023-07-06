@@ -89,6 +89,11 @@ import CreateContactRequestView from "../views/ContactRequests/CreateContactRequ
 import EditContactRequestView from "../views/ContactRequests/EditContactRequest.vue";
 import ArchiveContactRequestsView from "../views/ContactRequests/ArchiveContactRequests.vue";
 
+import CampaignBeneficiaryView from "../views/CampaignBeneficiary/IndexCampaignBeneficiaries.vue";
+import CreateCampaignBeneficiaryView from "../views/CampaignBeneficiary/CreateCampaignBeneficiary.vue";
+import EditCampaignBeneficiaryView from "../views/CampaignBeneficiary/EditCampaignBeneficiary.vue";
+import ArchiveCampaignBeneficiaryView from "../views/CampaignBeneficiary/ArchiveCampaignBeneficiary.vue";
+
 const routes = [
 
   { path: "/", component: HomeView },
@@ -253,7 +258,7 @@ const routes = [
   { path: "/cities", name: "cities", component: CitiesView }, //children[]
   { path: "/cities/create", name: "cities.create", component: CreateCityView },
   { path: "/cities/:id/edit", name: "cities.edit", component: EditCityView },
-  
+
   {
     path: "/cities/archive",
     name: "cities.archive",
@@ -292,7 +297,7 @@ const routes = [
   {
     path: "/beneficiaries/archive",
     name: "beneficiaries.archive",
-    component:  ArchiveBeneficiaryView,
+    component: ArchiveBeneficiaryView,
   },
 
 
@@ -307,6 +312,11 @@ const routes = [
     name: "currencies.edit",
     component: EditCurrencyView,
   },
+
+  { path: "/campaign-beneficiary", name: "campaignBeneficiary", component: CampaignBeneficiaryView }, //children[]
+  { path: "/campaign-beneficiary/create", name: "campaignBeneficiary.create", component: CreateCampaignBeneficiaryView },
+  { path: "/campaign-beneficiary/:id/edit", name: "campaignBeneficiary.edit", component: EditCampaignBeneficiaryView },
+  { path: "/campaign-beneficiary/archive", name: "campaignBeneficiary.archive", component: ArchiveCampaignBeneficiaryView },
 
 ];
 
