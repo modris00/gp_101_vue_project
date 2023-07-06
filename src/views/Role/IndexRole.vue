@@ -20,7 +20,7 @@ export default {
   data() {
     return {
       roles: [],
-      headers: ["id", "name", "guard_name"],
+      headers: ["id", "name", "guard_name" , "permissions"],
     };
   },
   methods: {
