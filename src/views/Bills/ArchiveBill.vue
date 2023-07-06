@@ -3,7 +3,7 @@
     <div class="col-12">
       <div class="card">
         <div class="card-header">
-          <h3 class="card-title">Archives Beneficiaries</h3>
+          <h3 class="card-title">Archives Bills</h3>
 
           <div class="card-tools">
             <div class="input-group input-group-sm" style="width: 150px">
@@ -28,27 +28,30 @@
             <thead>
               <tr>
                 <th>#</th>
-                <th>name</th>
-                <th>age</th>
-                <th>gender</th>
-                <th>area</th>
-                <th>email</th>
-                <th>username</th>
-                <th>deleted_at</th>
+                <th>cost</th>
+                <th>image</th>
+                <th>description</th>
+                <th>currency_name</th>
+                <th>campaign_title</th>
+                <th>supplier_name</th>
+                <th>campaignService</th>
               </tr>
             </thead>
             <tbody>
-              <tr v-for="(item, index) in beneficiary" :key="index">
+              <tr v-for="(item, index) in bills" :key="index">
                 <td>{{ index + 1 }}</td>
-                <td>{{ item.name }}</td>
-                <td>{{ item.age }}</td>
-                <td>{{ item.gender }}</td>
-                <td>{{ item.area_name }}</td>
-                <td>{{ item.email }}</td>
-                <td>{{ item.username }}</td>
-                <td>{{ item.deleted_at }}</td>
+                <td>{{ item.cost }}</td>
+                <td>image</td>
+                <td>{{ item.description }}</td>
+                <td>{{ item.currency_name }}</td>
+                <td>{{ item.campaign_title }}</td>
+                <td>{{ item.supplier_name }}</td>
+                <td>{{ item.campaignService }}</td>
                 <td>
-                  <button @click="restoreItem(item.id)" class="btn btn-success">
+                  <button
+                    @click="restoreItem(item.id)"
+                    class="btn btn-success ml-2"
+                  >
                     Restore
                     <i class="fas fa-trash-restore"></i>
                   </button>
@@ -72,19 +75,20 @@
 <script>
 import axios from "axios";
 import Swal from "sweetalert2/dist/sweetalert2";
+
 export default {
   data() {
     return {
-      beneficiary: [],
+      bills: [],
     };
   },
   methods: {
-    getBeneficiarie() {
+    getBill() {
       axios
-        .get(`${this.$store.state.url}/beneficiaries/archive`)
+        .get(`${this.$store.state.url}/bills/archive`)
         .then((response) => {
           console.log(response);
-          this.beneficiary = response.data.data;
+          this.bills = response.data.data;
         })
         .catch((error) => {
           console.log(error);
@@ -93,13 +97,14 @@ export default {
     },
     restoreItem(id) {
       axios
-        .put(`${this.$store.state.url}/beneficiaries/${id}/restore`)
+        .put(`${this.$store.state.url}/bills/${id}/restore`)
         .then((response) => {
-          this.$toast.success("beneficiarie restored successfully");
-          this.getBeneficiarie();
+          this.$toast.success("bills restored successfully");
+          //this.getBill();
+          this.bills = this.bills.filter((c) => c.id != id);
         })
         .catch((error) => {
-          this.$toast.warning("Failed to restore beneficiary");
+          this.$toast.warning("Failed to restore bills");
           console.log(error);
         });
     },
@@ -115,16 +120,12 @@ export default {
       }).then((result) => {
         if (result.isConfirmed) {
           axios
-            .delete(`${this.$store.state.url}/beneficiaries/${id}/force-delete`)
+            .delete(`${this.$store.state.url}/bills/${id}/force-delete`)
             .then((response) => {
               console.log(response);
-              Swal.fire(
-                "Deleted!",
-                "beneficiarie has been deleted.",
-                "success"
-              );
-              // this.getAdmins();
-              this.beneficiary = this.beneficiary.filter((c) => c.id != id);
+              Swal.fire("Deleted!", "bills has been deleted.", "success");
+
+              this.bills = this.bills.filter((c) => c.id != id);
             })
             .catch((error) => {
               console.log(error);
@@ -139,7 +140,7 @@ export default {
     },
   },
   mounted() {
-    this.getBeneficiarie();
+    this.getBill();
   },
 };
 </script>

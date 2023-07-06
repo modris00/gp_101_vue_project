@@ -4,7 +4,7 @@
       <div class="card">
         <div class="card-header">
           <h3 class="card-title">Archives Campaign Operation</h3>
- 
+
           <div class="card-tools">
             <div class="input-group input-group-sm" style="width: 150px">
               <input
@@ -32,8 +32,8 @@
                 <th>cost</th>
                 <th>cost_type</th>
                 <th>date</th>
-                <th>admin_name</th>
-                <th>campaign_name</th>
+                <th>admin_username</th>
+                <th>campaign_title</th>
                 <th>service_name</th>
                 <th>deleted_at</th>
                 <th>Actions</th>
@@ -46,8 +46,8 @@
                 <td>{{ item.cost }}</td>
                 <td>{{ item.cost_type }}</td>
                 <td>{{ item.date }}</td>
-                <td>{{ item.admin_name }}</td>
-                <td>{{ item.campaign_name }}</td>
+                <td>{{ item.admin_username }}</td>
+                <td>{{ item.campaign_title }}</td>
                 <td>{{ item.service_name }}</td>
                 <td>{{ item.deleted_at }}</td>
                 <td>
@@ -119,12 +119,20 @@ export default {
       }).then((result) => {
         if (result.isConfirmed) {
           axios
-            .delete(`${this.$store.state.url}/campaign-operations/${id}/forceDelete`)
+            .delete(
+              `${this.$store.state.url}/campaign-operations/${id}/forceDelete`
+            )
             .then((response) => {
               console.log(response);
-              Swal.fire("Deleted!", "Campaign Operation has been deleted.", "success");
+              Swal.fire(
+                "Deleted!",
+                "Campaign Operation has been deleted.",
+                "success"
+              );
               // this.getCities();
-              this.campaignOperations = this.campaignOperations.filter((c) => c.id != id);
+              this.campaignOperations = this.campaignOperations.filter(
+                (c) => c.id != id
+              );
             })
             .catch((error) => {
               console.log(error);
