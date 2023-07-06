@@ -22,7 +22,7 @@ export default {
   data() {
     return {
       CampaignsDonor: [],
-      headers: ["id", "amount", "campaign_name", "donor_name"],
+      headers: ["id", "amount", "campaign_title", "donor_name"],
     };
   },
   methods: {

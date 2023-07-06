@@ -3,7 +3,7 @@
     <div class="col-12">
       <div class="card">
         <div class="card-header">
-          <h3 class="card-title">Archives Beneficiaries</h3>
+          <h3 class="card-title">Archives  Currency</h3>
 
           <div class="card-tools">
             <div class="input-group input-group-sm" style="width: 150px">
@@ -29,22 +29,15 @@
               <tr>
                 <th>#</th>
                 <th>name</th>
-                <th>age</th>
-                <th>gender</th>
-                <th>area_id</th>
-                <th>email</th>
-                <th>username</th>
+                <th>abbreviation</th>
                 <th>deleted_at</th>
               </tr>
             </thead>
             <tbody>
-              <tr v-for="(item, index) in beneficiary" :key="index">
+              <tr v-for="(item, index) in Currencies" :key="index">
                 <td>{{ index + 1 }}</td>
                 <td>{{ item.name }}</td>
-                <td>{{ item.age }}</td>
-                <td>{{ item.area_id }}</td>
-                <td>{{ item.email }}</td>
-                <td>{{ item.username }}</td>
+                <td>{{ item.abbreviation }}</td>
                 <td>{{ item.deleted_at }}</td>
                 <td>
                   <button @click="restoreItem(item.id)" class="btn btn-success">
@@ -71,19 +64,20 @@
 <script>
 import axios from "axios";
 import Swal from "sweetalert2/dist/sweetalert2";
+
 export default {
   data() {
     return {
-      beneficiary: [],
+      Currencies: [],
     };
   },
   methods: {
-    getBeneficiarie() {
+    getCurrencies() {
       axios
-        .get(`${this.$store.state.url}/beneficiaries/archive`)
+        .get(`${this.$store.state.url}/currencies/archive`)
         .then((response) => {
           console.log(response);
-          this.beneficiary = response.data.data;
+          this.Currencies = response.data.data;
         })
         .catch((error) => {
           console.log(error);
@@ -92,17 +86,17 @@ export default {
     },
     restoreItem(id) {
       axios
-        .put(`${this.$store.state.url}/beneficiaries/${id}/restore`)
+        .put(`${this.$store.state.url}/currencies/${id}/restore`)
         .then((response) => {
-          this.$toast.success("beneficiarie restored successfully");
-          this.getBeneficiarie();
+          this.$toast.success("Currency restored successfully");
+          this. getCurrencies();
         })
         .catch((error) => {
-          this.$toast.warning("Failed to restore beneficiary");
+          this.$toast.warning("Failed to restore Currency");
           console.log(error);
         });
     },
-     deleteItem(id) {
+    deleteItem(id) {
       Swal.fire({
         title: "Are you sure?",
         text: "You won't be able to revert this!",
@@ -114,20 +108,12 @@ export default {
       }).then((result) => {
         if (result.isConfirmed) {
           axios
-            .delete(
-              `${this.$store.state.url}/beneficiaries/${id}/force-delete`,
-            )
+            .delete(`${this.$store.state.url}/currencies/${id}/force-delete`)
             .then((response) => {
               console.log(response);
-              Swal.fire(
-                "Deleted!",
-                "beneficiarie has been deleted.",
-                "success"
-              );
-              // this.getAdmins();
-              this.beneficiarie = this.beneficiarie.filter(
-                (c) => c.id != id
-              );
+              Swal.fire("Deleted!", "Currency has been deleted.", "success");
+              // this.getCities();
+              this.Currencies = this.Currencies.filter((c) => c.id != id);
             })
             .catch((error) => {
               console.log(error);
@@ -142,7 +128,7 @@ export default {
     },
   },
   mounted() {
-    this.getBeneficiarie();
+    this.getCurrencies();
   },
 };
 </script>

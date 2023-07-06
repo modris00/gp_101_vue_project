@@ -3,7 +3,7 @@
     <div class="col-12">
       <div class="card">
         <div class="card-header">
-          <h3 class="card-title">Archives Beneficiaries</h3>
+          <h3 class="card-title">Archives | CampaignBeneficiaries</h3>
 
           <div class="card-tools">
             <div class="input-group input-group-sm" style="width: 150px">
@@ -28,32 +28,30 @@
             <thead>
               <tr>
                 <th>#</th>
-                <th>name</th>
-                <th>age</th>
-                <th>gender</th>
-                <th>area_id</th>
-                <th>email</th>
-                <th>username</th>
-                <th>deleted_at</th>
+                <th>Beneficiary</th>
+                <th>Campaign Title</th>
+                <th>Amount</th>
+                <th>Status</th>
+                <th>Description</th>
+                <th>Actions</th>
               </tr>
             </thead>
             <tbody>
-              <tr v-for="(item, index) in beneficiary" :key="index">
+              <tr v-for="(CB, index) in campaignBeneficiaries" :key="CB.id">
                 <td>{{ index + 1 }}</td>
-                <td>{{ item.name }}</td>
-                <td>{{ item.age }}</td>
-                <td>{{ item.area_id }}</td>
-                <td>{{ item.email }}</td>
-                <td>{{ item.username }}</td>
-                <td>{{ item.deleted_at }}</td>
+                <td>{{ CB.beneficiary_name ?? "--" }}</td>
+                <td>{{ CB.campaign_title ?? "--" }}</td>
+                <td>{{ CB.amount }}</td>
+                <td>{{ CB.status }}</td>
+                <td>{{ CB.description }}</td>
                 <td>
-                  <button @click="restoreItem(item.id)" class="btn btn-success">
+                  <button @click="restoreItem(CB.id)" class="btn btn-success">
                     Restore
                     <i class="fas fa-trash-restore"></i>
                   </button>
 
-                  <button @click="deleteItem(item.id)" class="btn btn-danger">
-                    Permanent deletion
+                  <button @click="deleteItem(CB.id)" class="btn btn-danger">
+                    Delete Permanently
                     <i class="fas fa-trash-alt"></i>
                   </button>
                 </td>
@@ -71,19 +69,23 @@
 <script>
 import axios from "axios";
 import Swal from "sweetalert2/dist/sweetalert2";
+
 export default {
   data() {
     return {
-      beneficiary: [],
+      campaignBeneficiaries: [],
     };
   },
+  mounted() {
+    this.getCampaignBeneficiaries();
+  },
   methods: {
-    getBeneficiarie() {
+    getCampaignBeneficiaries() {
       axios
-        .get(`${this.$store.state.url}/beneficiaries/archive`)
+        .get(`${this.$store.state.url}/campaigns-beneficiaries/archive`)
         .then((response) => {
           console.log(response);
-          this.beneficiary = response.data.data;
+          this.campaignBeneficiaries = response.data.data;
         })
         .catch((error) => {
           console.log(error);
@@ -92,17 +94,21 @@ export default {
     },
     restoreItem(id) {
       axios
-        .put(`${this.$store.state.url}/beneficiaries/${id}/restore`)
+        .get(`${this.$store.state.url}/campaigns-beneficiaries/${id}/restore`)
         .then((response) => {
-          this.$toast.success("beneficiarie restored successfully");
-          this.getBeneficiarie();
+          console.log(response);
+          this.$toast.success("restored successfully");
+          // this.getArchivedCRs();
+          this.campaignBeneficiaries = this.campaignBeneficiaries.filter(
+            (cb) => cb.id != id
+          );
         })
         .catch((error) => {
-          this.$toast.warning("Failed to restore beneficiary");
+          this.$toast.warning("Failed to restore");
           console.log(error);
         });
     },
-     deleteItem(id) {
+    deleteItem(id) {
       Swal.fire({
         title: "Are you sure?",
         text: "You won't be able to revert this!",
@@ -115,17 +121,17 @@ export default {
         if (result.isConfirmed) {
           axios
             .delete(
-              `${this.$store.state.url}/beneficiaries/${id}/force-delete`,
+              `${this.$store.state.url}/campaigns-beneficiaries/${id}/forceDelete`
             )
             .then((response) => {
               console.log(response);
               Swal.fire(
                 "Deleted!",
-                "beneficiarie has been deleted.",
+                "Contact Request has been deleted.",
                 "success"
               );
-              // this.getAdmins();
-              this.beneficiarie = this.beneficiarie.filter(
+              // this.getSuppliers();
+              this.campaignBeneficiaries = this.campaignBeneficiaries.filter(
                 (c) => c.id != id
               );
             })
@@ -140,9 +146,6 @@ export default {
         }
       });
     },
-  },
-  mounted() {
-    this.getBeneficiarie();
   },
 };
 </script>
