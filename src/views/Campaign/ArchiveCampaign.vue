@@ -37,7 +37,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr v-for="(item, index) in city" :key="index">
+              <tr v-for="(item, index) in campaign" :key="index">
                 <td>{{ index + 1 }}</td>
                 <td>{{ item.title }}</td>
                 <td>{{ item.amount }}</td>
@@ -115,7 +115,7 @@ export default {
       }).then((result) => {
         if (result.isConfirmed) {
           axios
-            .delete(`${this.$store.state.url}/campaign/${id}/force-delete`)
+            .delete(`${this.$store.state.url}/campaigns/${id}/force-delete`)
             .then((response) => {
               console.log(response);
               Swal.fire("Deleted!", "campaign has been deleted.", "success");

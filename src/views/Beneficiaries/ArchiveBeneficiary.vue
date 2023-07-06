@@ -38,7 +38,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr v-for="(item, index) in beneficiarie" :key="index">
+              <tr v-for="(item, index) in beneficiary" :key="index">
                 <td>{{ index + 1 }}</td>
                 <td>{{ item.name }}</td>
                 <td>{{ item.age }}</td>
@@ -70,20 +70,21 @@
 
 <script>
 import axios from "axios";
+import Swal from "sweetalert2/dist/sweetalert2";
 
 export default {
   data() {
     return {
-      beneficiarie: [],
+      beneficiary: [],
     };
   },
   methods: {
-    getSuppliers() {
+    getBeneficiaries() {
       axios
         .get(`${this.$store.state.url}/beneficiaries/archive`)
         .then((response) => {
           console.log(response);
-          this.beneficiarie = response.data.data;
+          this.beneficiary = response.data.data;
         })
         .catch((error) => {
           console.log(error);
@@ -94,38 +95,55 @@ export default {
       axios
         .put(`${this.$store.state.url}/beneficiaries/${id}/restore`)
         .then((response) => {
-          this.$toast.success("beneficiarie restored successfully");
-          this.getSuppliers();
+          this.$toast.success("beneficiary restored successfully");
+          this.getBeneficiaries();
         })
         .catch((error) => {
-          this.$toast.warning("Failed to restore beneficiarie");
+          this.$toast.warning("Failed to restore beneficiary");
           console.log(error);
         });
     },
-    // deleteItem(id) {
-    //   axios
-    //     .delete(`${this.$store.state.url}/suppliers/${id}/force-delete`)
-    //     .then((response) => {
-    //       this.$swal({
-    //         title: "Success",
-    //         text: "Supplier permanently deleted",
-    //         icon: "success",
-    //       });
-
-    //       this.getSuppliers();
-    //     })
-    //     .catch((error) => {
-    //       this.$swal({
-    //         title: "Error",
-    //         text: "Failed to permanently delete supplier",
-    //         icon: "error",
-    //       });
-    //       console.log(error);
-    //     });
-    // },
+    deleteItem(id) {
+      Swal.fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          axios
+            .delete(
+              `${this.$store.state.url}/beneficiaries/${id}/force-delete`,
+            )
+            .then((response) => {
+              console.log(response);
+              Swal.fire(
+                "Deleted!",
+                "beneficiaries has been deleted.",
+                "success"
+              );
+              // this.getBeneficiaries();
+              this.beneficiary = this.beneficiary.filter(
+                (c) => c.id != id
+              );
+            })
+            .catch((error) => {
+              console.log(error);
+              if (error.response.data) {
+                this.$toast.error(error.response.data.message);
+              } else {
+                this.$toast.error(error.message);
+              }
+            });
+        }
+      });
+    },
   },
   mounted() {
-    this.getSuppliers();
+    this.getBeneficiaries();
   },
 };
 </script>

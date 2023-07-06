@@ -34,7 +34,7 @@
             <div class="form-group">
               <label>Categories</label>
               <select class="form-control" v-model="SubCategory.category_id">
-                <option value="" selected>Enter category</option>
+                <option value="" selected disabled>Enter category</option>
                 <option
                   v-for="(item, index) in categories"
                   :key="index"
