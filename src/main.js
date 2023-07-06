@@ -19,5 +19,11 @@ import 'sweetalert2/dist/sweetalert2.min.css';
 // plugins/bootstrap/js/bootstrap.bundle.min.js
 // dist/js/adminlte.min.js
 
+const app = createApp(App);
+// app.config.productionTip = false
+app.use(store);
+app.use(router);
+app.use(Toaster, { position: "top-right" });
+app.use(VueSweetalert2);
 
-createApp(App).use(store).use(router).use(Toaster, { position: "top-right" }).use(VueSweetalert2).mount('#app')
+app.mount('#app');

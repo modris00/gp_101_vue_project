@@ -1,49 +1,55 @@
 <template>
   <TableComp
     :headers="headers"
-    :rows="Donors"
+    :rows="currencies"
     :deleteItem="deleteRow"
-    title="Donors"
+    title="Currencies"
   ></TableComp>
 </template>
-
 <script>
 import axios from "axios";
-import TableComp from "@/components/Table.vue";
+import TableComp from "../../components/Table.vue";
 
 export default {
-  components: {
-    TableComp,
-  },
+  name: "CurrencyView",
+  components: { TableComp },
+  props: [],
   mounted() {
-    this.indexDonors();
+    this.getCurrency();
   },
-  name: "IndexDonor",
   data() {
     return {
-      Donors: [],
-      headers: ["id", "name", "username", "email", "phone", "area_name"],
+      currencies: [],
+      headers: [
+        "id",
+        "name",
+        "abbreviation",
+        "campaigns_count",
+        // "bills_count",
+        "created_at",
+      ],
     };
   },
   methods: {
-    indexDonors() {
+    getCurrency() {
       axios
-        .get(`${this.$store.state.url}/donors`)
+        .get(`${this.$store.state.url}/currencies`)
         .then((response) => {
-          this.Donors = response.data.data;
-          console.log(response.data.data);
+          console.log(response);
+          this.currencies = response.data.data;
         })
         .catch((error) => {
           console.log(error);
+          this.$toast.warning(error.message); // this key is from axios not laravel
         });
     },
-
     deleteRow(event, id) {
+      //   console.log(event);
       console.log(id);
       axios
-        .delete(`${this.$store.state.url}/donors/${id}`)
+        .delete(`${this.$store.state.url}/currencies/${id}`)
         .then((response) => {
-          this.Donors = this.Donors.filter((c) => c.id != id);
+          this.currencies = this.currencies.filter((c) => c.id != id);
           this.$toast.success(response.data.message);
         })
         .catch((error) => {

@@ -78,6 +78,7 @@ export default {
         .then((response) => {
           console.log(response);
           this.$toast.success(response.data.message);
+          this.$router.push("/cities");
           this.name = "";
           this.country_id = null;
         })
