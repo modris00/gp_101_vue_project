@@ -414,6 +414,85 @@
 
           <li class="nav-item">
             <a href="#" class="nav-link">
+              <!-- <i class="nav-icon fas fa-list text-sm"></i> -->
+              <!-- <i class=" nav-icon fa-solid fa-list-tree"></i> -->
+              <i class="nav-icon fas fa-stream"></i>
+              <p>
+                CampaignBeneficiary
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <router-link
+                  :to="{ name: 'campaignBeneficiary.create' }"
+                  class="nav-link"
+                >
+                  <i class="nav-icon fas fa-plus text-sm"></i>
+                  <p>Create</p>
+                </router-link>
+              </li>
+              <li class="nav-item">
+                <router-link
+                  :to="{ name: 'campaignBeneficiary' }"
+                  class="nav-link"
+                >
+                  <i class="nav-icon fas fa-list text-sm"></i>
+                  <p>Read</p>
+                </router-link>
+              </li>
+              <li class="nav-item">
+                <router-link
+                  :to="{ name: 'campaignBeneficiary.archive' }"
+                  class="nav-link"
+                >
+                  <i class="nav-icon fas fa-archive text-sm"></i>
+                  <p>Archive</p>
+                </router-link>
+              </li>
+            </ul>
+          </li>
+
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <!-- <i class="nav-icon fas fa-list text-sm"></i> -->
+              <!-- <i class=" nav-icon fa-solid fa-list-tree"></i> -->
+              <i class="nav-icon fas fa-stream"></i>
+              <p>
+                CampaignService
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <router-link
+                  :to="{ name: 'campaignService.create' }"
+                  class="nav-link"
+                >
+                  <i class="nav-icon fas fa-plus text-sm"></i>
+                  <p>Create</p>
+                </router-link>
+              </li>
+              <li class="nav-item">
+                <router-link :to="{ name: 'campaignService' }" class="nav-link">
+                  <i class="nav-icon fas fa-list text-sm"></i>
+                  <p>Read</p>
+                </router-link>
+              </li>
+              <li class="nav-item">
+                <router-link
+                  :to="{ name: 'campaignService.archive' }"
+                  class="nav-link"
+                >
+                  <i class="nav-icon fas fa-archive text-sm"></i>
+                  <p>Archive</p>
+                </router-link>
+              </li>
+            </ul>
+          </li>
+
+          <li class="nav-item">
+            <a href="#" class="nav-link">
               <!-- <i class=" fas fa-list"></i> -->
               <i class="nav-icon fas fa-stream"></i>
 
@@ -623,15 +702,6 @@
               </p>
             </a>
             <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <router-link
-                  :to="{ name: 'contactRequests.create' }"
-                  class="nav-link"
-                >
-                  <i class="nav-icon fas fa-plus text-sm"></i>
-                  <p>Create</p>
-                </router-link>
-              </li>
               <li class="nav-item">
                 <router-link :to="{ name: 'contactRequests' }" class="nav-link">
                   <i class="nav-icon fas fa-list text-sm"></i>

@@ -3,7 +3,7 @@
     <div class="col-12">
       <div class="card">
         <div class="card-header">
-          <h3 class="card-title">Archives Beneficiaries</h3>
+          <h3 class="card-title">Archives | CampaignServices</h3>
 
           <div class="card-tools">
             <div class="input-group input-group-sm" style="width: 150px">
@@ -28,32 +28,34 @@
             <thead>
               <tr>
                 <th>#</th>
-                <th>name</th>
-                <th>age</th>
-                <th>gender</th>
-                <th>area_id</th>
-                <th>email</th>
-                <th>username</th>
-                <th>deleted_at</th>
+                <th>Campaign Title</th>
+                <th>Service</th>
+                <th>Amount</th>
+                <th>Status</th>
+                <th>Description</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Actions</th>
               </tr>
             </thead>
             <tbody>
-              <tr v-for="(item, index) in beneficiarie" :key="index">
+              <tr v-for="(CS, index) in campaignServices" :key="CS.id">
                 <td>{{ index + 1 }}</td>
-                <td>{{ item.name }}</td>
-                <td>{{ item.age }}</td>
-                <td>{{ item.area_id }}</td>
-                <td>{{ item.email }}</td>
-                <td>{{ item.username }}</td>
-                <td>{{ item.deleted_at }}</td>
+                <td>{{ CS.campaign_title ?? "--" }}</td>
+                <td>{{ CS.service_name ?? "--" }}</td>
+                <td>{{ CS.amount }}</td>
+                <td>{{ CS.status == 1 ? "Active" : "Inactive" }}</td>
+                <td>{{ CS.description }}</td>
+                <td>{{ CS.start_date }}</td>
+                <td>{{ CS.end_date }}</td>
                 <td>
-                  <button @click="restoreItem(item.id)" class="btn btn-success">
+                  <button @click="restoreItem(CS.id)" class="btn btn-success">
                     Restore
                     <i class="fas fa-trash-restore"></i>
                   </button>
 
-                  <button @click="deleteItem(item.id)" class="btn btn-danger">
-                    Permanent deletion
+                  <button @click="deleteItem(CS.id)" class="btn btn-danger">
+                    Delete Permanently
                     <i class="fas fa-trash-alt"></i>
                   </button>
                 </td>
@@ -71,19 +73,23 @@
 <script>
 import axios from "axios";
 import Swal from "sweetalert2/dist/sweetalert2";
+
 export default {
   data() {
     return {
-      beneficiarie: [],
+      campaignServices: [],
     };
   },
+  mounted() {
+    this.getCampaignServices();
+  },
   methods: {
-    getBeneficiarie() {
+    getCampaignServices() {
       axios
-        .get(`${this.$store.state.url}/beneficiaries/archive`)
+        .get(`${this.$store.state.url}/campaigns-services/archive`)
         .then((response) => {
           console.log(response);
-          this.beneficiarie = response.data.data;
+          this.campaignServices = response.data.data;
         })
         .catch((error) => {
           console.log(error);
@@ -92,17 +98,21 @@ export default {
     },
     restoreItem(id) {
       axios
-        .put(`${this.$store.state.url}/beneficiaries/${id}/restore`)
+        .get(`${this.$store.state.url}/campaigns-services/${id}/restore`)
         .then((response) => {
-          this.$toast.success("beneficiarie restored successfully");
-          this.getBeneficiarie();
+          console.log(response);
+          this.$toast.success("restored successfully");
+          // this.getArchivedCRs();
+          this.campaignServices = this.campaignServices.filter(
+            (cs) => cs.id != id
+          );
         })
         .catch((error) => {
-          this.$toast.warning("Failed to restore beneficiarie");
+          this.$toast.warning("Failed to restore");
           console.log(error);
         });
     },
-     deleteItem(id) {
+    deleteItem(id) {
       Swal.fire({
         title: "Are you sure?",
         text: "You won't be able to revert this!",
@@ -115,17 +125,17 @@ export default {
         if (result.isConfirmed) {
           axios
             .delete(
-              `${this.$store.state.url}/beneficiaries/${id}/force-delete`,
+              `${this.$store.state.url}/campaigns-services/${id}/forceDelete`
             )
             .then((response) => {
               console.log(response);
               Swal.fire(
                 "Deleted!",
-                "beneficiarie has been deleted.",
+                "Contact Request has been deleted.",
                 "success"
               );
-              // this.getAdmins();
-              this.beneficiarie = this.beneficiarie.filter(
+              // this.getSuppliers();
+              this.campaignServices = this.campaignServices.filter(
                 (c) => c.id != id
               );
             })
@@ -140,9 +150,6 @@ export default {
         }
       });
     },
-  },
-  mounted() {
-    this.getBeneficiarie();
   },
 };
 </script>

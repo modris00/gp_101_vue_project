@@ -5,53 +5,64 @@
       <!-- general form elements -->
       <div class="card card-primary">
         <div class="card-header">
-          <h3 class="card-title">Create CampaignDonor</h3>
+          <h3 class="card-title">Create CampaignBeneficiary</h3>
         </div>
         <!-- /.card-header -->
         <!-- form start -->
-        <form @submit.prevent="createCampaignDonor">
+        <form @submit.prevent="createCampaignBeneficiary">
           <div class="card-body">
             <div class="form-group">
               <label for="amount">Amount</label>
               <input
                 type="number"
-                v-model="CampaignDonor.amount"
+                v-model="amount"
                 class="form-control"
                 id="amount"
                 placeholder="Enter Amount"
               />
             </div>
+
             <div class="form-group">
-              <label>Donors</label>
-              <select class="form-control" v-model="CampaignDonor.donor_id">
-                <option value="" selected>Enter Donor</option>
-                <option
-                  v-for="(item, index) in Donors"
-                  :key="index"
-                  :value="item.id"
-                >
-                  {{ item.name }}
-                </option>
-              </select>
+              <label for="description">Description</label>
+              <input
+                type="text"
+                v-model="description"
+                class="form-control"
+                id="description"
+                placeholder="Enter description"
+              />
             </div>
+
             <div class="form-group">
-              <label>Campaigns</label>
-              <select class="form-control" v-model="CampaignDonor.campaign_id">
-                <option value="" selected>Enter Campaign</option>
-                <option
-                  v-for="(item, index) in Campaigns"
-                  :key="index"
-                  :value="item.id"
-                >
-                  {{ item.title }}
-                </option>
+              <label>Status: </label>
+              <select class="form-control" v-model="status">
+                <option value="finished">Finished</option>
+                <option value="not_finished">Not Finished</option>
               </select>
             </div>
 
-            <!-- /.card-body -->
+            <div class="form-group">
+              <label for="campaign_id">Campaign ID</label>
+              <input
+                type="number"
+                v-model="campaign_id"
+                class="form-control"
+                placeholder="Enter campaign id"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="beneficiary_id">Beneficiary ID</label>
+              <input
+                type="number"
+                v-model="beneficiary_id"
+                class="form-control"
+                placeholder="Enter beneficiary id"
+              />
+            </div>
 
             <div class="card-footer">
-              <button type="submit" class="btn btn-primary">Submit</button>
+              <button type="submit" class="btn btn-primary">Create</button>
             </div>
           </div>
         </form>
@@ -63,33 +74,32 @@
 <script>
 import axios from "axios";
 export default {
-  name: "CreateCampaignDonor",
-  mounted() {
-    this.indexDonors();
-    this.indexCampaign();
-  },
   data() {
     return {
-      CampaignDonor: {
-        id: "",
-        amount: "",
-        donor_id: "",
-        campaign_id: "",
-      },
-      Donors: [],
-      Campaigns: [],
+      // campaignBeneficiary: "",
+      amount: "",
+      status: "",
+      description: "",
+      campaign_id: "",
+      beneficiary_id: "",
     };
   },
   methods: {
-    createCampaignDonor() {
+    createCampaignBeneficiary() {
       axios
-        .post(`${this.$store.state.url}/campaigns-donors`, this.CampaignDonor)
+        .post(`${this.$store.state.url}/campaigns-beneficiaries`, {
+          amount: this.amount,
+          status: this.status,
+          description: this.description,
+          campaign_id: this.campaign_id,
+          beneficiary_id: this.beneficiary_id,
+        })
         .then((response) => {
           console.log(response);
           this.$toast.success(response.data.message);
 
           // redirect view index All Campaigns-donors
-          this.$router.push("/campaigns-donor");
+          this.$router.push("/campaign-beneficiary");
         })
         .catch((error) => {
           console.log(error);
@@ -98,28 +108,6 @@ export default {
           } else {
             this.$toast.error(error.message);
           }
-        });
-    },
-    indexDonors() {
-      axios
-        .get(`${this.$store.state.url}/donors`)
-        .then((response) => {
-          this.Donors = response.data.data;
-          console.log(response.data.data);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    },
-    indexCampaign() {
-      axios
-        .get(`${this.$store.state.url}/campaigns`)
-        .then((response) => {
-          this.Campaigns = response.data.data;
-          console.log(response.data.data);
-        })
-        .catch((error) => {
-          console.log(error);
         });
     },
   },
