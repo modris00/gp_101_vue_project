@@ -84,7 +84,7 @@ export default {
           console.log(response.data.data);
         })
         .catch((error) => {
-          this.$toast.error(error.response.data.message);
+          this.$toast.warning(error.message); // this key is from axios not laravel
           console.log(error);
         });
     },
