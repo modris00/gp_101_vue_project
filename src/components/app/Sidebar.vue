@@ -136,6 +136,31 @@
               </li>
             </ul>
           </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <!-- <i class="nav-icon fas fa-list text-sm"></i> -->
+              <!-- <i class=" nav-icon fa-solid fa-list-tree"></i> -->
+              <i class="nav-icon fas fa-stream"></i>
+              <p>
+                Roles
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <router-link :to="{ name: 'roles.create' }" class="nav-link">
+                  <i class="nav-icon fas fa-plus text-sm"></i>
+                  <p>Create</p>
+                </router-link>
+              </li>
+              <li class="nav-item">
+                <router-link :to="{ name: 'roles' }" class="nav-link">
+                  <i class="nav-icon fas fa-list text-sm"></i>
+                  <p>Read</p>
+                </router-link>
+              </li>
+            </ul>
+          </li>
 
           <li class="nav-header">Content management</li>
           <li class="nav-item">
