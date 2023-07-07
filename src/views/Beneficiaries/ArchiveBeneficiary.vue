@@ -38,7 +38,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr v-for="(item, index) in beneficiarie" :key="index">
+              <tr v-for="(item, index) in beneficiary" :key="index">
                 <td>{{ index + 1 }}</td>
                 <td>{{ item.name }}</td>
                 <td>{{ item.age }}</td>
@@ -74,7 +74,7 @@ import Swal from "sweetalert2/dist/sweetalert2";
 export default {
   data() {
     return {
-      beneficiarie: [],
+      beneficiary: [],
     };
   },
   methods: {
@@ -83,7 +83,7 @@ export default {
         .get(`${this.$store.state.url}/beneficiaries/archive`)
         .then((response) => {
           console.log(response);
-          this.beneficiarie = response.data.data;
+          this.beneficiary = response.data.data;
         })
         .catch((error) => {
           console.log(error);
@@ -98,7 +98,7 @@ export default {
           this.getBeneficiarie();
         })
         .catch((error) => {
-          this.$toast.warning("Failed to restore beneficiarie");
+          this.$toast.warning("Failed to restore beneficiary");
           console.log(error);
         });
     },

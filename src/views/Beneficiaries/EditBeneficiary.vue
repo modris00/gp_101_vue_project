@@ -70,7 +70,6 @@
                 <div class="form-group">
                   <label>Select area: </label>
                   <select class="form-control" v-model="areaId">
-                    <!-- <option value="kk" selected>kkk</option> -->
                     <option
                       v-for="area in areas"
                       :value="area.id"
@@ -78,14 +77,6 @@
                     >
                       {{ area.name }}
                     </option>
-
-                    <!-- <option
-                      v-for="selected_area in areas"
-                      v-show="selected_area.id == beneficiary.areaId"
-                      :value="selected_area.id"
-                    >
-                      {{ selected_area.name }}
-                    </option> -->
                   </select>
                 </div>
               </div>
@@ -145,7 +136,7 @@ export default {
           this.gender = this.beneficiary.gender;
           this.email = this.beneficiary.email;
           this.username = this.beneficiary.username;
-          this.areaId = this.beneficiary.areaId;
+          this.areaId = this.beneficiary.area_id;
         })
         .catch((error) => {
           console.log(error);
