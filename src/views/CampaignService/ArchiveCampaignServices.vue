@@ -3,7 +3,7 @@
     <div class="col-12">
       <div class="card">
         <div class="card-header">
-          <h3 class="card-title">Archives | CampaignBeneficiaries</h3>
+          <h3 class="card-title">Archives | CampaignServices</h3>
 
           <div class="card-tools">
             <div class="input-group input-group-sm" style="width: 150px">
@@ -28,29 +28,33 @@
             <thead>
               <tr>
                 <th>#</th>
-                <th>Beneficiary</th>
                 <th>Campaign Title</th>
+                <th>Service</th>
                 <th>Amount</th>
                 <th>Status</th>
                 <th>Description</th>
+                <th>Start Date</th>
+                <th>End Date</th>
                 <th>Actions</th>
               </tr>
             </thead>
             <tbody>
-              <tr v-for="(CB, index) in campaignBeneficiaries" :key="CB.id">
+              <tr v-for="(CS, index) in campaignServices" :key="CS.id">
                 <td>{{ index + 1 }}</td>
-                <td>{{ CB.beneficiary_name ?? "--" }}</td>
-                <td>{{ CB.campaign_title ?? "--" }}</td>
-                <td>{{ CB.amount }}</td>
-                <td>{{ CB.status }}</td>
-                <td>{{ CB.description }}</td>
+                <td>{{ CS.campaign_title ?? "--" }}</td>
+                <td>{{ CS.service_name ?? "--" }}</td>
+                <td>{{ CS.amount }}</td>
+                <td>{{ CS.status == 1 ? "Active" : "Inactive" }}</td>
+                <td>{{ CS.description }}</td>
+                <td>{{ CS.start_date }}</td>
+                <td>{{ CS.end_date }}</td>
                 <td>
-                  <button @click="restoreItem(CB.id)" class="btn btn-success">
+                  <button @click="restoreItem(CS.id)" class="btn btn-success">
                     Restore
                     <i class="fas fa-trash-restore"></i>
                   </button>
 
-                  <button @click="deleteItem(CB.id)" class="btn btn-danger">
+                  <button @click="deleteItem(CS.id)" class="btn btn-danger">
                     Delete Permanently
                     <i class="fas fa-trash-alt"></i>
                   </button>
@@ -73,19 +77,19 @@ import Swal from "sweetalert2/dist/sweetalert2";
 export default {
   data() {
     return {
-      campaignBeneficiaries: [],
+      campaignServices: [],
     };
   },
   mounted() {
-    this.getCampaignBeneficiaries();
+    this.getCampaignServices();
   },
   methods: {
-    getCampaignBeneficiaries() {
+    getCampaignServices() {
       axios
-        .get(`${this.$store.state.url}/campaigns-beneficiaries/archive`)
+        .get(`${this.$store.state.url}/campaigns-services/archive`)
         .then((response) => {
           console.log(response);
-          this.campaignBeneficiaries = response.data.data;
+          this.campaignServices = response.data.data;
         })
         .catch((error) => {
           console.log(error);
@@ -94,13 +98,13 @@ export default {
     },
     restoreItem(id) {
       axios
-        .get(`${this.$store.state.url}/campaigns-beneficiaries/${id}/restore`)
+        .get(`${this.$store.state.url}/campaigns-services/${id}/restore`)
         .then((response) => {
           console.log(response);
           this.$toast.success("restored successfully");
           // this.getArchivedCRs();
-          this.campaignBeneficiaries = this.campaignBeneficiaries.filter(
-            (cb) => cb.id != id
+          this.campaignServices = this.campaignServices.filter(
+            (cs) => cs.id != id
           );
         })
         .catch((error) => {
@@ -121,7 +125,7 @@ export default {
         if (result.isConfirmed) {
           axios
             .delete(
-              `${this.$store.state.url}/campaigns-beneficiaries/${id}/forceDelete`
+              `${this.$store.state.url}/campaigns-services/${id}/forceDelete`
             )
             .then((response) => {
               console.log(response);
@@ -131,7 +135,7 @@ export default {
                 "success"
               );
               // this.getSuppliers();
-              this.campaignBeneficiaries = this.campaignBeneficiaries.filter(
+              this.campaignServices = this.campaignServices.filter(
                 (c) => c.id != id
               );
             })
