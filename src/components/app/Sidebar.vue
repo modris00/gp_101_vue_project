@@ -427,6 +427,41 @@
               </li>
             </ul>
           </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-file text-warning"></i>
+              <p>
+                Campaign Services
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <router-link
+                  :to="{ name: 'campaignService.create' }"
+                  class="nav-link"
+                >
+                  <i class="nav-icon fas fa-plus text-sm"></i>
+                  <p>Create</p>
+                </router-link>
+              </li>
+              <li class="nav-item">
+                <router-link :to="{ name: 'campaignService' }" class="nav-link">
+                  <i class="nav-icon fas fa-list text-sm"></i>
+                  <p>Read</p>
+                </router-link>
+              </li>
+              <li class="nav-item">
+                <router-link
+                  :to="{ name: 'campaignService.archive' }"
+                  class="nav-link"
+                >
+                  <i class="nav-icon fas fa-archive text-sm"></i>
+                  <p>Archive</p>
+                </router-link>
+              </li>
+            </ul>
+          </li>
 
           <li class="nav-header text-info">Categories & Services</li>
           <li class="nav-item">
@@ -594,10 +629,18 @@
                   <p>Read</p>
                 </router-link>
               </li>
+              <li class="nav-item">
+                <router-link :to="{ name: 'bills.archive' }" class="nav-link">
+                  <i class="nav-icon fas fa-archive text-sm"></i>
+                  <p>Archive</p>
+                </router-link>
+              </li>
             </ul>
           </li>
 
-          <li class="nav-header text-light"><span class="contact">communication</span></li>
+          <li class="nav-header text-light">
+            <span class="contact">communication</span>
+          </li>
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-question fa-lg contact"> </i>
@@ -638,13 +681,13 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <router-link
+                <!-- <router-link
                   :to="{ name: 'contactRequests.create' }"
                   class="nav-link"
                 >
                   <i class="nav-icon fas fa-plus text-sm"></i>
                   <p>Create</p>
-                </router-link>
+                </router-link> -->
               </li>
               <li class="nav-item">
                 <router-link :to="{ name: 'contactRequests' }" class="nav-link">
@@ -693,9 +736,9 @@ export default {
 
 <style scoped>
 .currency {
-  color : #4EE681;
+  color: #4ee681;
 }
-.contact{
-  color : #651AE8;
+.contact {
+  color: #651ae8;
 }
 </style>

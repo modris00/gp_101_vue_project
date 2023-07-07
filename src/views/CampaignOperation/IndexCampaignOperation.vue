@@ -29,8 +29,8 @@ export default {
         "cost_type",
         "date",
         // "admin_id",
-        "admin_name",
-        "campaign_name",
+        "admin_username",
+        "campaign_title",
         "service_name",
       ],
     };

@@ -16,7 +16,7 @@
               <input
                 type="text"
                 required
-                v-model="Service.name"
+                v-model="name"
                 class="form-control"
                 id="name"
                 placeholder="Enter  Name"
@@ -27,7 +27,7 @@
               <input
                 type="text"
                 required
-                v-model="Service.description"
+                v-model="description"
                 class="form-control"
                 id="description"
                 placeholder="Enter  description"
@@ -38,7 +38,7 @@
                 <input
                   type="checkbox"
                   class="custom-control-input"
-                  v-model="Service.active"
+                  v-model="active"
                   id="active"
                 />
                 <label class="custom-control-label" for="active">Active</label>
@@ -46,7 +46,7 @@
             </div>
             <div class="form-group">
               <label>SubCategories</label>
-              <select class="form-control" v-model="Service.sub_category_id">
+              <select class="form-control" v-model="sub_category_id">
                 <option value="" selected>Enter subcategory</option>
                 <option
                   v-for="(item, index) in subcategories"
@@ -97,14 +97,13 @@ export default {
   },
   data() {
     return {
-      Service: {
-        id: "",
-        name: "",
-        description: "",
-        active: "",
-        sub_category_id: "",
-        image: "/sdklcmsdlkmvc.png",
-      },
+      Service: [],
+      id: "",
+      name: "",
+      description: "",
+      active: "",
+      sub_category_id: "",
+      image: null,
       subcategories: [],
     };
   },
@@ -126,6 +125,10 @@ export default {
         .then((response) => {
           console.log(response.data.data);
           this.Service = response.data.data;
+          this.name = this.Service.name;
+          this.description = this.Service.description;
+          this.active = this.Service.active;
+          this.sub_category_id = this.sub_category_id.name;
         })
         .catch((error) => {
           console.log(error);
@@ -133,17 +136,15 @@ export default {
     },
     updateService(id) {
       axios
-        .put(`${this.$store.state.url}/services/${id}`, this.Service)
+        .put(`${this.$store.state.url}/services/${id}`, {
+          name: this.name,
+          description: this.description,
+          active: this.active,
+          sub_category_id: this.sub_category_id,
+        })
         .then((response) => {
           console.log(response);
-          this.Service = {
-            id: "",
-            name: "",
-            description: "",
-            active: "",
-            sub_category_id: "",
-            image: "/sdc4sdc56sdc.png",
-          };
+
           this.$toast.success(response.data.message);
 
           // redirect view index All categories
