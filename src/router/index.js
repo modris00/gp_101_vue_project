@@ -44,6 +44,7 @@ import ArchiveDonorView from "../views/Donor/ArchiveDonor.vue";
 import BillView from "../views/Bills/IndexBill.vue";
 import CreateBillView from "../views/Bills/CreateBill.vue";
 import EditBillView from "../views/Bills/EditBill.vue";
+import ArchiveBillView from "../views/Bills/ArchiveBill.vue";
 
 // Currencies
 import CurrencyView from "../views/Currency/IndexCurrency.vue";
@@ -103,15 +104,13 @@ import CreateCampaignBeneficiaryView from "../views/CampaignBeneficiary/CreateCa
 import EditCampaignBeneficiaryView from "../views/CampaignBeneficiary/EditCampaignBeneficiary.vue";
 import ArchiveCampaignBeneficiaryView from "../views/CampaignBeneficiary/ArchiveCampaignBeneficiary.vue";
 
-
 import CampaignServicesView from "../views/CampaignService/IndexCampaignServices.vue";
 import CreateCampaignServiceView from "../views/CampaignService/CreateCampaignService.vue";
 import EditCampaignServiceView from "../views/CampaignService/EditCampaignService.vue";
 import ArchiveCampaignServicesView from "../views/CampaignService/ArchiveCampaignServices.vue";
 
 const routes = [
-
-  { path: "/", component: HomeView , name: "home",},
+  { path: "/", component: HomeView, name: "home" },
 
   { path: "/test", component: TestView },
   {
@@ -418,6 +417,11 @@ const routes = [
     name: "bills.edit",
     component: EditBillView,
   },
+  {
+    path: "/bills/archive",
+    name: "bills.archive",
+    component: ArchiveBillView,
+  },
 
   {
     path: "/contact-requests",
@@ -481,16 +485,47 @@ const routes = [
     name: "currencies.archive",
     component: ArchiveCurrencyView,
   },
-  { path: "/campaign-beneficiary", name: "campaignBeneficiary", component: CampaignBeneficiaryView }, //children[]
-  { path: "/campaign-beneficiary/create", name: "campaignBeneficiary.create", component: CreateCampaignBeneficiaryView },
-  { path: "/campaign-beneficiary/:id/edit", name: "campaignBeneficiary.edit", component: EditCampaignBeneficiaryView },
-  { path: "/campaign-beneficiary/archive", name: "campaignBeneficiary.archive", component: ArchiveCampaignBeneficiaryView },
+  {
+    path: "/campaign-beneficiary",
+    name: "campaignBeneficiary",
+    component: CampaignBeneficiaryView,
+  }, //children[]
+  {
+    path: "/campaign-beneficiary/create",
+    name: "campaignBeneficiary.create",
+    component: CreateCampaignBeneficiaryView,
+  },
+  {
+    path: "/campaign-beneficiary/:id/edit",
+    name: "campaignBeneficiary.edit",
+    component: EditCampaignBeneficiaryView,
+  },
+  {
+    path: "/campaign-beneficiary/archive",
+    name: "campaignBeneficiary.archive",
+    component: ArchiveCampaignBeneficiaryView,
+  },
 
-
-  { path: "/campaign-services", name: "campaignService", component: CampaignServicesView }, //children[]
-  { path: "/campaign-services/create", name: "campaignService.create", component: CreateCampaignServiceView },
-  { path: "/campaign-services/:id/edit", name: "campaignService.edit", component: EditCampaignServiceView },
-  { path: "/campaign-services/archive", name: "campaignService.archive", component: ArchiveCampaignServicesView },
+  {
+    path: "/campaign-services",
+    name: "campaignService",
+    component: CampaignServicesView,
+  }, //children[]
+  {
+    path: "/campaign-services/create",
+    name: "campaignService.create",
+    component: CreateCampaignServiceView,
+  },
+  {
+    path: "/campaign-services/:id/edit",
+    name: "campaignService.edit",
+    component: EditCampaignServiceView,
+  },
+  {
+    path: "/campaign-services/archive",
+    name: "campaignService.archive",
+    component: ArchiveCampaignServicesView,
+  },
 ];
 
 const router = createRouter({
