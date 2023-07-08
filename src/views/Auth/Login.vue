@@ -1,4 +1,4 @@
-<template scoped >
+<template scoped>
   <div class="login-box">
     <!-- /.login-logo -->
     <div class="card card-outline card-primary">
@@ -38,7 +38,8 @@
           <div class="row">
             <div class="col-8">
               <div class="icheck-primary">
-                <input type="checkbox" id="remember" v-model="remember" />
+                <!-- <input type="checkbox" id="remember" v-model="remember" /> -->
+                <input type="checkbox" id="remember" />
                 <label for="remember"> Remember Me </label>
               </div>
             </div>
@@ -109,7 +110,6 @@ export default {
     return {
       email: "",
       password: "",
-    
     };
   },
   methods: {
@@ -125,7 +125,7 @@ export default {
     },
     login(guard) {
       this.$axios
-        .post(`/api/login/${guard}`, {
+        .post(`/api/login`, {
           email: this.email,
           password: this.password,
           guard: guard,
@@ -134,10 +134,16 @@ export default {
           console.log(response);
           this.$router.push({ name: "home" });
           this.$toast.success(response.data.message);
+          localStorage.setItem("isLoggedIn", "1");
         })
         .catch((error) => {
+          // localStorage.setItem("isLoggedIn", '0');
           console.log(error);
-          this.$toast.error(error.response.data.message);
+          if (error.response.data) {
+            this.$toast.error(error.response.data.message);
+          } else {
+            this.$toast.warning(error.message);
+          }
         });
     },
   },
