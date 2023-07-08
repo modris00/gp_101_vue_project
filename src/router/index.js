@@ -110,10 +110,18 @@ import CreateCampaignServiceView from "../views/CampaignService/CreateCampaignSe
 import EditCampaignServiceView from "../views/CampaignService/EditCampaignService.vue";
 import ArchiveCampaignServicesView from "../views/CampaignService/ArchiveCampaignServices.vue";
 
+import rolePermisssion from "../views/RolePermisssion/rolePermission.vue";
+
 import LoginView from "../views/Auth/Login.vue";
 import UserView from "../views/Auth/User.vue";
 
 const routes = [
+  {
+    path: "/role-permisssion/:id",
+    component: rolePermisssion,
+    name: "rolePermisssion",
+    // props: true,
+  },
   {
     path: "/", component: HomeView, name: "home", beforeEnter: (to, from, next) => {
       if (checkAuth()) {
@@ -135,7 +143,6 @@ const routes = [
   },
   { path: "/logout", name: "logout" },
   { path: "/user", component: UserView, name: "user" },
-
 
   { path: "/test", component: TestView },
   {
