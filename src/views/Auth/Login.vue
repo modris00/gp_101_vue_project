@@ -1,9 +1,9 @@
-<template scoped >
+<template scoped>
   <div class="login-box">
     <!-- /.login-logo -->
     <div class="card card-outline card-primary">
       <div class="card-header text-center">
-        <h3>Medical Consulting</h3>
+        <h3>Charity</h3>
       </div>
       <div class="card-body">
         <form>
@@ -35,14 +35,16 @@
               </div>
             </div>
           </div>
-          <div class="row">
-            <div class="col-8">
+          <div class="row">          
+            <div class="col-12">
               <div class="icheck-primary">
-                <input type="checkbox" id="remember" v-model="remember" />
+                <!-- <input type="checkbox" id="remember" v-model="remember" /> -->
+                <input type="checkbox" id="remember" />
                 <label for="remember"> Remember Me </label>
               </div>
             </div>
             <div class="col-4">
+
               <button
                 type="button"
                 @click="csrfCookie()"
@@ -61,9 +63,9 @@
                   guard: 'admin',
                 },
               }"
-              class="btn btn-block btn-primary"
+              class="btn btn-block btn-success"
             >
-              <i class="fas fa-user-shield"></i>
+              <i class="fas fa-user-tie mr-2"></i>
               <span>Login Admin</span>
             </router-link>
 
@@ -74,9 +76,9 @@
                   guard: 'beneficiary',
                 },
               }"
-              class="btn btn-block btn-primary"
+              class="btn btn-block btn-warning"
             >
-              <i class="fas fa-user-shield"></i>
+              <i class="fas fa-users mr-2"></i>
               <span>Login Beneficiary</span>
             </router-link>
 
@@ -87,9 +89,9 @@
                   guard: 'donor',
                 },
               }"
-              class="btn btn-block btn-primary"
+              class="btn btn-block btn-info"
             >
-              <i class="fas fa-user-shield"></i>
+              <i class="fas fa-user-plus mr-2"></i>
               <span>Login Donor</span>
             </router-link>
           </div>
@@ -109,7 +111,6 @@ export default {
     return {
       email: "",
       password: "",
-    
     };
   },
   methods: {
@@ -125,7 +126,7 @@ export default {
     },
     login(guard) {
       this.$axios
-        .post(`/api/login/${guard}`, {
+        .post(`/api/login`, {
           email: this.email,
           password: this.password,
           guard: guard,
@@ -134,10 +135,16 @@ export default {
           console.log(response);
           this.$router.push({ name: "home" });
           this.$toast.success(response.data.message);
+          localStorage.setItem("isLoggedIn", "1");
         })
         .catch((error) => {
+          // localStorage.setItem("isLoggedIn", '0');
           console.log(error);
-          this.$toast.error(error.response.data.message);
+          if (error.response.data) {
+            this.$toast.error(error.response.data.message);
+          } else {
+            this.$toast.warning(error.message);
+          }
         });
     },
   },

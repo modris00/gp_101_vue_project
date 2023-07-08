@@ -1,5 +1,8 @@
 <template>
-  <div class="wrapper">
+  <span v-if="$route.name === 'login'">
+    <router-view />
+  </span>
+  <div class="wrapper" v-else>
     <NavbarComponent />
     <!---->
 
@@ -7,11 +10,7 @@
     <!---->
 
     <div class="content-wrapper">
-      <ContentHeaderComponent
-        mainTitle="Dashboard"
-        subTitle="Home"
-       
-      />
+      <ContentHeaderComponent mainTitle="Dashboard" subTitle="Home" />
       <!---->
 
       <div class="content">
