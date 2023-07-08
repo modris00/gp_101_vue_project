@@ -24,9 +24,8 @@ export default {
     };
   },
   methods: {
- 
     getCountries() {
-     this.$axios.get("/sanctum/csrf-cookie");
+      //  this.$axios.get("/sanctum/csrf-cookie");
       this.$axios
         .get(`/api/countries`)
         .then((response) => {

@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from "vue-router";
+import { checkAuth } from '@/plugins/CheckAuth';
 
 import TestView from "../views/TestView.vue"; //For Testing
 import HomeView from "../views/HomeView.vue"; //For Testing
@@ -110,14 +111,30 @@ import EditCampaignServiceView from "../views/CampaignService/EditCampaignServic
 import ArchiveCampaignServicesView from "../views/CampaignService/ArchiveCampaignServices.vue";
 
 import LoginView from "../views/Auth/Login.vue";
+import UserView from "../views/Auth/User.vue";
 
 const routes = [
-  { path: "/", component: HomeView, name: "home" },
+  {
+    path: "/", component: HomeView, name: "home", beforeEnter: (to, from, next) => {
+      if (checkAuth()) {
+        next();
+      } else {
+        next({ name: 'login', params: { guard: 'admin' } });
+      }
+    },
+  },
 
-
-  { path: "/login/:guard", component: LoginView, name: "login" },
-
-  { path: "/logout",  name: "logout" },
+  {
+    path: "/login/:guard", component: LoginView, name: "login", beforeEnter: (to, from, next) => {
+      if (checkAuth()) {
+        next({ name: 'home' });
+      } else {
+        next();
+      }
+    },
+  },
+  { path: "/logout", name: "logout" },
+  { path: "/user", component: UserView, name: "user" },
 
 
   { path: "/test", component: TestView },

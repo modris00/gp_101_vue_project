@@ -27,8 +27,8 @@ export default {
   },
   methods: {
     indexFaq() {
-      axios
-        .get(`${this.$store.state.url}/faqs`)
+      this.$axios
+        .get(`api/faqs`)
         .then((response) => {
           this.faqs = response.data.data;
           console.log(response.data.data);
