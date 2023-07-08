@@ -5,12 +5,13 @@
         <div class="card-header">
           <h3 class="card-title">All Campaigns</h3>
         </div>
-        <!-- /.card-header -->
         <div class="card-body">
           <!-- prettier-ignore -->
           <!-- <table id="example1" class="table table-bordered table-striped"></table> -->
           <DataTable
+            ref="table"
             :data="data"
+            :columns="columns"
             :options="{
               responsive: true,
               autoWidth: false,
@@ -20,62 +21,30 @@
           >
             <thead>
               <tr>
-                <th>Rendering engine</th>
-                <th>Browser</th>
-                <th>Platform(s)</th>
-                <th>Engine version</th>
-                <th>CSS grade</th>
+                <th>#</th>
+                <th>Name</th>
+                <th>Value</th>
+                <th>Type</th>
+                <th>Test</th>
+                <th>Action</th>
               </tr>
             </thead>
 
             <tfoot>
               <tr>
-                <th>Rendering engine</th>
-                <th>Browser</th>
-                <th>Platform(s)</th>
-                <th>Engine version</th>
-                <th>CSS grade</th>
+                <th>#</th>
+                <th>Name</th>
+                <th>Value</th>
+                <th>Type</th>
+                <th>Test</th>
+                <th>Action</th>
               </tr>
             </tfoot>
           </DataTable>
-
-          <!-- <table id="example1" class="table table-bordered table-striped">
-            <thead>
-              <tr>
-                <th>Rendering engine</th>
-                <th>Browser</th>
-                <th>Platform(s)</th>
-                <th>Engine version</th>
-                <th>CSS grade</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Webkit</td>
-                <td>Safari 1.3</td>
-                <td>OSX.3</td>
-                <td>312.8</td>
-                <td>A</td>
-              </tr>
-            </tbody>
-            <tfoot>
-              <tr>
-                <th>Rendering engine</th>
-                <th>Browser</th>
-                <th>Platform(s)</th>
-                <th>Engine version</th>
-                <th>CSS grade</th>
-              </tr>
-            </tfoot>
-          </table> -->
         </div>
-        <!-- /.card-body -->
       </div>
-      <!-- /.card -->
     </div>
-    <!-- /.col -->
   </div>
-  <!-- /.row -->
 </template>
 <script>
 import DataTable from "datatables.net-vue3";
@@ -96,54 +65,43 @@ DataTable.use(ButtonsHtml5);
 export default {
   name: "CampaignsView",
   components: { DataTable },
+  mounted() {
+    this.dt = this.$refs.table.dt(); // Store the DataTable instance in dt property
+
+    // Attach the click event handler to the DataTable's body
+    $(this.dt.table().body()).on("click", "button", (e) => {
+      const id = e.target.id;
+      this.deleteItem(id);
+    });
+  },
   data() {
     return {
+      dt: null,
       data: [
-        [1, 1, 1, 1, 1],
-        [2, 2, 2, 2, 2],
-        [2, 2, 2, 2, 2],
-        [2, 2, 2, 2, 2],
-        [2, 2, 2, 2, 2],
-        [2, 2, 2, 2, 2],
-        [2, 2, 2, 2, 2],
-        [2, 2, 2, 2, 2],
-        [2, 2, 2, 2, 2],
-        [2, 2, 2, 2, 2],
-        [2, 2, 2, 2, 2],
-        [2, 2, 2, 2, 2],
-        [2, 2, 2, 2, 2],
-        [2, 2, 2, 2, 2],
-        [2, 2, 2, 2, 2],
-        [2, 2, 2, 2, 2],
-        [2, 2, 2, 2, 2],
-        [2, 2, 2, 2, 2],
+        { id: 1, name: "n1", value: "v1", type: "t1", test: "t" },
+        // [1, 1, 1, 1, 1],
+        // [2, 2, 2, 2, 2],
+      ],
+      columns: [
+        { data: "id" },
+        { data: "name" },
+        { data: "value" },
+        { data: "type" },
+        { data: "test" },
+        {
+          data: null,
+          orderable: false,
+          render: function (data) {
+            return `<button id="${data.id}" @click="deleteItem(${data.id})">Delete</button>`;
+          },
+        },
       ],
     };
   },
-  created() {
-    // $(function () {
-    //   $("#example1")
-    //     .DataTable({
-    //       responsive: true,
-    //       lengthChange: false,
-    //       autoWidth: false,
-    //       buttons: ["copy", "csv", "excel", "pdf", "print", "colvis"],
-    //     })
-    //     .buttons()
-    //     .container()
-    //     .appendTo("#example1_wrapper .col-md-6:eq(0)");
-    //
-    ////////
-    // $('#example2').DataTable({
-    //     "paging": true,
-    //     "lengthChange": false,
-    //     "searching": false,
-    //     "ordering": true,
-    //     "info": true,
-    //     "autoWidth": false,
-    //     "responsive": true,
-    // });
-    // });
+  methods: {
+    deleteItem(id) {
+      console.log(id);
+    },
   },
 };
 </script>

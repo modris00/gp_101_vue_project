@@ -55,9 +55,6 @@
 import axios from "axios";
 
 export default {
-  components: {
-    TableComp,
-  },
   mounted() {
     this.indexCampaign();
   },
