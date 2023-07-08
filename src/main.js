@@ -2,6 +2,7 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
+import axios from 'axios';
 // import 'https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback'
 import './assets/plugins/fontawesome-free/css/all.min.css'
 import './assets/dist/css/adminlte.min.css'
@@ -19,7 +20,18 @@ import 'sweetalert2/dist/sweetalert2.min.css';
 // plugins/bootstrap/js/bootstrap.bundle.min.js
 // dist/js/adminlte.min.js
 
+export const axiosInstance = axios.create({
+  withCredentials: true,
+  baseURL: "http://localhost:8000",
+  headers: {
+    "Content-Type": "application/json",
+  },
+});
+
 const app = createApp(App);
+
+app.config.globalProperties.$axios = axiosInstance;
+
 // app.config.productionTip = false
 app.use(store);
 app.use(router);

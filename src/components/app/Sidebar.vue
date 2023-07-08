@@ -705,21 +705,33 @@
                 </router-link>
               </li>
             </ul>
-          </li>
-
-          <li class="nav-header text-danger">Settings</li>
+           </li>
+            <li class="nav-header text-success"><span class="contact">Role & Permission</span></li>
           <li class="nav-item">
-            <a href="" class="nav-link">
-              <i class="nav-icon fas fa-sign-out-alt text-danger"></i>
-              <p>Logout</p>
+            <a href="#" class="nav-link">
+             <i class="fas fa-user-tag"></i>
+              <p>
+                Role
+                <i class="fas fa-angle-left right"></i>
+              </p>
             </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <router-link :to="{ name: 'roles.create' }" class="nav-link">
+                  <i class="nav-icon fas fa-plus text-sm"></i>
+                  <p>Create</p>
+                </router-link>
+              </li>
+              <li class="nav-item">
+                <router-link :to="{ name: 'roles' }" class="nav-link">
+                  <i class="nav-icon fas fa-list text-sm"></i>
+                  <p>Read</p>
+                </router-link>
+              </li>
+            
+            </ul>
           </li>
-          <li class="nav-item">
-            <a href="" class="nav-link">
-              <i class="nav-icon fas fa-unlock-alt text-danger"></i>
-              <p>Change Password</p>
-            </a>
-          </li>
+           
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
@@ -742,3 +754,5 @@ export default {
   color: #651ae8;
 }
 </style>
+
+

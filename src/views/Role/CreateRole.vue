@@ -26,14 +26,18 @@
                 </div>
                 <div class="form-group">
                   <label for="post_title">guard_name:</label>
-                  <input
+                  <select
                     type="text"
                     name="guard_name"
                     class="form-control"
                     id="guard_name"
                     placeholder="guard_name"
                     v-model="Roles.guard_name"
-                  />
+                  >
+                  <option value="admin" >admin</option>
+                  <option value="beneficiarie">beneficiarie</option>
+                  <option value="donor">donor</option>
+                  </select>
                 </div>
               </div>
               <!-- /.card-body -->

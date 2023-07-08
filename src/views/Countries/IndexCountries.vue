@@ -24,9 +24,11 @@ export default {
     };
   },
   methods: {
+ 
     getCountries() {
-      axios
-        .get(`${this.$store.state.url}/countries`)
+     this.$axios.get("/sanctum/csrf-cookie");
+      this.$axios
+        .get(`/api/countries`)
         .then((response) => {
           console.log(response);
           this.countries = response.data.data;
