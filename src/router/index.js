@@ -109,8 +109,16 @@ import CreateCampaignServiceView from "../views/CampaignService/CreateCampaignSe
 import EditCampaignServiceView from "../views/CampaignService/EditCampaignService.vue";
 import ArchiveCampaignServicesView from "../views/CampaignService/ArchiveCampaignServices.vue";
 
+import LoginView from "../views/Auth/Login.vue";
+
 const routes = [
   { path: "/", component: HomeView, name: "home" },
+
+
+  { path: "/login/:guard", component: LoginView, name: "login" },
+
+  { path: "/logout",  name: "logout" },
+
 
   { path: "/test", component: TestView },
   {
