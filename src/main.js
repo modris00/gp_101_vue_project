@@ -21,12 +21,12 @@ import 'sweetalert2/dist/sweetalert2.min.css';
 // dist/js/adminlte.min.js
 
 export const axiosInstance = axios.create({
-    withCredentials: true,
-    baseURL: "http://localhost:8000",
-    headers: {
-      "Content-Type": "application/json",
-     },
-  });
+  withCredentials: true,
+  baseURL: "http://localhost:8000",
+  headers: {
+    "Content-Type": "application/json",
+  },
+});
 
 const app = createApp(App);
 
