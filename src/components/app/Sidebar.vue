@@ -40,6 +40,30 @@
 
           <li class="nav-header text-success">Human Resource</li>
 
+          <!-- <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-users text-success"></i>
+              <p>
+                Test
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <router-link :to="{ name: 'data' }" class="nav-link">
+                  <i class="nav-icon fas fa-list text-sm"></i>
+                  <p>Data</p>
+                </router-link>
+              </li>
+              <li class="nav-item">
+                <router-link :to="{ name: 'test' }" class="nav-link">
+                  <i class="nav-icon fas fa-list text-sm"></i>
+                  <p>Test1</p>
+                </router-link>
+              </li>
+            </ul>
+          </li> -->
+
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-users text-success"></i>
@@ -705,11 +729,13 @@
                 </router-link>
               </li>
             </ul>
-           </li>
-            <li class="nav-header text-success"><span class="contact">Role & Permission</span></li>
+          </li>
+          <li class="nav-header text-success">
+            <span class="contact">Role & Permission</span>
+          </li>
           <li class="nav-item">
             <a href="#" class="nav-link">
-             <i class="fas fa-user-tag"></i>
+              <i class="nav-icon fas fa-user-tag"></i>
               <p>
                 Role
                 <i class="fas fa-angle-left right"></i>
@@ -728,10 +754,8 @@
                   <p>Read</p>
                 </router-link>
               </li>
-            
             </ul>
           </li>
-           
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
@@ -754,5 +778,3 @@ export default {
   color: #651ae8;
 }
 </style>
-
-

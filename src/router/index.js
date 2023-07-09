@@ -2,7 +2,8 @@ import { createRouter, createWebHistory } from "vue-router";
 import { checkAuth } from '@/plugins/CheckAuth';
 
 import TestView from "../views/TestView.vue"; //For Testing
-import HomeView from "../views/HomeView.vue"; //For Testing
+import DataView from "../views/DataView.vue"; //For Testing
+import HomeView from "../views/HomeView.vue";
 
 import SuppliersView from "../views/Suppliers/IndexSuppliers.vue";
 import CreateSupplierView from "../views/Suppliers/CreateSupplier.vue";
@@ -144,7 +145,8 @@ const routes = [
   { path: "/logout", name: "logout" },
   { path: "/user", component: UserView, name: "user" },
 
-  { path: "/test", component: TestView },
+  { path: "/test", component: TestView, name: "test" },
+  { path: "/data", component: DataView, name: "data" },
   {
     path: "/services",
     name: "services",
