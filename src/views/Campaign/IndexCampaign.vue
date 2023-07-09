@@ -73,8 +73,8 @@ export default {
   },
   methods: {
     indexCampaign() {
-      axios
-        .get(`${this.$store.state.url}/campaigns`)
+      this.$axios
+        .get(`/api/campaigns`)
         .then((response) => {
           this.Campaigns = response.data.data;
           console.log(response.data.data);
@@ -84,8 +84,8 @@ export default {
         });
     },
     deleteRow(event, id) {
-      axios
-        .delete(`${this.$store.state.url}/campaigns/${id}`)
+      this.$axios
+        .delete(`/api/campaigns/${id}`)
         .then((response) => {
           console.log(response.data.message);
           this.Campaigns = this.Campaigns.filter((item) => item.id != id);
