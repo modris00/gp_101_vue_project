@@ -36,6 +36,13 @@
                   >
                     <i class="fas fa-edit"></i>
                   </router-link>
+                  <router-link
+                    style="margin-right: 2px"
+                    class="btn btn-success"
+                    :to="{ name: 'campaigns.show', params: { id: item.id } }"
+                  >
+                    <i class="fas fa-eye"></i>
+                  </router-link>
                   <!-- prettier-ignore --><button type="button" @click="deleteRow($event,item.id)" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
                 </td>
               </tr>

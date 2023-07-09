@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from "vue-router";
-import { checkAuth } from '@/plugins/CheckAuth';
+import { checkAuth } from "@/plugins/CheckAuth";
 
 import TestView from "../views/TestView.vue"; //For Testing
 import HomeView from "../views/HomeView.vue"; //For Testing
@@ -55,6 +55,7 @@ import ArchiveCurrencyView from "../views/Currency/ArchiveCurrency.vue";
 
 // Campaigns
 import CampaignsView from "../views/Campaign/IndexCampaign.vue";
+import CampaignsShow from "../views/Campaign/ShowCampaign.vue";
 import CreateCampaignView from "../views/Campaign/CreateCampaign.vue";
 import EditCampaignView from "../views/Campaign/EditCampaign.vue";
 import ArchiveCampaignView from "../views/Campaign/ArchiveCampaign.vue";
@@ -123,19 +124,25 @@ const routes = [
     // props: true,
   },
   {
-    path: "/", component: HomeView, name: "home", beforeEnter: (to, from, next) => {
+    path: "/",
+    component: HomeView,
+    name: "home",
+    beforeEnter: (to, from, next) => {
       if (checkAuth()) {
         next();
       } else {
-        next({ name: 'login', params: { guard: 'admin' } });
+        next({ name: "login", params: { guard: "admin" } });
       }
     },
   },
 
   {
-    path: "/login/:guard", component: LoginView, name: "login", beforeEnter: (to, from, next) => {
+    path: "/login/:guard",
+    component: LoginView,
+    name: "login",
+    beforeEnter: (to, from, next) => {
       if (checkAuth()) {
-        next({ name: 'home' });
+        next({ name: "home" });
       } else {
         next();
       }
@@ -216,6 +223,11 @@ const routes = [
     path: "/campaign/:id/edit",
     name: "campaigns.edit",
     component: EditCampaignView,
+  },
+  {
+    path: "/campaign/:id/details",
+    name: "campaigns.show",
+    component: CampaignsShow,
   },
   {
     path: "/campaign/archive",

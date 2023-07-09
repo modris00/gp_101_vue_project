@@ -47,13 +47,15 @@
                 </td>
                 <td>
                   <div class="btn-group">
-                    <button class="btn btn-warning">
-                      Edit
+                    <router-link
+                      style="margin-right: 2px"
+                      class="btn btn-warning"
+                      :to="{ name: 'roles.edit', params: { id: item.id } }"
+                    >
                       <i class="fas fa-edit"></i>
-                    </button>
+                    </router-link>
 
                     <button @click="deleteRow(item.id)" class="btn btn-danger">
-                      Delete
                       <i class="fas fa-trash-alt"></i>
                     </button>
                   </div>
