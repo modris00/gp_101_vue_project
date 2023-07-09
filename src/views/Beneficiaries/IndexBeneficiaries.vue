@@ -25,8 +25,8 @@ export default {
   },
   methods: {
     getBeneficiaries() {
-      axios
-        .get(`${this.$store.state.url}/beneficiaries`)
+      this.$axios
+        .get(`/api/beneficiaries`)
         .then((response) => {
           console.log(response);
           this.beneficiaries = response.data.data;
@@ -39,8 +39,8 @@ export default {
     deleteRow(event, id) {
       //   console.log(event);
       console.log(id);
-      axios
-        .delete(`${this.$store.state.url}/beneficiaries/${id}`)
+      this.$axios
+        .delete(`/api/beneficiaries/${id}`)
         .then((response) => {
           console.log(response);
           this.beneficiaries = this.beneficiaries.filter((b) => b.id != id);

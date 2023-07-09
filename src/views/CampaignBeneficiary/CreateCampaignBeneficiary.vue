@@ -86,8 +86,8 @@ export default {
   },
   methods: {
     createCampaignBeneficiary() {
-      axios
-        .post(`${this.$store.state.url}/campaigns-beneficiaries`, {
+      this.$axios
+        .post(`/api/campaigns-beneficiaries`, {
           amount: this.amount,
           status: this.status,
           description: this.description,

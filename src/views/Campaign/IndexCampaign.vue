@@ -36,7 +36,42 @@
                   >
                     <i class="fas fa-edit"></i>
                   </router-link>
-                  <!-- prettier-ignore --><button type="button" @click="deleteRow($event,item.id)" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
+                  <button
+                    type="button"
+                    @click="deleteRow($event, item.id)"
+                    class="btn btn-danger"
+                    style="margin-right: 2px"
+                  >
+                    <i class="fas fa-trash-alt"></i>
+                  </button>
+                  <router-link
+                    style="margin-right: 2px"
+                    class="btn btn-success"
+                    :to="{ name: 'service-details', params: { id: item.id } }"
+                  >
+                    <i class="fas fa-eye"></i>
+                  </router-link>
+                  <router-link
+                    style="margin-right: 2px"
+                    class="btn btn-info"
+                    :to="{
+                      name: 'beneficiary-details',
+                      params: { id: item.id },
+                    }"
+                  >
+                    <i class="fas fa-info"></i>
+                  </router-link>
+                  <router-link
+                    style="margin-right: 2px"
+                    class="btn btn-secondary"
+                    :to="{
+                      name: 'donor-details',
+                      params: { id: item.id },
+                    }"
+                  >
+                    <i class="fas fa-info-circle"></i>
+                  </router-link>
+                  <!-- prettier-ignore -->
                 </td>
               </tr>
               <!--v-if-->
@@ -66,8 +101,8 @@ export default {
   },
   methods: {
     indexCampaign() {
-      axios
-        .get(`${this.$store.state.url}/campaigns`)
+      this.$axios
+        .get(`/api/campaigns`)
         .then((response) => {
           this.Campaigns = response.data.data;
           console.log(response.data.data);
@@ -77,8 +112,8 @@ export default {
         });
     },
     deleteRow(event, id) {
-      axios
-        .delete(`${this.$store.state.url}/campaigns/${id}`)
+      this.$axios
+        .delete(`/api/campaigns/${id}`)
         .then((response) => {
           console.log(response.data.message);
           this.Campaigns = this.Campaigns.filter((item) => item.id != id);

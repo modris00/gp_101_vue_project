@@ -34,9 +34,9 @@
                     placeholder="guard_name"
                     v-model="Roles.guard_name"
                   >
-                  <option value="admin" >admin</option>
-                  <option value="beneficiarie">beneficiarie</option>
-                  <option value="donor">donor</option>
+                    <option value="admin">admin</option>
+                    <option value="beneficiarie">beneficiarie</option>
+                    <option value="donor">donor</option>
                   </select>
                 </div>
               </div>
