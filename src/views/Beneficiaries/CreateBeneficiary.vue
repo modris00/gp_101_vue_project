@@ -108,8 +108,8 @@ export default {
   },
   methods: {
     getAreas() {
-      axios
-        .get(`${this.$store.state.url}/areas`)
+      this.$axios
+        .get(`/api/areas`)
         .then((response) => {
           console.log(response);
           this.areas = response.data.data;
@@ -120,8 +120,8 @@ export default {
         });
     },
     createBeneficiary(event) {
-      axios
-        .post(`${this.$store.state.url}/beneficiaries`, {
+      this.$axios
+        .post(`/api/beneficiaries`, {
           name: this.name,
           age: this.age,
           gender: this.gender,

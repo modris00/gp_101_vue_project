@@ -53,9 +53,11 @@ import CreateCurrencyView from "../views/Currency/CreateCurrency.vue";
 import EditCurrencyView from "../views/Currency/EditCurrency.vue";
 import ArchiveCurrencyView from "../views/Currency/ArchiveCurrency.vue";
 
-// Campaigns
+// Campaigns CampaignDonorDetails
 import CampaignsView from "../views/Campaign/IndexCampaign.vue";
-import CampaignsShow from "../views/Campaign/ShowCampaign.vue";
+import CampaignServiceDetails from "../views/Campaign/CampaignServiceDetails.vue";
+import CampaignDonorDetails from "../views/Campaign/CampaignDonorDetails.vue";
+import CampaignBeneficiaryDetails from "../views/Campaign/CampaignBeneficiaryDetails.vue";
 import CreateCampaignView from "../views/Campaign/CreateCampaign.vue";
 import EditCampaignView from "../views/Campaign/EditCampaign.vue";
 import ArchiveCampaignView from "../views/Campaign/ArchiveCampaign.vue";
@@ -225,9 +227,19 @@ const routes = [
     component: EditCampaignView,
   },
   {
-    path: "/campaign/:id/details",
-    name: "campaigns.show",
-    component: CampaignsShow,
+    path: "/campaign/:id/service-details",
+    name: "service-details",
+    component: CampaignServiceDetails,
+  },
+  {
+    path: "/campaign/:id/beneficiary-details",
+    name: "beneficiary-details",
+    component: CampaignBeneficiaryDetails,
+  },
+  {
+    path: "/campaign/:id/donor-details",
+    name: "donor-details",
+    component: CampaignDonorDetails,
   },
   {
     path: "/campaign/archive",

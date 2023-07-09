@@ -36,14 +36,42 @@
                   >
                     <i class="fas fa-edit"></i>
                   </router-link>
+                  <button
+                    type="button"
+                    @click="deleteRow($event, item.id)"
+                    class="btn btn-danger"
+                    style="margin-right: 2px"
+                  >
+                    <i class="fas fa-trash-alt"></i>
+                  </button>
                   <router-link
                     style="margin-right: 2px"
                     class="btn btn-success"
-                    :to="{ name: 'campaigns.show', params: { id: item.id } }"
+                    :to="{ name: 'service-details', params: { id: item.id } }"
                   >
                     <i class="fas fa-eye"></i>
                   </router-link>
-                  <!-- prettier-ignore --><button type="button" @click="deleteRow($event,item.id)" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
+                  <router-link
+                    style="margin-right: 2px"
+                    class="btn btn-info"
+                    :to="{
+                      name: 'beneficiary-details',
+                      params: { id: item.id },
+                    }"
+                  >
+                    <i class="fas fa-info"></i>
+                  </router-link>
+                  <router-link
+                    style="margin-right: 2px"
+                    class="btn btn-secondary"
+                    :to="{
+                      name: 'donor-details',
+                      params: { id: item.id },
+                    }"
+                  >
+                    <i class="fas fa-info-circle"></i>
+                  </router-link>
+                  <!-- prettier-ignore -->
                 </td>
               </tr>
               <!--v-if-->
