@@ -123,17 +123,18 @@ export default {
 
   methods: {
     fetchData() {
-      axios
-        .get(`${this.$store.state.url}/donors`)
+      this.$axios
+        .get(`/api/donors`)
         .then((response) => {
           this.donorsCount = response.data.data.length;
         })
         .catch((error) => {
           console.log(error);
+          this.$toast.error(error.message);
         });
 
-      axios
-        .get(`${this.$store.state.url}/beneficiaries`)
+      this.$axios
+        .get(`/api/beneficiaries`)
         .then((response) => {
           this.beneficiariesCount = response.data.data.length;
         })
@@ -141,8 +142,8 @@ export default {
           console.log(error);
         });
 
-      axios
-        .get(`${this.$store.state.url}/campaigns`)
+      this.$axios
+        .get(`/api/campaigns`)
         .then((response) => {
           this.campaignsCount = response.data.data.length;
 
@@ -159,8 +160,8 @@ export default {
           console.log(error);
         });
 
-      axios
-        .get(`${this.$store.state.url}/services`)
+      this.$axios
+        .get(`/api/services`)
         .then((response) => {
           this.servicesCount = response.data.data.length;
         })

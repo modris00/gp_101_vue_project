@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
 import { checkAuth } from "@/plugins/CheckAuth";
+import store from "@/store/index"
 
 import TestView from "../views/TestView.vue"; //For Testing
 import DataView from "../views/DataView.vue"; //For Testing
@@ -130,31 +131,31 @@ const routes = [
     path: "/",
     component: HomeView,
     name: "home",
-    beforeEnter: (to, from, next) => {
-      if (checkAuth()) {
-        next();
-      } else {
-        next({ name: "login", params: { guard: "admin" } });
-      }
-    },
+    // beforeEnter: (to, from, next) => {
+    //   if (store.state.authenticated == true) {
+    //     next();
+    //   } else {
+    //     next({ name: "login", params: { guard: "admin" } });
+    //   }
+    // },
   },
 
   {
     path: "/login/:guard",
     component: LoginView,
     name: "login",
-    beforeEnter: (to, from, next) => {
-      if (checkAuth()) {
-        next({ name: "home" });
-      } else {
-        next();
-      }
-    },
+    // beforeEnter: (to, from, next) => {
+    //   if (store.state.authenticated == true) {
+    //     next({ name: "home" });
+    //   } else {
+    //     next();
+    //   }
+    // },
   },
   { path: "/logout", name: "logout" },
   { path: "/user", component: UserView, name: "user" },
 
-  { path: "/test", component: TestView, name: "test" },
+  { path: "/test", component: TestView, name: "test", },
   { path: "/data", component: DataView, name: "data" },
   {
     path: "/services",

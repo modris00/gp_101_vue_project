@@ -51,10 +51,17 @@ export default {
       });
     },
     logout() {
-      this.$axios.get("/api/logout").then((response) => {
-        localStorage.setItem("isLoggedIn", "0");
-        this.$router.push("/");
-      });
+      this.$axios
+        .get("/api/logout")
+        .then((response) => {
+          // localStorage.setItem("isLoggedIn", "0");
+          this.$store.commit("setAuthentication", false);
+          this.$router.push("/login/admin");
+        })
+        .catch((error) => {
+          console.log(error);
+          this.$toast.error(error.message);
+        });
     },
   },
 };

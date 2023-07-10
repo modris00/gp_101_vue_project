@@ -42,6 +42,19 @@ export default {
   },
   mounted() {
     // this.getSuppliers();
+    this.$axios
+      .get("/api/admins")
+      .then((response) => {
+        console.log("is logged in");
+        console.log(response);
+        // isLoggedIn = true;
+        this.$store.commit("setAuthentication", true);
+      })
+      .catch((error) => {
+        console.log("not logged in");
+        console.log(error);
+        // isLoggedIn = false;
+      });
   },
   data() {
     return {
