@@ -108,8 +108,8 @@ export default {
   },
   methods: {
     indexDonor(id) {
-      axios
-        .get(`${this.$store.state.url}/donors/${id}`)
+      this.$axios
+        .get(`/api/donors/${id}`)
         .then((response) => {
           console.log(response.data.data);
           this.Donor = response.data.data;
@@ -120,8 +120,8 @@ export default {
         });
     },
     editDonor(id) {
-      axios
-        .put(`${this.$store.state.url}/donors/${id}`, this.Donor)
+      this.$axios
+        .put(`/api/donors/${id}`, this.Donor)
         .then((response) => {
           console.log(response);
           this.Donor = {
@@ -147,8 +147,8 @@ export default {
         });
     },
     indexAreas() {
-      axios
-        .get(`${this.$store.state.url}/areas`)
+      this.$axios
+        .get(`/api/areas`)
         .then((response) => {
           this.areas = response.data.data;
         })

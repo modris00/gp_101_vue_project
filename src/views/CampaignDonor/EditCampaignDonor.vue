@@ -83,11 +83,8 @@ export default {
   },
   methods: {
     updateCampaignDonor(id) {
-      axios
-        .put(
-          `${this.$store.state.url}/campaigns-donors/${id}`,
-          this.CampaignDonor
-        )
+      this.$axios
+        .put(`/api/campaigns-donors/${id}`, this.CampaignDonor)
         .then((response) => {
           console.log(response);
           this.$toast.success(response.data.message);
@@ -105,8 +102,8 @@ export default {
         });
     },
     indexDonors() {
-      axios
-        .get(`${this.$store.state.url}/donors`)
+      this.$axios
+        .get(`/api/donors`)
         .then((response) => {
           this.Donors = response.data.data;
           console.log(response.data.data);
@@ -116,8 +113,8 @@ export default {
         });
     },
     indexCampaign() {
-      axios
-        .get(`${this.$store.state.url}/campaigns`)
+      this.$axios
+        .get(`/api/campaigns`)
         .then((response) => {
           this.Campaigns = response.data.data;
           console.log(response.data.data);
@@ -127,8 +124,8 @@ export default {
         });
     },
     indexCampaignDonor(id) {
-      axios
-        .get(`${this.$store.state.url}/campaigns-donors/${id}`)
+      this.$axios
+        .get(`/api/campaigns-donors/${id}`)
         .then((response) => {
           console.log(response.data.data);
           this.CampaignDonor = response.data.data;

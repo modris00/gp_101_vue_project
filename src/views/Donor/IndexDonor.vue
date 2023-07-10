@@ -27,8 +27,8 @@ export default {
   },
   methods: {
     indexDonors() {
-      axios
-        .get(`${this.$store.state.url}/donors`)
+      this.$axios
+        .get(`/api/donors`)
         .then((response) => {
           this.Donors = response.data.data;
           console.log(response.data.data);
@@ -40,8 +40,8 @@ export default {
 
     deleteRow(event, id) {
       console.log(id);
-      axios
-        .delete(`${this.$store.state.url}/donors/${id}`)
+      this.$axios
+        .delete(`/api/donors/${id}`)
         .then((response) => {
           this.Donors = this.Donors.filter((c) => c.id != id);
           this.$toast.success(response.data.message);

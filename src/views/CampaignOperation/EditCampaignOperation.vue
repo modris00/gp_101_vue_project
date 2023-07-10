@@ -138,8 +138,8 @@ export default {
   },
   methods: {
     indexCampaignOperation(id) {
-      axios
-        .get(`${this.$store.state.url}/campaign-operations/${id}`)
+      this.$axios
+        .get(`/api/campaign-operations/${id}`)
         .then((response) => {
           console.log(response.data.data);
           this.CampaignOperation = response.data.data;
@@ -149,11 +149,8 @@ export default {
         });
     },
     updateCampaignOperation(id) {
-      axios
-        .put(
-          `${this.$store.state.url}/campaign-operations/${id}`,
-          this.CampaignOperation
-        )
+      this.$axios
+        .put(`/api/campaign-operations/${id}`, this.CampaignOperation)
         .then((response) => {
           console.log(response);
           this.$toast.success(response.data.message);
@@ -171,8 +168,8 @@ export default {
         });
     },
     indexServices() {
-      axios
-        .get(`${this.$store.state.url}/services`)
+      this.$axios
+        .get(`/api/services`)
         .then((response) => {
           this.services = response.data.data;
           console.log(response.data.data);
@@ -183,8 +180,8 @@ export default {
         });
     },
     indexCampaign() {
-      axios
-        .get(`${this.$store.state.url}/campaigns`)
+      this.$axios
+        .get(`/api/campaigns`)
         .then((response) => {
           this.Campaigns = response.data.data;
           console.log(response.data.data);

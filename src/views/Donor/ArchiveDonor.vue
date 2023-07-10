@@ -74,8 +74,8 @@ export default {
   },
   methods: {
     getDonors() {
-      axios
-        .get(`${this.$store.state.url}/donors/archive`)
+      this.$axios
+        .get(`/api/donors/archive`)
         .then((response) => {
           console.log(response);
           this.donor = response.data.data;
@@ -86,8 +86,8 @@ export default {
         });
     },
     restoreItem(id) {
-      axios
-        .put(`${this.$store.state.url}/donors/${id}/restore`)
+      this.$axios
+        .put(`/api/donors/${id}/restore`)
         .then((response) => {
           this.$toast.success("donor restored successfully");
           this.getDonors();
@@ -109,7 +109,7 @@ export default {
       }).then((result) => {
         if (result.isConfirmed) {
           axios
-            .delete(`${this.$store.state.url}/donors/${id}/force-delete`)
+            .delete(`/api/donors/${id}/force-delete`)
             .then((response) => {
               console.log(response);
               Swal.fire("Deleted!", "donors has been deleted.", "success");

@@ -45,14 +45,22 @@
               </div>
             </div>
 
-            <div class="form-group">
-              <label for="campaign_id">Campaign ID</label>
+            <!-- <div class="form-group">
+              
               <input
                 type="number"
                 v-model="campaign_id"
                 class="form-control"
                 placeholder="Enter campaign id"
               />
+            </div> -->
+            <div class="form-group">
+              <label for="campaign_id">Campaign </label>
+              <select class="form-control" v-model="campaign_id">
+                <option v-for="item in Campaigns" :value="item.id">
+                  {{ item.title }}
+                </option>
+              </select>
             </div>
 
             <div class="form-group">
@@ -129,8 +137,12 @@
 <script>
 import axios from "axios";
 export default {
+  mounted() {
+    this.indexCampaign();
+  },
   data() {
     return {
+      Campaigns: [],
       amount: "",
       status: "",
       description: "",
@@ -141,9 +153,20 @@ export default {
     };
   },
   methods: {
+    indexCampaign() {
+      this.$axios
+        .get(`/api/campaigns`)
+        .then((response) => {
+          this.Campaigns = response.data.data;
+          console.log(response.data.data);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
     createCampaignService() {
-      axios
-        .post(`${this.$store.state.url}/campaigns-services`, {
+      this.$axios
+        .post(`/api/campaigns-services`, {
           amount: this.amount,
           status: this.status,
           description: this.description,

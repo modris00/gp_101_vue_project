@@ -66,8 +66,8 @@ export default {
   },
   methods: {
     getRoles(id) {
-      axios
-        .get(`${this.$store.state.url}/roles/${id}`)
+      this.$axios
+        .get(`/api/roles/${id}`)
         .then((response) => {
           console.log(response);
           this.Roles = response.data.data;
@@ -78,8 +78,8 @@ export default {
         });
     },
     updateRole(id) {
-      axios
-        .put(`${this.$store.state.url}/roles/${id}`, this.Roles)
+      this.$axios
+        .put(`/api/roles/${id}`, this.Roles)
         .then((response) => {
           console.log(response);
           // if (response.data.message) {

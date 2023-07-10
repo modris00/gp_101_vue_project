@@ -77,8 +77,8 @@ export default {
   },
   methods: {
     indexCampaignBeneficiaries() {
-      axios
-        .get(`${this.$store.state.url}/campaigns-beneficiaries`)
+      this.$axios
+        .get(`/api/campaigns-beneficiaries`)
         .then((response) => {
           this.campaignBeneficiaries = response.data.data;
           console.log(response.data.data);
@@ -90,8 +90,8 @@ export default {
     },
     deleteItem(event, id) {
       console.log(event);
-      axios
-        .delete(`${this.$store.state.url}/campaigns-beneficiaries/${id}`)
+      this.$axios
+        .delete(`/api/campaigns-beneficiaries/${id}`)
         .then((response) => {
           console.log(response.data.message);
           this.campaignBeneficiaries = this.campaignBeneficiaries.filter(
