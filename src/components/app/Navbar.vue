@@ -55,6 +55,7 @@ export default {
         .get("/api/logout")
         .then((response) => {
           // localStorage.setItem("isLoggedIn", "0");
+          localStorage.clear();
           this.$store.commit("setAuthentication", false);
           this.$router.push("/login/admin");
         })

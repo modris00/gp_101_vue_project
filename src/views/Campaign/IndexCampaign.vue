@@ -9,24 +9,24 @@
             <thead>
               <th>#</th>
               <th style="display: none">id</th>
-              <th>title</th>
-              <th>status</th>
-              <th>amount</th>
-              <th>start_date</th>
-              <th>end_date</th>
-              <th>admin_id</th>
-              <th>currency_name</th>
+              <th>Title</th>
+              <th>Status</th>
+              <th>Amount</th>
+              <th>Start Date</th>
+              <th>End Date</th>
+              <th>Admin Name</th>
+              <th>Currency Name</th>
               <th>Actions</th>
             </thead>
             <tbody>
               <tr v-for="(item, index) in Campaigns" :key="index">
-                <td>{{ item.id }}</td>
+                <td>{{ index + 1 }}</td>
                 <td>{{ item.title }}</td>
                 <td>{{ item.status }}</td>
                 <td>{{ item.amount }}</td>
                 <td>{{ item.start_date }}</td>
                 <td>{{ item.end_date }}</td>
-                <td>{{ item.admin_id }}</td>
+                <td>{{ item.admin_name }}</td>
                 <td>{{ item.currency_name }}</td>
                 <td>
                   <router-link
