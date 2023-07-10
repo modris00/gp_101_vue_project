@@ -24,6 +24,7 @@
               <thead>
                 <th>#</th>
                 <th>Permission Name</th>
+                <th>Guard</th>
                 <th>Give/Revoke Permission</th>
                 <!-- <th>اسم الصلاحية</th> -->
                 <!-- <th>اعطاء صلاحية / تراجع عن صلاحية</th> -->
