@@ -58,7 +58,6 @@
 </template>
 
 <script>
-import axios from "axios";
 export default {
   name: "SubCategoryCreateView",
   mounted() {
@@ -77,8 +76,8 @@ export default {
   },
   methods: {
     indexCategories() {
-      axios
-        .get(`${this.$store.state.url}/categories`)
+      this.$axios
+        .get(`/api/categories`)
         .then((response) => {
           this.categories = response.data.data;
           console.log(response.data.data);
@@ -88,8 +87,8 @@ export default {
         });
     },
     createSubCategory() {
-      axios
-        .post(`${this.$store.state.url}/sub-categories`, this.SubCategory)
+      this.$axios
+        .post(`/api/sub-categories`, this.SubCategory)
         .then((response) => {
           console.log(response);
           this.Category = {

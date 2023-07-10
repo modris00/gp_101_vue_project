@@ -103,7 +103,6 @@
   </section>
 </template>
 <script>
-import axios from "axios";
 export default {
   name: "EditBeneficiaryView",
   mounted() {
@@ -125,8 +124,8 @@ export default {
   },
   methods: {
     getAreas() {
-      axios
-        .get(`${this.$store.state.url}/areas`)
+      this.$axios
+        .get(`/api/areas`)
         .then((response) => {
           console.log(response);
           this.areas = response.data.data;
@@ -137,8 +136,8 @@ export default {
         });
     },
     getBeneficiary(id) {
-      axios
-        .get(`${this.$store.state.url}/beneficiaries/${id}`)
+      this.$axios
+        .get(`/api/beneficiaries/${id}`)
         .then((response) => {
           console.log(response);
           this.beneficiary = response.data.data;
@@ -156,8 +155,8 @@ export default {
         });
     },
     updateItem(event, id) {
-      axios
-        .put(`${this.$store.state.url}/beneficiaries/${id}`, {
+      this.$axios
+        .put(`/api/beneficiaries/${id}`, {
           name: this.name,
           age: this.age,
           gender: this.gender,

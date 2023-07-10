@@ -54,7 +54,6 @@
 </template>
 
 <script>
-import axios from "axios";
 export default {
   name: "EditFaq",
   mounted() {
@@ -73,8 +72,8 @@ export default {
   },
   methods: {
     indexFaq(id) {
-      axios
-        .get(`${this.$store.state.url}/faqs/${id}`)
+      this.$axios
+        .get(`/api/faqs/${id}`)
         .then((response) => {
           console.log(response.data.data);
           this.faq = response.data.data;
@@ -84,8 +83,8 @@ export default {
         });
     },
     updateFaq(id) {
-      axios
-        .put(`${this.$store.state.url}/faqs/${id}`, this.faq)
+      this.$axios
+        .put(`/api/faqs/${id}`, this.faq)
         .then((response) => {
           console.log(response);
           console.log(id);

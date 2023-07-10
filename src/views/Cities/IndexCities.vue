@@ -7,7 +7,6 @@
   ></TableComp>
 </template>
 <script>
-import axios from "axios";
 import TableComp from "../../components/Table.vue";
 
 export default {
@@ -25,22 +24,22 @@ export default {
   },
   methods: {
     getCities() {
-      axios
-        .get(`${this.$store.state.url}/cities`)
+      this.$axios
+        .get(`/api/cities`)
         .then((response) => {
           console.log(response);
           this.cities = response.data.data;
         })
         .catch((error) => {
           console.log(error);
-          this.$toast.warning(error.message); // this key is from axios not laravel
+          this.$toast.warning(error.message); // this key is from this.$axios not laravel
         });
     },
     deleteRow(event, id) {
       //   console.log(event);
       console.log(id);
-      axios
-        .delete(`${this.$store.state.url}/cities/${id}`)
+      this.$axios
+        .delete(`/api/cities/${id}`)
         .then((response) => {
           console.log(response);
           this.cities = this.cities.filter((c) => c.id != id);
@@ -51,7 +50,7 @@ export default {
           if (error.response.data) {
             this.$toast.error(error.response.data.message); // from laravel
           } else {
-            this.$toast.error(error.message); // from axios
+            this.$toast.error(error.message); // from this.$axios
           }
         });
     },

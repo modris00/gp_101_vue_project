@@ -86,7 +86,6 @@
 </template>
 
 <script>
-import axios from "axios";
 export default {
   mounted() {
     this.indexServices();
@@ -109,8 +108,8 @@ export default {
   methods: {
     deleteItem(event, id) {
       console.log(event);
-      axios
-        .delete(`${this.$store.state.url}/services/${id}`)
+      this.$axios
+        .delete(`/api/services/${id}`)
         .then((response) => {
           console.log(response.data.message);
           this.services = this.services.filter((item) => item.id != id);
@@ -128,8 +127,8 @@ export default {
       return "http://127.0.0.1:8000/storage/services/" + image;
     },
     indexServices() {
-      axios
-        .get(`${this.$store.state.url}/services`)
+      this.$axios
+        .get(`/api/services`)
         .then((response) => {
           this.services = response.data.data;
           console.log(response.data.data);
@@ -140,8 +139,8 @@ export default {
         });
     },
     deleteRow(event, id) {
-      axios
-        .delete(`${this.$store.state.url}/services/${id}`)
+      this.$axios
+        .delete(`/api/services/${id}`)
         .then((response) => {
           console.log(response.data.message);
           this.services = this.services.filter((item) => item.id != id);

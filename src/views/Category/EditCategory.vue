@@ -46,7 +46,6 @@
 </template>
 
 <script>
-import axios from "axios";
 export default {
   name: "EditCategory",
   mounted() {
@@ -65,8 +64,8 @@ export default {
   },
   methods: {
     indexCategory(id) {
-      axios
-        .get(`${this.$store.state.url}/categories/${id}`)
+      this.$axios
+        .get(`/api/categories/${id}`)
         .then((response) => {
           console.log(response.data.data);
           this.Category = response.data.data;
@@ -76,8 +75,8 @@ export default {
         });
     },
     updateCategory(id) {
-      axios
-        .put(`${this.$store.state.url}/categories/${id}`, this.Category)
+      this.$axios
+        .put(`/api/categories/${id}`, this.Category)
         .then((response) => {
           console.log(response);
           console.log(id);

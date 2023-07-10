@@ -3,7 +3,7 @@
     <div class="col-12">
       <div class="card">
         <div class="card-header">
-          <h3 class="card-title">Archives  Currency</h3>
+          <h3 class="card-title">Archives Currency</h3>
 
           <div class="card-tools">
             <div class="input-group input-group-sm" style="width: 150px">
@@ -62,7 +62,6 @@
 </template>
 
 <script>
-import axios from "axios";
 import Swal from "sweetalert2/dist/sweetalert2";
 
 export default {
@@ -73,8 +72,8 @@ export default {
   },
   methods: {
     getCurrencies() {
-      axios
-        .get(`${this.$store.state.url}/currencies/archive`)
+      this.$axios
+        .get(`/api/currencies/archive`)
         .then((response) => {
           console.log(response);
           this.Currencies = response.data.data;
@@ -85,11 +84,11 @@ export default {
         });
     },
     restoreItem(id) {
-      axios
-        .put(`${this.$store.state.url}/currencies/${id}/restore`)
+      this.$axios
+        .put(`/api/currencies/${id}/restore`)
         .then((response) => {
           this.$toast.success("Currency restored successfully");
-          this. getCurrencies();
+          this.getCurrencies();
         })
         .catch((error) => {
           this.$toast.warning("Failed to restore Currency");
@@ -108,7 +107,7 @@ export default {
       }).then((result) => {
         if (result.isConfirmed) {
           axios
-            .delete(`${this.$store.state.url}/currencies/${id}/force-delete`)
+            .delete(`/api/currencies/${id}/force-delete`)
             .then((response) => {
               console.log(response);
               Swal.fire("Deleted!", "Currency has been deleted.", "success");

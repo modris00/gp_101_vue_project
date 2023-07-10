@@ -48,7 +48,6 @@
 </template>
 
 <script>
-import axios from "axios";
 export default {
   name: "EditAdmin",
   mounted() {
@@ -64,8 +63,8 @@ export default {
   },
   methods: {
     indexContactRequest(id) {
-      axios
-        .get(`${this.$store.state.url}/contact-requests/${id}`)
+      this.$axios
+        .get(`/api/contact-requests/${id}`)
         .then((response) => {
           console.log(response.data.data);
           this.contactRequest = response.data.data;
@@ -77,8 +76,8 @@ export default {
         });
     },
     updateContactRequest(id) {
-      axios
-        .put(`${this.$store.state.url}/contact-requests/${id}`, {
+      this.$axios
+        .put(`/api/contact-requests/${id}`, {
           response: this.response,
           isClosed: this.isClosed,
         })

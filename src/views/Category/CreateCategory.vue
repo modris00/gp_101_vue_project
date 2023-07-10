@@ -45,7 +45,6 @@
 </template>
 
 <script>
-import axios from "axios";
 export default {
   name: "CategoryCreateView",
   data() {
@@ -59,8 +58,8 @@ export default {
   },
   methods: {
     createCategory() {
-      axios
-        .post(`${this.$store.state.url}/categories`, this.Category)
+      this.$axios
+        .post(`/api/categories`, this.Category)
         .then((response) => {
           console.log(response);
           this.Category = {

@@ -38,7 +38,10 @@
                 <td>{{ item.name }}</td>
                 <td>{{ item.deleted_at }}</td>
                 <td>
-                  <button @click="restoreItem(item.id)" class="btn btn-success ml-2">
+                  <button
+                    @click="restoreItem(item.id)"
+                    class="btn btn-success ml-2"
+                  >
                     Restore
                     <i class="fas fa-trash-restore"></i>
                   </button>
@@ -60,7 +63,6 @@
 </template>
 
 <script>
-import axios from "axios";
 import Swal from "sweetalert2/dist/sweetalert2";
 
 export default {
@@ -71,8 +73,8 @@ export default {
   },
   methods: {
     getAreas() {
-      axios
-        .get(`${this.$store.state.url}/areas/archive`)
+      this.$axios
+        .get(`/api/areas/archive`)
         .then((response) => {
           console.log(response);
           this.area = response.data.data;
@@ -83,8 +85,8 @@ export default {
         });
     },
     restoreItem(id) {
-      axios
-        .put(`${this.$store.state.url}/areas/${id}/restore`)
+      this.$axios
+        .put(`/api/areas/${id}/restore`)
         .then((response) => {
           this.$toast.success("area restored successfully");
           this.getAreas();
@@ -105,21 +107,13 @@ export default {
         confirmButtonText: "Yes, delete it!",
       }).then((result) => {
         if (result.isConfirmed) {
-          axios
-            .delete(
-              `${this.$store.state.url}/areas/${id}/force-delete`,
-            )
+          this.$axios
+            .delete(`/api/areas/${id}/force-delete`)
             .then((response) => {
               console.log(response);
-              Swal.fire(
-                "Deleted!",
-                "areas has been deleted.",
-                "success"
-              );
+              Swal.fire("Deleted!", "areas has been deleted.", "success");
               // this.getAreas();
-              this.area = this.area.filter(
-                (c) => c.id != id
-              );
+              this.area = this.area.filter((c) => c.id != id);
             })
             .catch((error) => {
               console.log(error);

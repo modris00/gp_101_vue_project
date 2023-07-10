@@ -93,7 +93,6 @@
 </template>
 
 <script>
-import axios from "axios";
 export default {
   name: "CreateService",
   mounted() {
@@ -115,8 +114,8 @@ export default {
   },
   methods: {
     indexSubCategories() {
-      axios
-        .get(`${this.$store.state.url}/sub-categories`)
+      this.$axios
+        .get(`/api/sub-categories`)
         .then((response) => {
           this.subcategories = response.data.data;
           console.log(response.data.data);
@@ -133,8 +132,8 @@ export default {
       formData.append("description", this.Service.description);
       formData.append("active", 1);
       formData.append("sub_category_id", this.Service.sub_category_id);
-      axios
-        .post(`${this.$store.state.url}/services`, formData)
+      this.$axios
+        .post(`/api/services`, formData)
         .then((response) => {
           console.log(response);
           this.Service = {

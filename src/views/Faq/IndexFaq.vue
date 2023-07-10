@@ -8,7 +8,6 @@
 </template>
 
 <script>
-import axios from "axios";
 import TableComp from "@/components/Table.vue";
 
 export default {
@@ -38,8 +37,8 @@ export default {
         });
     },
     deleteRow(event, id) {
-      axios
-        .delete(`${this.$store.state.url}/faqs/${id}`)
+      this.$axios
+        .delete(`/api/faqs/${id}`)
         .then((response) => {
           console.log(response.data.message);
           this.faqs = this.faqs.filter((item) => item.id != id);

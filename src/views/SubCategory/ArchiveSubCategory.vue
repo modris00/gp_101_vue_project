@@ -67,7 +67,6 @@
 </template>
 
 <script>
-import axios from "axios";
 import Swal from "sweetalert2/dist/sweetalert2";
 
 export default {
@@ -78,8 +77,8 @@ export default {
   },
   methods: {
     getsubCategories() {
-      axios
-        .get(`${this.$store.state.url}/sub-categories/archive`)
+      this.$axios
+        .get(`/api/sub-categories/archive`)
         .then((response) => {
           console.log(response);
           this.subCategories = response.data.data;
@@ -90,8 +89,8 @@ export default {
         });
     },
     restoreItem(id) {
-      axios
-        .put(`${this.$store.state.url}/sub-categories/${id}/restore`)
+      this.$axios
+        .put(`/api/sub-categories/${id}/restore`)
         .then((response) => {
           this.$toast.success("subCategories restored successfully");
           this.getsubCategories();
@@ -112,10 +111,8 @@ export default {
         confirmButtonText: "Yes, delete it!",
       }).then((result) => {
         if (result.isConfirmed) {
-          axios
-            .delete(
-              `${this.$store.state.url}/sub-categories/${id}/force-delete`
-            )
+          this.$axios
+            .delete(`/api/sub-categories/${id}/force-delete`)
             .then((response) => {
               console.log(response);
               Swal.fire(
@@ -123,9 +120,7 @@ export default {
                 "subCategories has been deleted.",
                 "success"
               );
-              this.subCategories = this.subCategories.filter(
-                (c) => c.id != id
-              );
+              this.subCategories = this.subCategories.filter((c) => c.id != id);
             })
             .catch((error) => {
               console.log(error);

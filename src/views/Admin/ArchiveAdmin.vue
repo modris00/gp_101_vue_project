@@ -62,7 +62,6 @@
 </template>
 
 <script>
-import axios from "axios";
 import Swal from "sweetalert2/dist/sweetalert2";
 
 export default {
@@ -73,8 +72,8 @@ export default {
   },
   methods: {
     getAdmins() {
-      axios
-        .get(`${this.$store.state.url}/admins/archive`)
+      this.$axios
+        .get(`/api/admins/archive`)
         .then((response) => {
           console.log(response);
           this.admin = response.data.data;
@@ -85,8 +84,8 @@ export default {
         });
     },
     restoreItem(id) {
-      axios
-        .put(`${this.$store.state.url}/admins/${id}/restore`)
+      this.$axios
+        .put(`/api/admins/${id}/restore`)
         .then((response) => {
           this.$toast.success("admin restored successfully");
           this.getAdmins();
@@ -107,21 +106,13 @@ export default {
         confirmButtonText: "Yes, delete it!",
       }).then((result) => {
         if (result.isConfirmed) {
-          axios
-            .delete(
-              `${this.$store.state.url}/admins/${id}/force-delete`,
-            )
+          this.$axios
+            .delete(`/api/admins/${id}/force-delete`)
             .then((response) => {
               console.log(response);
-              Swal.fire(
-                "Deleted!",
-                "admins has been deleted.",
-                "success"
-              );
+              Swal.fire("Deleted!", "admins has been deleted.", "success");
               // this.getAdmins();
-              this.admin = this.admin.filter(
-                (c) => c.id != id
-              );
+              this.admin = this.admin.filter((c) => c.id != id);
             })
             .catch((error) => {
               console.log(error);
