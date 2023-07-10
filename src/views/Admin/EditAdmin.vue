@@ -70,8 +70,8 @@ export default {
   },
   methods: {
     indexAdmin(id) {
-      axios
-        .get(`${this.$store.state.url}/admins/${id}`)
+      this.$axios
+        .get(`/api/admins/${id}`)
         .then((response) => {
           console.log(response.data.data);
           this.admin = response.data.data;
@@ -81,8 +81,8 @@ export default {
         });
     },
     updateAdmin(id) {
-      axios
-        .put(`${this.$store.state.url}/admins/${id}`, this.admin)
+      this.$axios
+        .put(`/api/admins/${id}`, this.admin)
         .then((response) => {
           console.log(response);
           console.log(id);

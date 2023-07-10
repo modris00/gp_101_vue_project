@@ -1,20 +1,80 @@
 <template>
-  <TableComp
+  <!-- <TableComp
     :headers="headers"
     :rows="Donors"
     :deleteItem="deleteRow"
     title="Donors"
-  ></TableComp>
+  ></TableComp> -->
+  <div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">All Donors</h3>
+        </div>
+        <!-- /.card-header -->
+        <div class="card-body">
+          <table
+            id="contactRequests"
+            class="table table-bordered table-striped"
+          >
+            <thead>
+              <th>#</th>
+              <th>Name</th>
+              <th>Username</th>
+              <th>Email</th>
+              <th>Phone Number</th>
+              <th>Area</th>
+              <th>Actions</th>
+            </thead>
+            <tbody>
+              <tr v-for="(donor, index) in Donors" :key="donor.id">
+                <td>{{ index + 1 }}</td>
+                <td>{{ donor.name }}</td>
+                <td>{{ donor.username }}</td>
+                <td>{{ donor.email }}</td>
+                <td>{{ donor.phone }}</td>
+                <td>{{ donor.area_name ?? "" }}</td>
+                <td>
+                  <router-link
+                    style="margin-right: 2px"
+                    class="btn btn-warning"
+                    :to="{ name: 'donors.edit', params: { id: donor.id } }"
+                    title="Edit Donor"
+                  >
+                    <i class="fas fa-edit"></i>
+                  </router-link>
+
+                  <router-link
+                    style="margin-right: 2px"
+                    class="btn btn-info"
+                    :to="{
+                      name: 'donor-campaign-details',
+                      params: { id: donor.id },
+                    }"
+                    title="Donor's Campaigns"
+                  >
+                    <i class="fas fa-info"></i>
+                  </router-link>
+
+                  <!-- prettier-ignore -->
+                  <button type="button" title="Delete Donor" @click="deleteItem($event, donor.id)" class="btn btn-danger">                    
+                    <i class="fas fa-trash-alt"></i>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <!-- /.card-body -->
+      </div>
+      <!-- /.card -->
+    </div>
+    <!-- /.col -->
+  </div>
 </template>
 
 <script>
-import axios from "axios";
-import TableComp from "@/components/Table.vue";
-
 export default {
-  components: {
-    TableComp,
-  },
   mounted() {
     this.indexDonors();
   },
@@ -22,7 +82,7 @@ export default {
   data() {
     return {
       Donors: [],
-      headers: ["id", "name", "username", "email", "phone", "area_name"],
+      // headers: ["id", "name", "username", "email", "phone", "area_name"],
     };
   },
   methods: {
@@ -34,11 +94,16 @@ export default {
           console.log(response.data.data);
         })
         .catch((error) => {
+          if (error.response.data) {
+            this.$toast.error(error.response.data.message);
+          } else {
+            this.$toast.error(error.message);
+          }
           console.log(error);
         });
     },
 
-    deleteRow(event, id) {
+    deleteItem(event, id) {
       console.log(id);
       this.$axios
         .delete(`/api/donors/${id}`)

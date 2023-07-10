@@ -64,7 +64,6 @@
   </section>
 </template>
 <script>
-import axios from "axios";
 export default {
   name: "CreateSupplierView",
   data() {
@@ -76,8 +75,8 @@ export default {
   },
   methods: {
     createSupplier(event) {
-      axios
-        .post(`${this.$store.state.url}/suppliers`, {
+      this.$axios
+        .post(`/api/suppliers`, {
           name: this.name,
           phone: this.phone,
           address: this.address,

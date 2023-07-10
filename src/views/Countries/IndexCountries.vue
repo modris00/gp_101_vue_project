@@ -7,7 +7,6 @@
   ></TableComp>
 </template>
 <script>
-import axios from "axios";
 import TableComp from "../../components/Table.vue";
 
 export default {
@@ -40,8 +39,8 @@ export default {
     deleteRow(event, id) {
       //   console.log(event);
       console.log(id);
-      axios
-        .delete(`${this.$store.state.url}/countries/${id}`)
+      this.$axios
+        .delete(`/api/countries/${id}`)
         .then((response) => {
           this.countries = this.countries.filter((c) => c.id != id);
           this.$toast.success(response.data.message);

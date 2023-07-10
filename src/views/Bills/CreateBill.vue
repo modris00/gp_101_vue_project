@@ -116,7 +116,6 @@
 </template>
 
 <script>
-import axios from "axios";
 export default {
   name: "CreateBill",
   mounted() {
@@ -159,8 +158,8 @@ export default {
       formData.append("currency_id", this.Bill.currency_id);
       formData.append("supplier_id", this.Bill.supplier_id);
       formData.append("campaign_service_id", this.Bill.campaign_service_id);
-      axios
-        .post(`${this.$store.state.url}/bills`, formData)
+      this.$axios
+        .post(`/api/bills`, formData)
         .then((response) => {
           console.log(response);
           this.Bill = {
@@ -188,8 +187,8 @@ export default {
         });
     },
     indexCurrency() {
-      axios
-        .get(`${this.$store.state.url}/currencies`)
+      this.$axios
+        .get(`/api/currencies`)
         .then((response) => {
           this.currency = response.data.data;
           console.log(response.data.data);
@@ -199,8 +198,8 @@ export default {
         });
     },
     indexSuppliers() {
-      axios
-        .get(`${this.$store.state.url}/suppliers`)
+      this.$axios
+        .get(`/api/suppliers`)
         .then((response) => {
           console.log(response);
           this.supplier = response.data.data;
@@ -211,8 +210,8 @@ export default {
         });
     },
     indexCampaignServices() {
-      axios
-        .get(`${this.$store.state.url}/campaigns-services`)
+      this.$axios
+        .get(`/api/campaigns-services`)
         .then((response) => {
           console.log(response);
           this.campaign_service = response.data.data;
@@ -223,8 +222,8 @@ export default {
         });
     },
     indexCampaign() {
-      axios
-        .get(`${this.$store.state.url}/campaigns`)
+      this.$axios
+        .get(`/api/campaigns`)
         .then((response) => {
           this.Campaigns = response.data.data;
           console.log(response.data.data);

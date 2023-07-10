@@ -118,7 +118,6 @@
 </template>
 
 <script>
-import axios from "axios";
 export default {
   name: "CreateCampaign",
   mounted() {
@@ -141,8 +140,8 @@ export default {
   },
   methods: {
     createCampaign() {
-      axios
-        .post(`${this.$store.state.url}/campaigns`, this.Campaign)
+      this.$axios
+        .post(`/api/campaigns`, this.Campaign)
         .then((response) => {
           console.log(response);
           this.Campaign = {
@@ -169,8 +168,8 @@ export default {
         });
     },
     indexCurrency() {
-      axios
-        .get(`${this.$store.state.url}/currencies`)
+      this.$axios
+        .get(`/api/currencies`)
         .then((response) => {
           this.currency = response.data.data;
           console.log(response.data.data);

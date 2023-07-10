@@ -40,7 +40,7 @@
               <tr v-for="(item, index) in service" :key="index">
                 <td>{{ index + 1 }}</td>
                 <td>{{ item.name }}</td>
-                <td>{{ item.description	 }}</td>
+                <td>{{ item.description }}</td>
                 <td>{{ item.active }}</td>
                 <td>{{ item.sub_category_name }}</td>
                 <td>{{ item.deleted_at }}</td>
@@ -67,7 +67,6 @@
 </template>
 
 <script>
-import axios from "axios";
 import Swal from "sweetalert2/dist/sweetalert2";
 
 export default {
@@ -78,8 +77,8 @@ export default {
   },
   methods: {
     getServices() {
-      axios
-        .get(`${this.$store.state.url}/services/archive`)
+      this.$axios
+        .get(`/api/services/archive`)
         .then((response) => {
           console.log(response);
           this.service = response.data.data;
@@ -90,8 +89,8 @@ export default {
         });
     },
     restoreItem(id) {
-      axios
-        .put(`${this.$store.state.url}/services/${id}/restore`)
+      this.$axios
+        .put(`/api/services/${id}/restore`)
         .then((response) => {
           this.$toast.success("service restored successfully");
           this.getServices();
@@ -112,8 +111,8 @@ export default {
         confirmButtonText: "Yes, delete it!",
       }).then((result) => {
         if (result.isConfirmed) {
-          axios
-            .delete(`${this.$store.state.url}/services/${id}/force-delete`)
+          this.$axios
+            .delete(`/api/services/${id}/force-delete`)
             .then((response) => {
               console.log(response);
               Swal.fire("Deleted!", "service has been deleted.", "success");

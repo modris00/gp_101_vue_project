@@ -60,7 +60,6 @@
 </template>
 
 <script>
-import axios from "axios";
 import Swal from "sweetalert2/dist/sweetalert2";
 
 export default {
@@ -71,8 +70,8 @@ export default {
   },
   methods: {
     getCountries() {
-      axios
-        .get(`${this.$store.state.url}/countries/archive`)
+      this.$axios
+        .get(`/api/countries/archive`)
         .then((response) => {
           console.log(response);
           this.country = response.data.data;
@@ -83,8 +82,8 @@ export default {
         });
     },
     restoreItem(id) {
-      axios
-        .put(`${this.$store.state.url}/countries/${id}/restore`)
+      this.$axios
+        .put(`/api/countries/${id}/restore`)
         .then((response) => {
           this.$toast.success("country restored successfully");
           this.getCountries();
@@ -105,8 +104,8 @@ export default {
         confirmButtonText: "Yes, delete it!",
       }).then((result) => {
         if (result.isConfirmed) {
-          axios
-            .delete(`${this.$store.state.url}/countries/${id}/force-delete`)
+          this.$axios
+            .delete(`/api/countries/${id}/force-delete`)
             .then((response) => {
               console.log(response);
               Swal.fire("Deleted!", "countries has been deleted.", "success");

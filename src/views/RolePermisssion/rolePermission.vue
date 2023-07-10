@@ -41,7 +41,6 @@
 </template>
 
 <script>
-import axios from "axios";
 import $ from "jquery";
 import DataTable from "datatables.net-vue3";
 import DataTableLib from "datatables.net";

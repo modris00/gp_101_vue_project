@@ -64,7 +64,6 @@
 </template>
 
 <script>
-import axios from "axios";
 import Swal from "sweetalert2/dist/sweetalert2";
 
 export default {
@@ -75,8 +74,8 @@ export default {
   },
   methods: {
     getSuppliers() {
-      axios
-        .get(`${this.$store.state.url}/suppliers/archive`)
+      this.$axios
+        .get(`/api/suppliers/archive`)
         .then((response) => {
           console.log(response);
           this.suppliers = response.data.data;
@@ -87,8 +86,8 @@ export default {
         });
     },
     restoreItem(id) {
-      axios
-        .put(`${this.$store.state.url}/suppliers/${id}/restore`)
+      this.$axios
+        .put(`/api/suppliers/${id}/restore`)
         .then((response) => {
           this.$toast.success("Supplier restored successfully");
           this.getSuppliers();
@@ -109,8 +108,8 @@ export default {
         confirmButtonText: "Yes, delete it!",
       }).then((result) => {
         if (result.isConfirmed) {
-          axios
-            .delete(`${this.$store.state.url}/suppliers/${id}/force-delete`)
+          this.$axios
+            .delete(`/api/suppliers/${id}/force-delete`)
             .then((response) => {
               console.log(response);
               Swal.fire("Deleted!", "suppliers has been deleted.", "success");

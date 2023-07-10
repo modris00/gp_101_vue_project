@@ -76,8 +76,6 @@
 </template>
 
 <script>
-import axios from "axios";
-
 export default {
   mounted() {
     this.indexContactRequests();
@@ -90,21 +88,21 @@ export default {
   },
   methods: {
     indexContactRequests() {
-      axios
-        .get(`${this.$store.state.url}/contact-requests`)
+      this.$axios
+        .get(`/api/contact-requests`)
         .then((response) => {
           this.contactRequests = response.data.data;
           console.log(response.data.data);
         })
         .catch((error) => {
-          this.$toast.warning(error.message); // this key is from axios not laravel
+          this.$toast.warning(error.message); // this key is from this.$axios not laravel
           console.log(error);
         });
     },
     deleteItem(event, id) {
       console.log(event);
-      axios
-        .delete(`${this.$store.state.url}/contact-requests/${id}`)
+      this.$axios
+        .delete(`/api/contact-requests/${id}`)
         .then((response) => {
           console.log(response.data.message);
           this.contactRequests = this.contactRequests.filter(
