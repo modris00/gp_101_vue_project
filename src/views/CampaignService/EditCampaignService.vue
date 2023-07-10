@@ -45,7 +45,7 @@
               </div>
             </div>
 
-            <div class="form-group">
+            <!-- <div class="form-group">
               <label for="campaign_id">Campaign ID</label>
               <input
                 type="number"
@@ -53,6 +53,14 @@
                 class="form-control"
                 placeholder="Enter campaign id"
               />
+            </div> -->
+            <div class="form-group">
+              <label for="campaign_id">Campaign </label>
+              <select class="form-control" v-model="campaign_id">
+                <option v-for="item in Campaigns" :value="item.id">
+                  {{ item.title }}
+                </option>
+              </select>
             </div>
 
             <div class="form-group">
@@ -132,6 +140,7 @@ export default {
   // name: "CreateCampaignDonor",
   mounted() {
     this.getCampaignService(this.$route.params.id);
+    this.indexCampaign();
   },
   data() {
     return {
@@ -146,19 +155,29 @@ export default {
 
       campaign_id: "",
       service_id: "",
+      Campaigns: [],
     };
   },
   methods: {
+    indexCampaign() {
+      this.$axios
+        .get(`/api/campaigns`)
+        .then((response) => {
+          this.Campaigns = response.data.data;
+          console.log(response.data.data);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
     updateCampaignService(id) {
-      axios
-        .put(`${this.$store.state.url}/campaigns-services/${id}`, {
+      this.$axios
+        .put(`/api/campaigns-services/${id}`, {
           amount: this.amount,
           status: this.status,
           description: this.description,
-
           campaign_id: this.campaign_id,
           service_id: this.service_id,
-
           start_date: this.start_date,
           end_date: this.end_date,
         })
@@ -179,8 +198,8 @@ export default {
         });
     },
     getCampaignService(id) {
-      axios
-        .get(`${this.$store.state.url}/campaigns-services/${id}`)
+      this.$axios
+        .get(`/api/campaigns-services/${id}`)
         .then((response) => {
           console.log(response.data.data);
           this.campaignService = response.data.data;

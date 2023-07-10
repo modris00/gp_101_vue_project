@@ -130,26 +130,26 @@ const routes = [
     path: "/",
     component: HomeView,
     name: "home",
-    beforeEnter: (to, from, next) => {
-      if (checkAuth()) {
-        next();
-      } else {
-        next({ name: "login", params: { guard: "admin" } });
-      }
-    },
+    // beforeEnter: (to, from, next) => {
+    //   if (checkAuth()) {
+    //     next();
+    //   } else {
+    //     next({ name: "login", params: { guard: "admin" } });
+    //   }
+    // },
   },
 
   {
     path: "/login/:guard",
     component: LoginView,
     name: "login",
-    beforeEnter: (to, from, next) => {
-      if (checkAuth()) {
-        next({ name: "home" });
-      } else {
-        next();
-      }
-    },
+    // beforeEnter: (to, from, next) => {
+    //   if (checkAuth()) {
+    //     next({ name: "home" });
+    //   } else {
+    //     next();
+    //   }
+    // },
   },
   { path: "/logout", name: "logout" },
   { path: "/user", component: UserView, name: "user" },

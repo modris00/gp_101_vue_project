@@ -110,8 +110,8 @@ export default {
   },
   methods: {
     createDonor() {
-      axios
-        .post(`${this.$store.state.url}/donors`, this.Donor)
+      this.$axios
+        .post(`/api/donors`, this.Donor)
         .then((response) => {
           console.log(response);
           this.Donor = {
@@ -139,8 +139,8 @@ export default {
         });
     },
     indexAreas() {
-      axios
-        .get(`${this.$store.state.url}/areas`)
+      this.$axios
+        .get(`/api/areas`)
         .then((response) => {
           this.areas = response.data.data;
         })

@@ -29,11 +29,13 @@
               <tr>
                 <th>#</th>
                 <th>name</th>
+                <th>phone</th>
                 <th>age</th>
                 <th>gender</th>
                 <th>area</th>
                 <th>email</th>
                 <th>username</th>
+
                 <th>deleted_at</th>
               </tr>
             </thead>
@@ -41,6 +43,7 @@
               <tr v-for="(item, index) in beneficiary" :key="index">
                 <td>{{ index + 1 }}</td>
                 <td>{{ item.name }}</td>
+                <td>{{ item.phone }}</td>
                 <td>{{ item.age }}</td>
                 <td>{{ item.gender }}</td>
                 <td>{{ item.area_name }}</td>

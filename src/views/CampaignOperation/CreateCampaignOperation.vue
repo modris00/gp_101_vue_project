@@ -137,11 +137,8 @@ export default {
   },
   methods: {
     createCampaignOperation() {
-      axios
-        .post(
-          `${this.$store.state.url}/campaign-operations`,
-          this.CampaignOperation
-        )
+      this.$axios
+        .post(`/api/campaign-operations`, this.CampaignOperation)
         .then((response) => {
           console.log(response);
           this.$toast.success(response.data.message);
@@ -159,8 +156,8 @@ export default {
         });
     },
     indexServices() {
-      axios
-        .get(`${this.$store.state.url}/services`)
+      this.$axios
+        .get(`/api/services`)
         .then((response) => {
           this.services = response.data.data;
           console.log(response.data.data);
@@ -171,8 +168,8 @@ export default {
         });
     },
     indexCampaign() {
-      axios
-        .get(`${this.$store.state.url}/campaigns`)
+      this.$axios
+        .get(`/api/campaigns`)
         .then((response) => {
           this.Campaigns = response.data.data;
           console.log(response.data.data);

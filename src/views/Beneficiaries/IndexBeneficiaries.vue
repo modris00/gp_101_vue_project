@@ -20,7 +20,15 @@ export default {
   data() {
     return {
       beneficiaries: [],
-      headers: ["name", "age", "gender", "area_id", "email", "username"],
+      headers: [
+        "name",
+        "age",
+        "gender",
+        "area_id",
+        "email",
+        "username",
+        "phone",
+      ],
     };
   },
   methods: {

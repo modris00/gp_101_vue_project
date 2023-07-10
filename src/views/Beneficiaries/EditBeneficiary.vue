@@ -22,6 +22,16 @@
                     v-model="name"
                   />
                 </div>
+                <div class="form-group">
+                  <label for="Password">Phone</label>
+                  <input
+                    type="number"
+                    v-model="phone"
+                    class="form-control"
+                    id="Phone"
+                    placeholder="Phone"
+                  />
+                </div>
 
                 <div class="form-group">
                   <label for="post_title">Age:</label>
@@ -107,6 +117,7 @@ export default {
       name: "",
       age: "",
       gender: "",
+      phone: "",
       email: "",
       username: "",
       areaId: null,
@@ -133,6 +144,7 @@ export default {
           this.beneficiary = response.data.data;
           this.name = this.beneficiary.name;
           this.age = this.beneficiary.age;
+          this.phone = this.phone;
           this.gender = this.beneficiary.gender;
           this.email = this.beneficiary.email;
           this.username = this.beneficiary.username;

@@ -22,6 +22,16 @@
                     v-model="name"
                   />
                 </div>
+                <div class="form-group">
+                  <label for="Password">Phone</label>
+                  <input
+                    type="number"
+                    v-model="phone"
+                    class="form-control"
+                    id="Phone"
+                    placeholder="Phone"
+                  />
+                </div>
 
                 <div class="form-group">
                   <label for="post_title">Age:</label>
@@ -99,6 +109,7 @@ export default {
     return {
       areas: [],
       name: "",
+      phone: "",
       age: "",
       gender: "",
       email: "",
@@ -124,6 +135,7 @@ export default {
         .post(`/api/beneficiaries`, {
           name: this.name,
           age: this.age,
+          phone: this.phone,
           gender: this.gender,
           email: this.email,
           username: this.username,
