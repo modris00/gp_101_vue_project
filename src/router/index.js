@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
 import { checkAuth } from "@/plugins/CheckAuth";
-import store from "@/store/index"
+import store from "@/store/index";
 
 import TestView from "../views/TestView.vue"; //For Testing
 import DataView from "../views/DataView.vue"; //For Testing
@@ -42,7 +42,10 @@ import DonorView from "../views/Donor/IndexDonor.vue";
 import CreateDonorView from "../views/Donor/CreateDonor.vue";
 import EditDonorView from "../views/Donor/EditDonor.vue";
 import ArchiveDonorView from "../views/Donor/ArchiveDonor.vue";
+
+import CampaignDonorDetailsB from "../views/Donor/CampaignDonorDetailsB.vue";
 import DonorCampaignDetails from "../views/Donor/DonorCampaignDetails.vue";
+
 
 // Bills
 import BillView from "../views/Bills/IndexBill.vue";
@@ -157,7 +160,7 @@ const routes = [
   { path: "/logout", name: "logout" },
   { path: "/user", component: UserView, name: "user" },
 
-  { path: "/test", component: TestView, name: "test", },
+  { path: "/test", component: TestView, name: "test" },
   { path: "/data", component: DataView, name: "data" },
   {
     path: "/services",
@@ -599,6 +602,11 @@ const routes = [
     path: "/campaign-services/archive",
     name: "campaignService.archive",
     component: ArchiveCampaignServicesView,
+  },
+  {
+    path: "/campaign/campaign-donor-details",
+    name: "campaign-donor-details",
+    component: CampaignDonorDetailsB,
   },
 ];
 

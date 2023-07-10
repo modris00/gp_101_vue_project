@@ -1,5 +1,5 @@
 <template>
-  <div class="row">
+  <div class="row" v-show="role == 'Super Admin'">
     <div class="col-12 col-sm-6 col-md-3">
       <div class="info-box">
         <span class="info-box-icon bg-info elevation-1">
@@ -110,6 +110,7 @@
 export default {
   data() {
     return {
+      role: "",
       donorsCount: null,
       beneficiariesCount: null,
       campaignsCount: null,
@@ -120,6 +121,9 @@ export default {
   },
 
   methods: {
+    RoleName() {
+      this.role = localStorage.getItem("role");
+    },
     fetchData() {
       this.$axios
         .get(`/api/donors`)
@@ -169,7 +173,10 @@ export default {
     },
   },
   mounted() {
-    this.fetchData();
+    if (this.role == "Super Admin") {
+      this.fetchData();
+    }
+    this.RoleName();
   },
 };
 </script>
