@@ -126,7 +126,7 @@ export default {
         cost: "",
         cost_type: "",
         description: "",
-        admin_id: 1,
+        admin_id: localStorage.getItem("id"),
         service_id: "",
         campaign_id: "",
       },
