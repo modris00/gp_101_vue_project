@@ -3,7 +3,7 @@
     <div class="col-12">
       <div class="card">
         <div class="card-header">
-          <h3 class="card-title">Donors Campaigns</h3>
+          <h3 class="card-title">Beneficiary Campaigns</h3>
         </div>
         <!-- /.card-header -->
         <div class="card-body">
@@ -44,7 +44,7 @@ export default {
     this.getUser();
     this.indexCampaign(this.id);
   },
-  name: "CampaignDonorDetailsB",
+  name: "CampaignBeneficiaryDetailsB",
   data() {
     return {
       campaigns: [],
@@ -60,7 +60,7 @@ export default {
     indexCampaign(id) {
       /// Id static
       this.$axios
-        .get(`/api/donors/${id}/campaigns/`)
+        .get(`/api/beneficiaries/${id}/campaigns/`)
         .then((response) => {
           this.campaigns = response.data.data;
           console.log(response.data.data);

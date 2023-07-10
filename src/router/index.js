@@ -46,7 +46,6 @@ import ArchiveDonorView from "../views/Donor/ArchiveDonor.vue";
 import CampaignDonorDetailsB from "../views/Donor/CampaignDonorDetailsB.vue";
 import DonorCampaignDetails from "../views/Donor/DonorCampaignDetails.vue";
 
-
 // Bills
 import BillView from "../views/Bills/IndexBill.vue";
 import CreateBillView from "../views/Bills/CreateBill.vue";
@@ -114,6 +113,7 @@ import CampaignBeneficiaryView from "../views/CampaignBeneficiary/IndexCampaignB
 import CreateCampaignBeneficiaryView from "../views/CampaignBeneficiary/CreateCampaignBeneficiary.vue";
 import EditCampaignBeneficiaryView from "../views/CampaignBeneficiary/EditCampaignBeneficiary.vue";
 import ArchiveCampaignBeneficiaryView from "../views/CampaignBeneficiary/ArchiveCampaignBeneficiary.vue";
+import CampaignBeneficiaryDetailsB from "../views/CampaignBeneficiary/CampaignBeneficiaryDetailsB.vue";
 
 import CampaignServicesView from "../views/CampaignService/IndexCampaignServices.vue";
 import CreateCampaignServiceView from "../views/CampaignService/CreateCampaignService.vue";
@@ -429,7 +429,6 @@ const routes = [
     component: DonorCampaignDetails,
   },
 
-
   {
     path: "/cities",
     name: "cities",
@@ -541,7 +540,6 @@ const routes = [
     component: BeneficiaryCampaignDetails,
   },
 
-
   {
     path: "/currencies",
     name: "currencies",
@@ -607,6 +605,11 @@ const routes = [
     path: "/campaign/campaign-donor-details",
     name: "campaign-donor-details",
     component: CampaignDonorDetailsB,
+  },
+  {
+    path: "/campaign/campaign-beneficiary-details",
+    name: "campaign-beneficiary-details",
+    component: CampaignBeneficiaryDetailsB,
   },
 ];
 

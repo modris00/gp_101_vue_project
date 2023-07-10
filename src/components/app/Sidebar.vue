@@ -792,6 +792,32 @@
               </li>
             </ul>
           </li>
+          <li class="nav-item" v-show="role == 'User-Beneficiary'">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-hands-helping text-success"></i>
+              <p>
+                My Campaign
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <!-- <li class="nav-item">
+                <router-link :to="{ name: 'roles.create' }" class="nav-link">
+                  <i class="nav-icon fas fa-plus text-sm"></i>
+                  <p>Create</p>
+                </router-link>
+              </li> -->
+              <li class="nav-item">
+                <router-link
+                  :to="{ name: 'campaign-beneficiary-details' }"
+                  class="nav-link"
+                >
+                  <i class="nav-icon fas fa-list text-sm"></i>
+                  <p>Read</p>
+                </router-link>
+              </li>
+            </ul>
+          </li>
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
@@ -806,7 +832,7 @@ export default {
   mounted() {
     this.RoleName();
     this.getUser();
-    console.log(this.name);
+    // console.log(this.name);
   },
 
   data() {

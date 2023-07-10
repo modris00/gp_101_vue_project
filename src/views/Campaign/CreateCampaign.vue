@@ -15,7 +15,7 @@
               <label for="title">Title Campaign</label>
               <input
                 type="text"
-                v-model="Campaign.title"
+                v-model="title"
                 class="form-control"
                 id="title"
                 placeholder="Enter Title"
@@ -25,7 +25,7 @@
               <label for="amount">Amount</label>
               <input
                 type="number"
-                v-model="Campaign.amount"
+                v-model="amount"
                 class="form-control"
                 id="amount"
                 placeholder="Description"
@@ -35,7 +35,7 @@
               <!-- select -->
               <div class="form-group">
                 <label>Status</label>
-                <select class="form-control" v-model="Campaign.status">
+                <select class="form-control" v-model="status">
                   <option value="Finished">Finished</option>
                   <option value="Not Finished">Not Finished</option>
                 </select>
@@ -52,7 +52,7 @@
                   <input
                     type="date"
                     class="form-control datetimepicker-input"
-                    v-model="Campaign.start_date"
+                    v-model="start_date"
                     data-target="#reservationdate"
                   />
                   <div
@@ -75,7 +75,7 @@
                 >
                   <input
                     type="date"
-                    v-model="Campaign.end_date"
+                    v-model="end_date"
                     class="form-control datetimepicker-input"
                     data-target="#reservationdate"
                   />
@@ -93,7 +93,7 @@
             </div>
             <div class="form-group">
               <label>Currency</label>
-              <select class="form-control" v-model="Campaign.currency_id">
+              <select class="form-control" v-model="currency_id">
                 <option value="" selected>Enter currency</option>
                 <option
                   v-for="(item, index) in currency"
@@ -122,37 +122,38 @@ export default {
   name: "CreateCampaign",
   mounted() {
     this.indexCurrency();
+    // this.getUser();
   },
   data() {
     return {
-      Campaign: {
-        id: "",
-        title: "",
-        amount: "",
-        status: "",
-        start_date: "",
-        end_date: "",
-        currency_id: "",
-        admin_id: 1,
-      },
+      id: "",
+      title: "",
+      amount: "",
+      status: "",
+      start_date: "",
+      end_date: "",
+      currency_id: "",
+      admin_id: localStorage.getItem("id"),
       currency: [],
     };
   },
   methods: {
+    // getUser() {
+    //   this.admin_id = localStorage.getItem("id");
+    // },
     createCampaign() {
       this.$axios
-        .post(`/api/campaigns`, this.Campaign)
+        .post(`/api/campaigns`, {
+          title: this.title,
+          amount: this.amount,
+          status: this.status,
+          start_date: this.start_date,
+          end_date: this.end_date,
+          currency_id: this.currency_id,
+          admin_id: this.admin_id,
+        })
         .then((response) => {
           console.log(response);
-          this.Campaign = {
-            id: "",
-            title: "",
-            amount: "",
-            status: "",
-            start_date: "",
-            end_date: "",
-            currency_id: "",
-          };
           this.$toast.success(response.data.message);
 
           // redirect view index All Campaign
