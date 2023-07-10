@@ -7,7 +7,6 @@
   ></TableComp>
 </template>
 <script>
-import axios from "axios";
 import TableComp from "../../components/Table.vue";
 
 export default {
@@ -32,22 +31,22 @@ export default {
   },
   methods: {
     getCurrency() {
-      axios
-        .get(`${this.$store.state.url}/currencies`)
+      this.$axios
+        .get(`/api/currencies`)
         .then((response) => {
           console.log(response);
           this.currencies = response.data.data;
         })
         .catch((error) => {
           console.log(error);
-          this.$toast.warning(error.message); // this key is from axios not laravel
+          this.$toast.warning(error.message); // this key is from this.$axios not laravel
         });
     },
     deleteRow(event, id) {
       //   console.log(event);
       console.log(id);
-      axios
-        .delete(`${this.$store.state.url}/currencies/${id}`)
+      this.$axios
+        .delete(`/api/currencies/${id}`)
         .then((response) => {
           this.currencies = this.currencies.filter((c) => c.id != id);
           this.$toast.success(response.data.message);

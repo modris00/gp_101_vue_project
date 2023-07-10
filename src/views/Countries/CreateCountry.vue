@@ -40,7 +40,6 @@
   </section>
 </template>
 <script>
-import axios from "axios";
 export default {
   name: "CreateCountryView",
   data() {
@@ -50,8 +49,8 @@ export default {
   },
   methods: {
     createCountry(event) {
-      axios
-        .post(`${this.$store.state.url}/countries`, {
+      this.$axios
+        .post(`/api/countries`, {
           name: this.name,
         })
         .then((response) => {

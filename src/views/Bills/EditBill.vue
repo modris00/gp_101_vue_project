@@ -116,7 +116,6 @@
 </template>
 
 <script>
-import axios from "axios";
 export default {
   name: "EditBill",
   mounted() {
@@ -146,8 +145,8 @@ export default {
   },
   methods: {
     indexBills(id) {
-      axios
-        .get(`${this.$store.state.url}/bills/${id}`)
+      this.$axios
+        .get(`/api/bills/${id}`)
         .then((response) => {
           console.log(response.data.data);
           this.Bill = response.data.data;
@@ -157,8 +156,8 @@ export default {
         });
     },
     updateBill(id) {
-      axios
-        .put(`${this.$store.state.url}/bills/${id}`, this.Bill)
+      this.$axios
+        .put(`/api/bills/${id}`, this.Bill)
         .then((response) => {
           console.log(response);
           this.Bill = {
@@ -186,8 +185,8 @@ export default {
         });
     },
     indexCurrency() {
-      axios
-        .get(`${this.$store.state.url}/currencies`)
+      this.$axios
+        .get(`/api/currencies`)
         .then((response) => {
           this.currency = response.data.data;
           console.log(response.data.data);
@@ -197,32 +196,32 @@ export default {
         });
     },
     indexSuppliers() {
-      axios
-        .get(`${this.$store.state.url}/suppliers`)
+      this.$axios
+        .get(`/api/suppliers`)
         .then((response) => {
           console.log(response);
           this.supplier = response.data.data;
         })
         .catch((error) => {
           console.log(error);
-          this.$toast.warning(error.message); // this key is from axios not laravel
+          this.$toast.warning(error.message); // this key is from this.$axios not laravel
         });
     },
     indexCampaignServices() {
-      axios
-        .get(`${this.$store.state.url}/campaigns-services`)
+      this.$axios
+        .get(`/api/campaigns-services`)
         .then((response) => {
           console.log(response);
           this.campaign_service = response.data.data;
         })
         .catch((error) => {
           console.log(error);
-          this.$toast.warning(error.message); // this key is from axios not laravel
+          this.$toast.warning(error.message); // this key is from this.$axios not laravel
         });
     },
     indexCampaign() {
-      axios
-        .get(`${this.$store.state.url}/campaigns`)
+      this.$axios
+        .get(`/api/campaigns`)
         .then((response) => {
           this.Campaigns = response.data.data;
           console.log(response.data.data);

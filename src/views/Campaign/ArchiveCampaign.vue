@@ -69,7 +69,6 @@
 </template>
 
 <script>
-import axios from "axios";
 import Swal from "sweetalert2/dist/sweetalert2";
 
 export default {
@@ -80,8 +79,8 @@ export default {
   },
   methods: {
     getCampaign() {
-      axios
-        .get(`${this.$store.state.url}/campaigns/archive`)
+      this.$axios
+        .get(`/api/campaigns/archive`)
         .then((response) => {
           console.log(response);
           this.campaign = response.data.data;
@@ -92,8 +91,8 @@ export default {
         });
     },
     restoreItem(id) {
-      axios
-        .put(`${this.$store.state.url}/campaigns/${id}/restore`)
+      this.$axios
+        .put(`/api/campaigns/${id}/restore`)
         .then((response) => {
           this.$toast.success("campaign restored successfully");
           this.getCampaign();
@@ -114,8 +113,8 @@ export default {
         confirmButtonText: "Yes, delete it!",
       }).then((result) => {
         if (result.isConfirmed) {
-          axios
-            .delete(`${this.$store.state.url}/campaigns/${id}/force-delete`)
+          this.$axios
+            .delete(`/api/campaigns/${id}/force-delete`)
             .then((response) => {
               console.log(response);
               Swal.fire("Deleted!", "campaign has been deleted.", "success");

@@ -43,7 +43,7 @@
   </section>
 </template>
 <script>
-import axios from "axios";
+// import axios from "axios";
 export default {
   name: "EditCityView",
   mounted() {
@@ -59,8 +59,8 @@ export default {
   },
   methods: {
     getCountries() {
-      axios
-        .get(`${this.$store.state.url}/countries`)
+      this.$axios
+        .get(`/api/countries`)
         .then((response) => {
           console.log(response);
           this.countries = response.data.data;
@@ -71,8 +71,8 @@ export default {
         });
     },
     getCities(id) {
-      axios
-        .get(`${this.$store.state.url}/cities/${id}`)
+      this.$axios
+        .get(`/api/cities/${id}`)
         .then((response) => {
           console.log(response);
           this.name = response.data.data["name"];
@@ -84,8 +84,8 @@ export default {
         });
     },
     updateCity(id) {
-      axios
-        .put(`${this.$store.state.url}/cities/${id}`, {
+      this.$axios
+        .put(`/api/cities/${id}`, {
           name: this.name,
           country_id: this.country_id,
         })

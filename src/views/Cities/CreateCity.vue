@@ -43,7 +43,6 @@
   </section>
 </template>
 <script>
-import axios from "axios";
 export default {
   name: "CreateCityView",
   mounted() {
@@ -58,8 +57,8 @@ export default {
   },
   methods: {
     getCountries() {
-      axios
-        .get(`${this.$store.state.url}/countries`)
+      this.$axios
+        .get(`/api/countries`)
         .then((response) => {
           console.log(response);
           this.countries = response.data.data;
@@ -70,8 +69,8 @@ export default {
         });
     },
     createCity(event) {
-      axios
-        .post(`${this.$store.state.url}/cities`, {
+      this.$axios
+        .post(`/api/cities`, {
           name: this.name,
           country_id: this.country_id,
         })

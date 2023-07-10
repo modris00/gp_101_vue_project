@@ -59,7 +59,6 @@
 </template>
 
 <script>
-import axios from "axios";
 export default {
   name: "EditSubCategory",
   mounted() {
@@ -79,8 +78,8 @@ export default {
   },
   methods: {
     indexCategories() {
-      axios
-        .get(`${this.$store.state.url}/categories`)
+      this.$axios
+        .get(`/api/categories`)
         .then((response) => {
           this.categories = response.data.data;
           console.log(response.data.data);
@@ -91,8 +90,8 @@ export default {
     },
 
     indexSubCategory(id) {
-      axios
-        .get(`${this.$store.state.url}/sub-categories/${id}`)
+      this.$axios
+        .get(`/api/sub-categories/${id}`)
         .then((response) => {
           console.log(response.data.data);
           this.SubCategory = response.data.data;
@@ -102,8 +101,8 @@ export default {
         });
     },
     updateSubCategory(id) {
-      axios
-        .put(`${this.$store.state.url}/sub-categories/${id}`, this.SubCategory)
+      this.$axios
+        .put(`/api/sub-categories/${id}`, this.SubCategory)
         .then((response) => {
           console.log(response);
           console.log(id);

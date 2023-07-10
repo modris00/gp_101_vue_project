@@ -64,7 +64,6 @@
   </section>
 </template>
 <script>
-import axios from "axios";
 export default {
   name: "EditSupplierView",
   mounted() {
@@ -79,8 +78,8 @@ export default {
   },
   methods: {
     getSupplier(id) {
-      axios
-        .get(`${this.$store.state.url}/suppliers/${id}`)
+      this.$axios
+        .get(`/api/suppliers/${id}`)
         .then((response) => {
           console.log(response);
           this.name = response.data.data["name"];
@@ -89,12 +88,12 @@ export default {
         })
         .catch((error) => {
           console.log(error);
-          this.$toast.warning(error.message); // this key is from axios not laravel
+          this.$toast.warning(error.message); // this key is from this.$axios not laravel
         });
     },
     updateSupplier(id) {
-      axios
-        .put(`${this.$store.state.url}/suppliers/${id}`, {
+      this.$axios
+        .put(`/api/suppliers/${id}`, {
           name: this.name,
           phone: this.phone,
           address: this.address,

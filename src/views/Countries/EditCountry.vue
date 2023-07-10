@@ -40,7 +40,6 @@
   </section>
 </template>
 <script>
-import axios from "axios";
 export default {
   mounted() {
     this.getCountry(this.$route.params.id);
@@ -53,8 +52,8 @@ export default {
   },
   methods: {
     getCountry(id) {
-      axios
-        .get(`${this.$store.state.url}/countries/${id}`)
+      this.$axios
+        .get(`/api/countries/${id}`)
         .then((response) => {
           console.log(response.data.data);
           this.name = response.data.data["name"];
@@ -65,8 +64,8 @@ export default {
     },
 
     updateCountry(id) {
-      axios
-        .put(`${this.$store.state.url}/countries/${id}`, {
+      this.$axios
+        .put(`/api/countries/${id}`, {
           name: this.name,
         })
         .then((response) => {

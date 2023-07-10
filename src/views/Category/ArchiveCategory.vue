@@ -62,9 +62,7 @@
 </template>
 
 <script>
-import axios from "axios";
 import Swal from "sweetalert2/dist/sweetalert2";
-
 export default {
   data() {
     return {
@@ -73,8 +71,8 @@ export default {
   },
   methods: {
     getCategories() {
-      axios
-        .get(`${this.$store.state.url}/categories/archive`)
+      this.$axios
+        .get(`/api/categories/archive`)
         .then((response) => {
           console.log(response);
           this.category = response.data.data;
@@ -85,8 +83,8 @@ export default {
         });
     },
     restoreItem(id) {
-      axios
-        .put(`${this.$store.state.url}/categories/${id}/restore`)
+      this.$axios
+        .put(`/api/categories/${id}/restore`)
         .then((response) => {
           this.$toast.success("category restored successfully");
           this.getCategories();
@@ -107,8 +105,8 @@ export default {
         confirmButtonText: "Yes, delete it!",
       }).then((result) => {
         if (result.isConfirmed) {
-          axios
-            .delete(`${this.$store.state.url}/categories/${id}/force-delete`)
+          this.$axios
+            .delete(`/api/categories/${id}/force-delete`)
             .then((response) => {
               console.log(response);
               Swal.fire("Deleted!", "categories has been deleted.", "success");

@@ -8,7 +8,6 @@
 </template>
 
 <script>
-import axios from "axios";
 import TableComp from "../../components/Table.vue";
 
 export default {
@@ -27,20 +26,24 @@ export default {
   },
   methods: {
     indexAdmins() {
-      axios
-        .get(`${this.$store.state.url}/admins`)
+      this.$axios
+        .get(`/api/admins`)
         .then((response) => {
           this.admins = response.data.data;
           console.log(response.data.data);
         })
         .catch((error) => {
-          this.$toast.error(error.response.data.message);
+          if (error.response.data) {
+            this.$toast.error(error.response.data.message);
+          } else {
+            this.$toast.error(error.message);
+          }
           console.log(error);
         });
     },
     deleteRow(event, id) {
-      axios
-        .delete(`${this.$store.state.url}/admins/${id}`)
+      this.$axios
+        .delete(`/api/admins/${id}`)
         .then((response) => {
           console.log(response.data.message);
           this.admins = this.admins.filter((item) => item.id != id);

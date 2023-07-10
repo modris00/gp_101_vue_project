@@ -50,7 +50,6 @@
   </section>
 </template>
 <script>
-import axios from "axios";
 export default {
   name: "CreateCurrencyView",
   data() {
@@ -63,8 +62,8 @@ export default {
   },
   methods: {
     createCurrency(event) {
-      axios
-        .post(`${this.$store.state.url}/currencies`, this.Currency)
+      this.$axios
+        .post(`/api/currencies`, this.Currency)
         .then((response) => {
           console.log(response);
           // if (response.data.message) {

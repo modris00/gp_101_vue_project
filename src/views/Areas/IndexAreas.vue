@@ -7,7 +7,6 @@
   ></TableComp>
 </template>
 <script>
-import axios from "axios";
 import TableComp from "../../components/Table.vue";
 
 export default {
@@ -26,8 +25,8 @@ export default {
   methods: {
     getAreas() {
       // .get("http://127.0.0.1:8000/api/areas")
-      axios
-        .get(`${this.$store.state.url}/areas`)
+      this.$axios
+        .get(`/api/areas`)
         .then((response) => {
           console.log(response);
           this.areas = response.data.data;
@@ -40,8 +39,8 @@ export default {
     deleteRow(event, id) {
       //   console.log(event);
       console.log(id);
-      axios
-        .delete(`${this.$store.state.url}/areas/${id}`)
+      this.$axios
+        .delete(`/api/areas/${id}`)
         .then((response) => {
           console.log(response);
           this.areas = this.areas.filter((area) => area.id != id);

@@ -63,7 +63,6 @@
 </template>
 
 <script>
-import axios from "axios";
 import Swal from "sweetalert2/dist/sweetalert2";
 
 export default {
@@ -108,7 +107,7 @@ export default {
         confirmButtonText: "Yes, delete it!",
       }).then((result) => {
         if (result.isConfirmed) {
-          axios
+          this.$axios
             .delete(`/api/donors/${id}/force-delete`)
             .then((response) => {
               console.log(response);

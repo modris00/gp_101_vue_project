@@ -54,7 +54,6 @@
 </template>
 
 <script>
-import axios from "axios";
 export default {
   name: "FaqCreateView",
   data() {
@@ -69,8 +68,8 @@ export default {
   },
   methods: {
     createFaq() {
-      axios
-        .post(`${this.$store.state.url}/faqs`, this.faq)
+      this.$axios
+        .post(`/api/faqs`, this.faq)
         .then((response) => {
           console.log(response);
           this.faq = {

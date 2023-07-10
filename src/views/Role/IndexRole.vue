@@ -71,7 +71,6 @@
   </div>
 </template>
 <script>
-import axios from "axios";
 //import TableComp from "../../components/Table.vue";
 
 export default {

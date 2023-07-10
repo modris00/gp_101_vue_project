@@ -73,7 +73,6 @@
 </template>
 
 <script>
-import axios from "axios";
 import Swal from "sweetalert2/dist/sweetalert2";
 export default {
   data() {
@@ -83,8 +82,8 @@ export default {
   },
   methods: {
     getBeneficiarie() {
-      axios
-        .get(`${this.$store.state.url}/beneficiaries/archive`)
+      this.$axios
+        .get(`/api/beneficiaries/archive`)
         .then((response) => {
           console.log(response);
           this.beneficiary = response.data.data;
@@ -95,8 +94,8 @@ export default {
         });
     },
     restoreItem(id) {
-      axios
-        .put(`${this.$store.state.url}/beneficiaries/${id}/restore`)
+      this.$axios
+        .put(`/api/beneficiaries/${id}/restore`)
         .then((response) => {
           this.$toast.success("beneficiarie restored successfully");
           this.getBeneficiarie();
@@ -117,8 +116,8 @@ export default {
         confirmButtonText: "Yes, delete it!",
       }).then((result) => {
         if (result.isConfirmed) {
-          axios
-            .delete(`${this.$store.state.url}/beneficiaries/${id}/force-delete`)
+          this.$axios
+            .delete(`/api/beneficiaries/${id}/force-delete`)
             .then((response) => {
               console.log(response);
               Swal.fire(

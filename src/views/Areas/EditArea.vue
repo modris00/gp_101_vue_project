@@ -43,7 +43,6 @@
   </section>
 </template>
 <script>
-import axios from "axios";
 export default {
   name: "EditAreaView",
   mounted() {
@@ -60,8 +59,8 @@ export default {
   methods: {
     getAreas(id) {
       // .get("http://127.0.0.1:8000/api/areas")
-      axios
-        .get(`${this.$store.state.url}/areas/${id}`)
+      this.$axios
+        .get(`/api/areas/${id}`)
         .then((response) => {
           console.log(response);
           this.name = response.data.data["name"];
@@ -74,8 +73,8 @@ export default {
     },
     getCities() {
       // "http://127.0.0.1:8000/api/cities"
-      axios
-        .get(`${this.$store.state.url}/cities`)
+      this.$axios
+        .get(`/api/cities`)
         .then((response) => {
           console.log(response);
           this.cities = response.data.data;
@@ -86,8 +85,8 @@ export default {
         });
     },
     updateArea(id) {
-      axios
-        .put(`${this.$store.state.url}/areas/${id}`, {
+      this.$axios
+        .put(`/api/areas/${id}`, {
           name: this.name,
           city_id: this.city_id,
         })

@@ -57,7 +57,6 @@
 </template>
 
 <script>
-import axios from "axios";
 export default {
   name: "CreateAdmin",
   data() {
@@ -72,8 +71,8 @@ export default {
   },
   methods: {
     createAdmin() {
-      axios
-        .post(`${this.$store.state.url}/admins`, this.Admin)
+      this.$axios
+        .post(`/api/admins`, this.Admin)
         .then((response) => {
           console.log(response);
           this.Category = {

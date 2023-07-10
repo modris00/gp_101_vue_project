@@ -89,7 +89,6 @@
 </template>
 
 <script>
-import axios from "axios";
 import Swal from "sweetalert2/dist/sweetalert2";
 
 export default {
@@ -103,8 +102,8 @@ export default {
   },
   methods: {
     getArchivedCRs() {
-      axios
-        .get(`${this.$store.state.url}/contact-requests/archive`)
+      this.$axios
+        .get(`/api/contact-requests/archive`)
         .then((response) => {
           console.log(response);
           this.contactRequests = response.data.data;
@@ -115,8 +114,8 @@ export default {
         });
     },
     restoreItem(id) {
-      axios
-        .put(`${this.$store.state.url}/contact-requests/${id}/restore`)
+      this.$axios
+        .put(`/api/contact-requests/${id}/restore`)
         .then((response) => {
           console.log(response);
           this.$toast.success("restored successfully");
@@ -139,10 +138,8 @@ export default {
         confirmButtonText: "Yes, delete it!",
       }).then((result) => {
         if (result.isConfirmed) {
-          axios
-            .delete(
-              `${this.$store.state.url}/contact-requests/${id}/force-delete`
-            )
+          this.$axios
+            .delete(`/api/contact-requests/${id}/force-delete`)
             .then((response) => {
               console.log(response);
               Swal.fire(
