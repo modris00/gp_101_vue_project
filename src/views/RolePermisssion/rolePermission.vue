@@ -15,35 +15,21 @@
         ></form>
         <div class="row">
           <div class="col-sm-12">
-            <table
-              class="table table-bordered table-striped table-hover text-nowrap"
+            <DataTable
+              :data="rolePermission"
+              :columns="columns"
+              :options="options"
+              class="table table-bordered table-striped"
             >
               <thead>
                 <th>#</th>
-                <th>اسم الصلاحية</th>
-                <th>اعطاء صلاحية / تراجع عن صلاحية</th>
+                <th>Permission Name</th>
+                <th>Give/Revoke Permission</th>
+                <!-- <th>اسم الصلاحية</th> -->
+                <!-- <th>اعطاء صلاحية / تراجع عن صلاحية</th> -->
               </thead>
+            </DataTable>
 
-              <tbody>
-                <tr v-for="(item, index) in rolePermission" :key="index">
-                  <td>{{ item.name }}</td>
-                  <td>{{ item.guard_name }}</td>
-                  <td class="text-center">
-                    <div class="form-check">
-                      <input
-                        :checked="item.assigned"
-                        @click="GiveRolePermission(item.id)"
-                        class="form-check-input"
-                        style="width: 20px; height: 20px"
-                        type="checkbox"
-                        value=""
-                        id="flexCheckDefault"
-                      />
-                    </div>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
             <div></div>
           </div>
         </div>
@@ -68,7 +54,48 @@ DataTable.use(DataTableLib);
 DataTable.use(ButtonsHtml5);
 
 export default {
-  // props: ["dataArray"],
+  components: { DataTable },
+  updated() {
+    this.$nextTick(() => {
+      this.checkPermissionCheckboxes();
+    });
+  },
+  mounted() {
+    // this.$nextTick(() => {
+    //   this.checkPermissionCheckboxes();
+    // });
+    var app = this;
+    $(document).on("change", ".check-permission", (event) => {
+      const checkboxId = $(event.target).attr("id");
+      app.GiveRolePermission(checkboxId);
+      // console.log("Checkbox value:", $(event.target).prop("checked"));
+    });
+
+    // $(document).ready(function () {
+    //   $(".check-permission").change(function () {
+    //     var id = $(this).attr("id");
+    //     // app.GiveRolePermission(id);
+    //     app.test("test.....");
+    //     // app.$toast.error("ok");
+    //   });
+    // });
+
+    this.$axios
+      .get(`/api/roles-permissions/${this.$route.params.id}`)
+      .then((response) => {
+        let data = response.data.data;
+        this.rolePermission = data;
+        console.log(data);
+      })
+      .catch((error) => {
+        console.log(error);
+        if (error.response.data) {
+          this.$toast.error(error.response.data.message); // from laravel
+        } else {
+          this.$toast.error(error.message); // from axios
+        }
+      });
+  },
   data() {
     return {
       rolePermission: [],
@@ -91,37 +118,30 @@ export default {
           data: null,
           orderable: false,
           render: function (data) {
-            return `<button id="${data.id}" class="btn-testview btn btn-danger" ><i class="fas fa-trash-alt"></i></button>`;
+            // return `<button id="${data.id}" class="btn-testview btn btn-danger" ><i class="fas fa-trash-alt"></i></button>`;
+            return `<div class="form-check">
+                      <input
+                        id="${data.id}"                        
+                        class="form-check-input check-permission"
+                        style="width: 20px; height: 20px"
+                        type="checkbox"
+                        data-assigned="${data.assigned}"                        
+                      />
+                    </div>`;
           },
         },
       ],
     };
   },
-
-  mounted() {
-    // this.rolePermission = this.dataArray;
-    var app = this;
-    $(".btn-perm").click(function () {
-      var id = $(this).attr("id");
-      app.deleteItem(id);
-    });
-    this.$axios
-      .get(`/api/roles-permissions/${this.$route.params.id}`)
-      .then((response) => {
-        let data = response.data.data;
-        this.rolePermission = data;
-        console.log(data);
-      })
-      .catch((error) => {
-        console.log(error);
-        if (error.response.data) {
-          this.$toast.error(error.response.data.message); // from laravel
-        } else {
-          this.$toast.error(error.message); // from axios
+  methods: {
+    checkPermissionCheckboxes() {
+      const checkboxes = document.querySelectorAll(".check-permission");
+      checkboxes.forEach((checkbox) => {
+        if (checkbox.getAttribute("data-assigned") == "true") {
+          checkbox.checked = true;
         }
       });
-  },
-  methods: {
+    },
     GiveRolePermission(permission) {
       this.$axios
         .put(`/api/roles/${this.$route.params.id}/permission/${permission}`)
@@ -138,5 +158,11 @@ export default {
         });
     },
   },
+  beforeUnmount() {
+    $(document).off("change", ".check-permission");
+  },
 };
 </script>
+<style>
+@import "datatables.net-responsive-dt";
+</style>

@@ -89,8 +89,8 @@ export default {
   },
   methods: {
     getRoles() {
-      axios
-        .get(`${this.$store.state.url}/roles`)
+      this.$axios
+        .get(`/api/roles`)
         .then((response) => {
           console.log(response);
           this.roles = response.data.data;
@@ -103,7 +103,7 @@ export default {
     deleteRow(id) {
       //   console.log(event);
       console.log(id);
-      axios
+      this.$axios
         .delete(`${this.$store.state.url}/roles/${id}`)
         .then((response) => {
           this.roles = this.roles.filter((c) => c.id != id);
