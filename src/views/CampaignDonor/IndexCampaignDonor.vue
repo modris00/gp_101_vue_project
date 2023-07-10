@@ -35,6 +35,7 @@ export default {
         })
         .catch((error) => {
           console.log(error);
+          this.$toast.warning(error.message);
         });
     },
     deleteRow(event, id) {

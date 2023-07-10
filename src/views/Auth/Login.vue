@@ -88,7 +88,8 @@ export default {
           this.$toast.success(response.data.message);
           localStorage.setItem("isLoggedIn", "1");
           localStorage.setItem("role", response.data.role["name"]);
-          alert(response.data.role["name"]);
+          // alert(response.data.role["name"]);
+          this.$store.commit("setAuthentication", true);
           //console.log(response.data.role["name"]);
         })
         .catch((error) => {
