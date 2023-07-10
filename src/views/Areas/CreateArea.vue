@@ -59,8 +59,8 @@ export default {
   methods: {
     getCities() {
       // "http://127.0.0.1:8000/api/cities"
-      axios
-        .get(`${this.$store.state.url}/cities`)
+      this.$axios
+        .get(`/api/cities`)
         .then((response) => {
           console.log(response);
           this.cities = response.data.data;
@@ -71,8 +71,8 @@ export default {
         });
     },
     createArea(event) {
-      axios
-        .post(`${this.$store.state.url}/areas`, {
+      this.$axios
+        .post(`/api/areas`, {
           name: this.name,
           city_id: this.city_id,
         })

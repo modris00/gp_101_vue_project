@@ -37,8 +37,8 @@ export default {
   },
   methods: {
     indexCategories() {
-      axios
-        .get(`${this.$store.state.url}/campaign-operations`)
+      this.$axios
+        .get(`/api/campaign-operations`)
         .then((response) => {
           this.CampaignOperation = response.data.data;
           console.log(response.data.object.data);
@@ -48,8 +48,8 @@ export default {
         });
     },
     deleteRow(event, id) {
-      axios
-        .delete(`${this.$store.state.url}/campaign-operations/${id}`)
+      this.$axios
+        .delete(`/api/campaign-operations/${id}`)
         .then((response) => {
           console.log(response.data.message);
           this.CampaignOperation = this.CampaignOperation.filter(

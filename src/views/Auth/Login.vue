@@ -1,8 +1,13 @@
 <template>
-    <form id="form" >
+  <form id="form">
     <h3>Login - A Charity</h3>
     <label for="email">Email</label>
-    <input type="email" placeholder="Enter Your Email" id="email" v-model="email" />
+    <input
+      type="email"
+      placeholder="Enter Your Email"
+      id="email"
+      v-model="email"
+    />
 
     <label for="password">Password</label>
     <input
@@ -16,7 +21,10 @@
     <div class="row mt-3">
       <div class="col-md-4">
         <div class="social-auth-links text-center mt-2 mb-3">
-          <router-link :to="{ name: 'login', params: { guard: 'admin' }}" class="btn btn-block btn-success">
+          <router-link
+            :to="{ name: 'login', params: { guard: 'admin' } }"
+            class="btn btn-block btn-success"
+          >
             <!-- <i class="fas fa-user-tie mr-2"></i> -->
             <span>Login Admin</span>
           </router-link>
@@ -24,7 +32,10 @@
       </div>
       <div class="col-md-4">
         <div class="social-auth-links text-center mt-2 mb-3">
-          <router-link :to="{ name: 'login', params: { guard: 'donor' }}" class="btn btn-block btn-info">
+          <router-link
+            :to="{ name: 'login', params: { guard: 'donor' } }"
+            class="btn btn-block btn-info"
+          >
             <!-- <i class="fas fa-user-plus mr-2"></i> -->
             <span>Login Donor</span>
           </router-link>
@@ -32,7 +43,10 @@
       </div>
       <div class="col-md-4">
         <div class="social-auth-links text-center mt-2 mb-3">
-          <router-link :to="{ name: 'login', params: { guard: 'beneficiary' }}" class="btn btn-block btn-warning">
+          <router-link
+            :to="{ name: 'login', params: { guard: 'beneficiary' } }"
+            class="btn btn-block btn-warning"
+          >
             <!-- <i class="fas fa-users mr-2"></i> -->
             <span>Login Beneficiary</span>
           </router-link>
@@ -73,6 +87,9 @@ export default {
           this.$router.push({ name: "home" });
           this.$toast.success(response.data.message);
           localStorage.setItem("isLoggedIn", "1");
+          localStorage.setItem("role", response.data.role["name"]);
+          alert(response.data.role["name"]);
+          //console.log(response.data.role["name"]);
         })
         .catch((error) => {
           // localStorage.setItem("isLoggedIn", '0');
@@ -87,7 +104,7 @@ export default {
   },
 };
 </script>
-<style scoped >
+<style scoped>
 *,
 *:before,
 *:after {
@@ -117,7 +134,9 @@ export default {
   color: #283046;
   margin-bottom: 30px;
   text-align: center;
-  text-shadow:rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+  text-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+    rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
+    rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 }
 
 label {

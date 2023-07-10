@@ -55,19 +55,56 @@
 
 <script>
 import axios from "axios";
+import $ from "jquery";
+import DataTable from "datatables.net-vue3";
+import DataTableLib from "datatables.net";
+import "datatables.net-responsive";
+import "datatables.net-select";
+import Buttons from "datatables.net-buttons-bs5";
+import ButtonsHtml5 from "datatables.net-buttons/js/buttons.html5";
+import JsZip from "jszip";
+window.JSZip = JsZip;
+DataTable.use(DataTableLib);
+DataTable.use(ButtonsHtml5);
 
 export default {
   // props: ["dataArray"],
   data() {
     return {
       rolePermission: [],
-      
+      options: {
+        responsive: true,
+        autoWidth: false,
+        select: { style: "single" },
+      },
+      columns: [
+        // { data: "id" },
+        {
+          data: null,
+          render: function (data, type, row, meta) {
+            return `${meta.row + 1}`;
+          },
+        },
+        { data: "name" },
+        { data: "guard_name" },
+        {
+          data: null,
+          orderable: false,
+          render: function (data) {
+            return `<button id="${data.id}" class="btn-testview btn btn-danger" ><i class="fas fa-trash-alt"></i></button>`;
+          },
+        },
+      ],
     };
   },
 
   mounted() {
     // this.rolePermission = this.dataArray;
-
+    var app = this;
+    $(".btn-perm").click(function () {
+      var id = $(this).attr("id");
+      app.deleteItem(id);
+    });
     this.$axios
       .get(`/api/roles-permissions/${this.$route.params.id}`)
       .then((response) => {
@@ -83,7 +120,6 @@ export default {
           this.$toast.error(error.message); // from axios
         }
       });
-    
   },
   methods: {
     GiveRolePermission(permission) {

@@ -46,6 +46,7 @@
                   </button>
                   <router-link
                     style="margin-right: 2px"
+                    title="service-details"
                     class="btn btn-success"
                     :to="{ name: 'service-details', params: { id: item.id } }"
                   >
@@ -53,6 +54,7 @@
                   </router-link>
                   <router-link
                     style="margin-right: 2px"
+                    title="beneficiary-details"
                     class="btn btn-info"
                     :to="{
                       name: 'beneficiary-details',
@@ -62,6 +64,7 @@
                     <i class="fas fa-info"></i>
                   </router-link>
                   <router-link
+                    title="donor-details"
                     style="margin-right: 2px"
                     class="btn btn-secondary"
                     :to="{
@@ -92,6 +95,7 @@ import axios from "axios";
 export default {
   mounted() {
     this.indexCampaign();
+    //console.log(this.$store.state.role);
   },
   name: "IndexCampaign",
   data() {

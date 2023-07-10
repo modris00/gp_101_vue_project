@@ -67,8 +67,8 @@ export default {
   },
   methods: {
     createRole(event) {
-      axios
-        .post(`${this.$store.state.url}/roles`, this.Roles)
+      this.$axios
+        .post(`/api/roles`, this.Roles)
         .then((response) => {
           console.log(response);
           // if (response.data.message) {

@@ -81,8 +81,8 @@ export default {
   },
   methods: {
     getCampaignBeneficiaries() {
-      axios
-        .get(`${this.$store.state.url}/campaigns-beneficiaries/archive`)
+      this.$axios
+        .get(`/api/campaigns-beneficiaries/archive`)
         .then((response) => {
           console.log(response);
           this.campaignBeneficiaries = response.data.data;
@@ -93,8 +93,8 @@ export default {
         });
     },
     restoreItem(id) {
-      axios
-        .get(`${this.$store.state.url}/campaigns-beneficiaries/${id}/restore`)
+      this.$axios
+        .get(`/api/campaigns-beneficiaries/${id}/restore`)
         .then((response) => {
           console.log(response);
           this.$toast.success("restored successfully");
@@ -119,10 +119,8 @@ export default {
         confirmButtonText: "Yes, delete it!",
       }).then((result) => {
         if (result.isConfirmed) {
-          axios
-            .delete(
-              `${this.$store.state.url}/campaigns-beneficiaries/${id}/forceDelete`
-            )
+          this.$axios
+            .delete(`/api/campaigns-beneficiaries/${id}/forceDelete`)
             .then((response) => {
               console.log(response);
               Swal.fire(
