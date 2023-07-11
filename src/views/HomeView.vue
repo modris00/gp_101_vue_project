@@ -129,6 +129,7 @@ export default {
         .get(`/api/donors`)
         .then((response) => {
           this.donorsCount = response.data.data.length;
+          console.log(response.data.data);
         })
         .catch((error) => {
           console.log(error);
@@ -173,7 +174,7 @@ export default {
     },
   },
   mounted() {
-    if (this.role == "Super Admin") {
+    if (localStorage.getItem("role") == "Super Admin") {
       this.fetchData();
     }
     this.RoleName();
