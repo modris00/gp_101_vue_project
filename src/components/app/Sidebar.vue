@@ -875,7 +875,7 @@ export default {
       var role = localStorage.getItem("role");
       return role;
     },
-    useName() {
+    userName() {
       var name = localStorage.getItem("username");
       return name;
     },
