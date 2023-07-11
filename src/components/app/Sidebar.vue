@@ -23,7 +23,7 @@
           />
         </div>
         <div class="info">
-          <a href="#" class="d-block">{{ name_user }}</a>
+          <a href="#" class="d-block">{{ userName }}</a>
         </div>
       </div>
 
@@ -38,7 +38,10 @@
           <!-- Add icons to the links using the .nav-icon class
             with font-awesome or any other icon font library -->
 
-          <li class="nav-header text-success" v-show="role == 'Super Admin'">
+          <li
+            class="nav-header text-success"
+            v-show="userRole == 'Super Admin'"
+          >
             Human Resource
           </li>
 
@@ -66,7 +69,7 @@
             </ul>
           </li> -->
 
-          <li class="nav-item" v-show="role == 'Super Admin'">
+          <li class="nav-item" v-show="userRole == 'Super Admin'">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-users text-success"></i>
               <p>
@@ -96,7 +99,7 @@
             </ul>
           </li>
 
-          <li class="nav-item" v-show="role == 'Super Admin'">
+          <li class="nav-item" v-show="userRole == 'Super Admin'">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-hands-helping text-success"></i>
               <p>
@@ -126,7 +129,7 @@
             </ul>
           </li>
 
-          <li class="nav-item" v-show="role == 'Super Admin'">
+          <li class="nav-item" v-show="userRole == 'Super Admin'">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-user-plus text-success"></i>
               <p>
@@ -161,7 +164,7 @@
               </li>
             </ul>
           </li>
-          <li class="nav-item" v-show="role == 'Super Admin'">
+          <li class="nav-item" v-show="userRole == 'Super Admin'">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-caravan text-success"></i>
               <p>
@@ -197,11 +200,14 @@
             </ul>
           </li>
 
-          <li class="nav-header text-primary" v-show="role == 'Super Admin'">
+          <li
+            class="nav-header text-primary"
+            v-show="userRole == 'Super Admin'"
+          >
             Countries
           </li>
 
-          <li class="nav-item" v-show="role == 'Super Admin'">
+          <li class="nav-item" v-show="userRole == 'Super Admin'">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-flag text-primary"></i>
               <p>
@@ -237,7 +243,7 @@
             </ul>
           </li>
 
-          <li class="nav-item" v-show="role == 'Super Admin'">
+          <li class="nav-item" v-show="userRole == 'Super Admin'">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-city text-primary"></i>
               <p>
@@ -267,7 +273,7 @@
             </ul>
           </li>
 
-          <li class="nav-item" v-show="role == 'Super Admin'">
+          <li class="nav-item" v-show="userRole == 'Super Admin'">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-building text-primary"></i>
               <p>
@@ -297,10 +303,13 @@
             </ul>
           </li>
 
-          <li class="nav-header text-warning" v-show="role == 'Super Admin'">
+          <li
+            class="nav-header text-warning"
+            v-show="userRole == 'Super Admin'"
+          >
             Campaigns
           </li>
-          <li class="nav-item" v-show="role == 'Super Admin'">
+          <li class="nav-item" v-show="userRole == 'Super Admin'">
             <a href="#" class="nav-link">
               <!-- <i class="nav-icon fas fa-list text-sm"></i> -->
               <!-- <i class=" nav-icon fa-solid fa-list-tree"></i> -->
@@ -338,7 +347,7 @@
             </ul>
           </li>
 
-          <li class="nav-item" v-show="role == 'Super Admin'">
+          <li class="nav-item" v-show="userRole == 'Super Admin'">
             <a href="#" class="nav-link">
               <!-- <i class="nav-icon fas fa-list text-sm"></i> -->
               <!-- <i class=" nav-icon fa-solid fa-list-tree"></i> -->
@@ -379,7 +388,7 @@
             </ul>
           </li>
 
-          <li class="nav-item" v-show="role == 'Super Admin'">
+          <li class="nav-item" v-show="userRole == 'Super Admin'">
             <a href="#" class="nav-link">
               <!-- <i class="nav-icon fas fa-list text-sm"></i> -->
               <!-- <i class=" nav-icon fa-solid fa-list-tree"></i> -->
@@ -419,7 +428,7 @@
               </li>
             </ul>
           </li>
-          <li class="nav-item" v-show="role == 'Super Admin'">
+          <li class="nav-item" v-show="userRole == 'Super Admin'">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-file text-warning"></i>
               <p>
@@ -457,7 +466,7 @@
               </li>
             </ul>
           </li>
-          <li class="nav-item" v-show="role == 'Super Admin'">
+          <li class="nav-item" v-show="userRole == 'Super Admin'">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-file text-warning"></i>
               <p>
@@ -493,10 +502,10 @@
             </ul>
           </li>
 
-          <li class="nav-header text-info" v-show="role == 'Super Admin'">
+          <li class="nav-header text-info" v-show="userRole == 'Super Admin'">
             Categories & Services
           </li>
-          <li class="nav-item" v-show="role == 'Super Admin'">
+          <li class="nav-item" v-show="userRole == 'Super Admin'">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-boxes text-info"></i>
               <p>
@@ -531,7 +540,7 @@
               </li>
             </ul>
           </li>
-          <li class="nav-item" v-show="role == 'Super Admin'">
+          <li class="nav-item" v-show="userRole == 'Super Admin'">
             <a href="#" class="nav-link">
               <!-- <i class=" fas fa-list"></i> -->
               <i class="nav-icon fas fa-box-open text-info"></i>
@@ -568,7 +577,7 @@
               </li>
             </ul>
           </li>
-          <li class="nav-item" v-show="role == 'Super Admin'">
+          <li class="nav-item" v-show="userRole == 'Super Admin'">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-dolly text-info"></i>
               <p>
@@ -601,10 +610,10 @@
             </ul>
           </li>
 
-          <li class="nav-header" v-show="role == 'Super Admin'">
+          <li class="nav-header" v-show="userRole == 'Super Admin'">
             <span class="currency">Finance</span>
           </li>
-          <li class="nav-item" v-show="role == 'Super Admin'">
+          <li class="nav-item" v-show="userRole == 'Super Admin'">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-coins currency"></i>
 
@@ -641,7 +650,7 @@
             </ul>
           </li>
 
-          <li class="nav-item" v-show="role == 'Super Admin'">
+          <li class="nav-item" v-show="userRole == 'Super Admin'">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-file-invoice-dollar currency"></i>
 
@@ -672,10 +681,10 @@
             </ul>
           </li>
 
-          <li class="nav-header text-light" v-show="role == 'Super Admin'">
+          <li class="nav-header text-light" v-show="userRole == 'Super Admin'">
             <span class="contact">communication</span>
           </li>
-          <li class="nav-item" v-show="role == 'Super Admin'">
+          <li class="nav-item" v-show="userRole == 'Super Admin'">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-question fa-lg contact"> </i>
               <p>
@@ -705,7 +714,7 @@
             </ul>
           </li>
 
-          <li class="nav-item" v-show="role == 'Super Admin'">
+          <li class="nav-item" v-show="userRole == 'Super Admin'">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-comments contact"></i>
               <p>
@@ -740,10 +749,13 @@
               </li>
             </ul>
           </li>
-          <li class="nav-header text-success" v-show="role == 'Super Admin'">
+          <li
+            class="nav-header text-success"
+            v-show="userRole == 'Super Admin'"
+          >
             <span class="contact">Role & Permission</span>
           </li>
-          <li class="nav-item" v-show="role == 'Super Admin'">
+          <li class="nav-item" v-show="userRole == 'Super Admin'">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-user-tag"></i>
               <p>
@@ -766,7 +778,7 @@
               </li>
             </ul>
           </li>
-          <li class="nav-item" v-show="role == 'User-Donor'">
+          <li class="nav-item" v-show="userRole == 'User-Donor'">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-hands-helping text-success"></i>
               <p>
@@ -792,7 +804,7 @@
               </li>
             </ul>
           </li>
-          <li class="nav-item" v-show="role == 'User-Beneficiary'">
+          <li class="nav-item" v-show="userRole == 'User-Beneficiary'">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-hands-helping text-success"></i>
               <p>
@@ -837,11 +849,11 @@ export default {
 
   data() {
     return {
-      role: "",
+      // role: "",
       name: "",
-      id: "",
+      // id: "",
       //email: "",
-      name_user: "",
+      // name_user: "",
       id_user: "",
     };
   },
@@ -852,6 +864,20 @@ export default {
     },
     RoleName() {
       this.role = localStorage.getItem("role");
+    },
+  },
+  computed: {
+    userID() {
+      var id = localStorage.getItem("id");
+      return id;
+    },
+    userRole() {
+      var role = localStorage.getItem("role");
+      return role;
+    },
+    useName() {
+      var name = localStorage.getItem("username");
+      return name;
     },
   },
 };
